@@ -2,17 +2,26 @@ import React from "react";
 import FormControl from "@material-ui/core/FormControl";
 import { InputLabel, Input, Button } from "@material-ui/core";
 import { Formik, Form } from "formik";
-
-export interface FooProps {
-  name: string;
-}
+import {
+  registerUser,
+  RegisterUserDTO,
+} from "../services/gw2lfg-server/user/register.service";
 
 export default function Register() {
-  const onSubmit = (x: any) => console.log(x);
+  const registerUserOrFail = async (values: RegisterUserDTO, {}: any) => {
+    try {
+      const token = await registerUser(values);
+      window.localStorage.setItem("jwt", token);
+      console.log({ token });
+    } catch (error) {
+      console.log({ error });
+      throw error;
+    }
+  };
 
   return (
     <Formik
-      onSubmit={onSubmit}
+      onSubmit={registerUserOrFail}
       initialValues={{ username: "", password: "", apiKey: "" }}
     >
       {(props) => {
