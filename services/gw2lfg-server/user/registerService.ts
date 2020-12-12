@@ -1,5 +1,5 @@
 import { gw2lfgUrl } from "../constants";
-import { httpPost } from "../../http/post.http.service";
+import { httpPost } from "../../http/postHttpService";
 
 export const registerUrl = `${gw2lfgUrl}/register`;
 

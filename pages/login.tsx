@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import {
   loginUser,
   LoginUserDTO,
-} from "../services/gw2lfg-server/user/login.service";
+} from "../services/gw2lfg-server/user/loginService";
 import { UserFormTextField } from "../components/UserFormTextField";
 
 export default function Login() {

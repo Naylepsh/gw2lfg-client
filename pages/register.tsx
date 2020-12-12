@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import {
   registerUser,
   RegisterUserDTO,
-} from "../services/gw2lfg-server/user/register.service";
+} from "../services/gw2lfg-server/user/registerService";
 import { UserFormTextField } from "../components/UserFormTextField";
 
 export default function Register() {
