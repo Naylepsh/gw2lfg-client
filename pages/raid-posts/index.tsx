@@ -1,6 +1,13 @@
-import { Box, Grid } from "@material-ui/core";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Grid,
+} from "@material-ui/core";
 import React from "react";
 import { useQuery } from "react-query";
+import RaidBoss from "../../components/RaidBoss/RaidBoss";
 import {
   getRaidPosts,
   RaidBossDTO,
@@ -16,9 +23,13 @@ export function RaidPostBosses(props: RaidBossesProps) {
   const { bosses } = props;
   const bossesToDisplay = bosses.slice(0, 5);
   const hasMoreBosses = bosses.length > bossesToDisplay.length;
-  const suffix = hasMoreBosses ? "..." : "";
   return (
-    <span>{bossesToDisplay.map((boss) => boss.name).join(", ") + suffix}</span>
+    <React.Fragment>
+      {bossesToDisplay.map((boss) => (
+        <RaidBoss {...boss} key={boss.name} />
+      ))}
+      {hasMoreBosses && <span>...</span>}
+    </React.Fragment>
   );
 }
 
@@ -41,19 +52,24 @@ export function RaidPost(props: RaidPostProps) {
   const spotsTaken = maxSpots - raidPost.roles.length;
 
   return (
-    <Box>
-      <Grid container>
-        <Grid item xs={7}>
-          <RaidPostBosses bosses={raidPost.bosses} />
+    <Accordion>
+      <AccordionSummary>
+        <Grid container>
+          <Grid item xs={7} container direction="row">
+            <RaidPostBosses bosses={raidPost.bosses} />
+          </Grid>
+          <Grid item xs={4}>
+            <RaidPostRoles roles={raidPost.roles} />
+          </Grid>
+          <Grid item xs>
+            {spotsTaken} / {maxSpots}
+          </Grid>
         </Grid>
-        <Grid item xs={4}>
-          <RaidPostRoles roles={raidPost.roles} />
-        </Grid>
-        <Grid item xs>
-          {spotsTaken} / {maxSpots}
-        </Grid>
-      </Grid>
-    </Box>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Box>{raidPost.description}</Box>
+      </AccordionDetails>
+    </Accordion>
   );
 }
 
@@ -70,12 +86,11 @@ export default function GetRaidPosts() {
   if (error) {
     return <div>Error occured {error}</div>;
   }
-  console.log(data);
 
   return (
     <Box>
       {data.map((raidPost) => (
-        <RaidPost raidPost={raidPost} />
+        <RaidPost raidPost={raidPost} key={raidPost.id} />
       ))}
     </Box>
   );

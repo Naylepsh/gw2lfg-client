@@ -24,6 +24,7 @@ export interface RaidPostDTO {
   id: number;
   date: Date;
   server: string;
+  description?: string;
   author: UserDTO;
   bosses: RaidBossDTO[];
   requirements: RequirementDTO[];
