@@ -1,15 +1,16 @@
 import React from "react";
-import FormControl from "@material-ui/core/FormControl";
-import { InputLabel, Input, Button } from "@material-ui/core";
+import { Button, Container } from "@material-ui/core";
 import { Formik, Form } from "formik";
 import {
   loginUser,
   LoginUserDTO,
 } from "../services/gw2lfg-server/user/login.service";
+import { UserFormTextField } from "../components/UserFormTextField";
 
 export default function Login() {
   const loginUserOrFail = async (values: LoginUserDTO, {}: any) => {
     try {
+      console.log(values);
       const token = await loginUser(values);
       window.localStorage.setItem("jwt", token);
       console.log({ token });
@@ -20,28 +21,43 @@ export default function Login() {
   };
 
   return (
-    <Formik
-      onSubmit={loginUserOrFail}
-      initialValues={{ username: "", password: "" }}
-    >
-      {(props) => {
-        const { handleChange } = props;
-        return (
-          <Form>
-            <FormControl>
-              <InputLabel htmlFor="username">Username</InputLabel>
-              <Input onChange={handleChange} id="username" />
-            </FormControl>
-            <FormControl>
-              <InputLabel htmlFor="password">Password</InputLabel>
-              <Input id="password" onChange={handleChange} />
-            </FormControl>
-            <Button type="submit" variant="contained" color="primary">
-              Register
-            </Button>
-          </Form>
-        );
-      }}
-    </Formik>
+    <Container maxWidth="xs">
+      <Formik
+        onSubmit={loginUserOrFail}
+        initialValues={{ username: "", password: "" }}
+      >
+        {(props) => {
+          const { handleChange } = props;
+          return (
+            <Form>
+              <UserFormTextField
+                required
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                onChange={handleChange}
+              />
+              <UserFormTextField
+                required
+                type="password"
+                id="password"
+                label="password"
+                name="password"
+                onChange={handleChange}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+              >
+                Login
+              </Button>
+            </Form>
+          );
+        }}
+      </Formik>
+    </Container>
   );
 }

@@ -1,11 +1,11 @@
 import React from "react";
-import FormControl from "@material-ui/core/FormControl";
-import { InputLabel, Input, Button } from "@material-ui/core";
+import { Button, Container } from "@material-ui/core";
 import { Formik, Form } from "formik";
 import {
   registerUser,
   RegisterUserDTO,
 } from "../services/gw2lfg-server/user/register.service";
+import { UserFormTextField } from "../components/UserFormTextField";
 
 export default function Register() {
   const registerUserOrFail = async (values: RegisterUserDTO, {}: any) => {
@@ -20,32 +20,52 @@ export default function Register() {
   };
 
   return (
-    <Formik
-      onSubmit={registerUserOrFail}
-      initialValues={{ username: "", password: "", apiKey: "" }}
-    >
-      {(props) => {
-        const { handleChange } = props;
-        return (
-          <Form>
-            <FormControl>
-              <InputLabel htmlFor="username">Username</InputLabel>
-              <Input onChange={handleChange} id="username" />
-            </FormControl>
-            <FormControl>
-              <InputLabel htmlFor="password">Password</InputLabel>
-              <Input id="password" onChange={handleChange} />
-            </FormControl>
-            <FormControl>
-              <InputLabel htmlFor="apiKey">API key</InputLabel>
-              <Input id="apiKey" onChange={handleChange} />
-            </FormControl>
-            <Button type="submit" variant="contained" color="primary">
-              Register
-            </Button>
-          </Form>
-        );
-      }}
-    </Formik>
+    <Container maxWidth="xs">
+      <Formik
+        onSubmit={registerUserOrFail}
+        initialValues={{ username: "", password: "", apiKey: "" }}
+      >
+        {(props) => {
+          const { handleChange } = props;
+          return (
+            <Form>
+              <UserFormTextField
+                required
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                onChange={handleChange}
+              />
+              <UserFormTextField
+                required
+                type="password"
+                id="password"
+                label="Password"
+                name="password"
+                autoComplete="password"
+                onChange={handleChange}
+              />
+              <UserFormTextField
+                required
+                id="apiKey"
+                label="API key"
+                name="apiKey"
+                autoComplete="apiKey"
+                onChange={handleChange}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+              >
+                Register
+              </Button>
+            </Form>
+          );
+        }}
+      </Formik>
+    </Container>
   );
 }
