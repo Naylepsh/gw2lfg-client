@@ -1,10 +1,18 @@
-import { Container } from "@material-ui/core";
+import { Container, createMuiTheme, ThemeProvider } from "@material-ui/core";
 import "../styles/global.css";
+
+const darkTheme = createMuiTheme({
+  palette: {
+    type: "dark",
+  },
+});
 
 export default function App({ Component, pageProps }) {
   return (
-    <Container>
-      <Component {...pageProps} />
-    </Container>
+    <ThemeProvider theme={darkTheme}>
+      <Container>
+        <Component {...pageProps} />
+      </Container>
+    </ThemeProvider>
   );
 }
