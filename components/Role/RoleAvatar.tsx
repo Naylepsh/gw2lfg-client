@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { RoleDTO } from "../../services/gw2lfg-server/raid-post/getRaidPostsService";
-import { roles } from "./roles.json";
+import { roles, classes } from "./roles.json";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 class NullRole implements RoleDTO {
   name = "invalid";
+  class = "invalid";
   portrait = "https://wiki.guildwars2.com/images/5/5a/Hints_Menu_Bar_icon.png";
 }
 
@@ -39,9 +40,11 @@ export default function RoleAvatar(props: RoleAvatarProps) {
   const classes = useStyles();
 
   const name = props.name.toLowerCase();
-  const roleVariants = roles.filter((role) => role.name === name);
-  const role = roleVariants[0] ?? new NullRole();
-  console.log(role);
+  const roleClass = props.class.toLowerCase();
+  const roleFound =
+    roleClass === "any" ? findRoleByName(name) : findRoleByClass(roleClass);
+  const role = roleFound ?? new NullRole();
+
   return (
     <Box my={1} className={classes.root}>
       <Avatar
@@ -52,4 +55,16 @@ export default function RoleAvatar(props: RoleAvatarProps) {
       />
     </Box>
   );
+}
+
+function findRoleByName(name: string) {
+  const roleVariants = roles.filter((role) => role.name === name);
+  const role = roleVariants[0];
+  return role;
+}
+
+function findRoleByClass(roleClass: string) {
+  const roleVariants = classes.filter((role) => role.name === roleClass);
+  const role = roleVariants[0];
+  return role;
 }

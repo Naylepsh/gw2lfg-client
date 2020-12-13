@@ -1,6 +1,45 @@
 {
   "roles": [
     { "name": "dps", "portrait": "https://wiki.guildwars2.com/images/2/23/Power.png" },
-    { "name": "healer", "portrait": "https://wiki.guildwars2.com/images/b/be/Vitality.png" }
+    { "name": "healer", "portrait": "https://wiki.guildwars2.com/images/b/be/Vitality.png" },
+    { "name": "tank", "portrait": "https://wiki.guildwars2.com/images/1/12/Toughness.png" },
+    { "name": "utility", "portrait": "https://wiki.guildwars2.com/images/4/44/Boon_Duration.png" }
+  ],
+  "classes": [
+    { "name": "guardian", "portrait": "https://wiki.guildwars2.com/images/6/6c/Guardian_tango_icon_200px.png" },
+    { "name": "dragonhunter", "portrait": "https://wiki.guildwars2.com/images/1/1f/Dragonhunter_tango_icon_200px.png" },
+    { "name": "firebrand", "portrait": "https://wiki.guildwars2.com/images/7/73/Firebrand_tango_icon_200px.png" },
+
+    { "name": "elementalist", "portrait": "https://wiki.guildwars2.com/images/a/a0/Elementalist_tango_icon_200px.png" },
+    { "name": "tempest", "portrait": "https://wiki.guildwars2.com/images/9/90/Tempest_tango_icon_200px.png" },
+    { "name": "weaver", "portrait": "https://wiki.guildwars2.com/images/3/31/Weaver_tango_icon_200px.png" },
+
+    { "name": "engineer", "portrait": "https://wiki.guildwars2.com/images/2/2f/Engineer_tango_icon_200px.png" },
+    { "name": "scrapper", "portrait": "https://wiki.guildwars2.com/images/3/3a/Scrapper_tango_icon_200px.png" },
+    { "name": "holosmith", "portrait": "https://wiki.guildwars2.com/images/a/ae/Holosmith_tango_icon_200px.png" },
+
+    { "name": "mesmer", "portrait": "https://wiki.guildwars2.com/images/7/73/Mesmer_tango_icon_200px.png" },
+    { "name": "chronomancer", "portrait": "https://wiki.guildwars2.com/images/8/8b/Chronomancer_tango_icon_200px.png" },
+    { "name": "mirage", "portrait": "https://wiki.guildwars2.com/images/a/a9/Mirage_tango_icon_200px.png" },
+
+    { "name": "necromancer", "portrait": "https://wiki.guildwars2.com/images/c/cd/Necromancer_tango_icon_200px.png" },
+    { "name": "reaper", "portrait": "https://wiki.guildwars2.com/images/9/95/Reaper_tango_icon_200px.png" },
+    { "name": "scourge", "portrait": "https://wiki.guildwars2.com/images/8/8a/Scourge_tango_icon_200px.png" },
+
+    { "name": "ranger", "portrait": "https://wiki.guildwars2.com/images/5/51/Ranger_tango_icon_200px.png" },
+    { "name": "druid", "portrait": "https://wiki.guildwars2.com/images/6/6d/Druid_tango_icon_200px.png" },
+    { "name": "soulbeast", "portrait": "https://wiki.guildwars2.com/images/f/f6/Soulbeast_tango_icon_200px.png" },
+
+    { "name": "revenant", "portrait": "https://wiki.guildwars2.com/images/a/a8/Revenant_tango_icon_200px.png" },
+    { "name": "herald", "portrait": "https://wiki.guildwars2.com/images/c/c7/Herald_tango_icon_200px.png" },
+    { "name": "renegade", "portrait": "https://wiki.guildwars2.com/images/b/bc/Renegade_tango_icon_200px.png" },
+
+    { "name": "thief", "portrait": "https://wiki.guildwars2.com/images/1/19/Thief_tango_icon_200px.png" },
+    { "name": "daredevil", "portrait": "https://wiki.guildwars2.com/images/c/ca/Daredevil_tango_icon_200px.png" },
+    { "name": "deadeye", "portrait": "https://wiki.guildwars2.com/images/b/b0/Deadeye_tango_icon_200px.png" },
+
+    { "name": "warrior", "portrait": "https://wiki.guildwars2.com/images/d/db/Warrior_tango_icon_200px.png" },
+    { "name": "berserker", "portrait": "https://wiki.guildwars2.com/images/8/80/Berserker_tango_icon_200px.png" },
+    { "name": "spellbreaker", "portrait": "https://wiki.guildwars2.com/images/7/78/Spellbreaker_tango_icon_200px.png" }
   ]
 }
