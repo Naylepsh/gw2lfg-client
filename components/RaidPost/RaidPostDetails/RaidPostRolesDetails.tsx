@@ -24,7 +24,7 @@ export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
         <TableHead>
           <TableRow>
             <TableCell>Role</TableCell>
-            <TableCell align="right">Description</TableCell>
+            <TableCell>Description</TableCell>
             <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>

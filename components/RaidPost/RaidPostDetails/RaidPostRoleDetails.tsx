@@ -1,4 +1,4 @@
-import { Button, TableCell } from "@material-ui/core";
+import { Box, Button, TableCell } from "@material-ui/core";
 import React from "react";
 import { RoleDTO } from "../../../services/gw2lfg-server/raid-post/getRaidPostsService";
 import RoleAvatar from "../../Role/RoleAvatar";
@@ -13,9 +13,12 @@ export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
   return (
     <React.Fragment>
       <TableCell component="th" scope="row">
-        <RoleAvatar {...role} />
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <RoleAvatar {...role} size={"medium"} />
+        </Box>
+        <Box textAlign="center">{role.name}</Box>
       </TableCell>
-      <TableCell align="right">{role.description}</TableCell>
+      <TableCell>{role.description}</TableCell>
       <TableCell align="right">
         <Button color="primary" variant="contained">
           Join

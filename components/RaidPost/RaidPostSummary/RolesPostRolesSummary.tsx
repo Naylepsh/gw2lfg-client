@@ -1,6 +1,18 @@
 import React from "react";
 import RoleAvatar from "../../Role/RoleAvatar";
 import { RoleDTO } from "../../../services/gw2lfg-server/raid-post/getRaidPostsService";
+import { makeStyles, Theme, createStyles, Box } from "@material-ui/core";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: "flex",
+      "& > *": {
+        margin: theme.spacing(1),
+      },
+    },
+  })
+);
 
 export interface RaidRolesSummaryProps {
   roles: RoleDTO[];
@@ -8,10 +20,14 @@ export interface RaidRolesSummaryProps {
 
 export function RaidPostRolesSummary(props: RaidRolesSummaryProps) {
   const { roles } = props;
+  const classes = useStyles();
+
   return (
     <React.Fragment>
       {roles.map((role, key) => (
-        <RoleAvatar {...role} key={key} />
+        <Box my={1} className={classes.root}>
+          <RoleAvatar {...role} key={key} size={"small"} />
+        </Box>
       ))}
     </React.Fragment>
   );

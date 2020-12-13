@@ -11,15 +11,13 @@ import { roles, classes } from "./roles.json";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      display: "flex",
-      "& > *": {
-        margin: theme.spacing(1),
-      },
-    },
     small: {
       width: theme.spacing(3),
       height: theme.spacing(3),
+    },
+    medium: {
+      width: theme.spacing(5),
+      height: theme.spacing(5),
     },
     large: {
       width: theme.spacing(7),
@@ -34,7 +32,9 @@ class NullRole implements RoleDTO {
   portrait = "https://wiki.guildwars2.com/images/5/5a/Hints_Menu_Bar_icon.png";
 }
 
-interface RoleAvatarProps extends RoleDTO {}
+interface RoleAvatarProps extends RoleDTO {
+  size: "small" | "medium" | "large";
+}
 
 export default function RoleAvatar(props: RoleAvatarProps) {
   const classes = useStyles();
@@ -46,14 +46,12 @@ export default function RoleAvatar(props: RoleAvatarProps) {
   const role = roleFound ?? new NullRole();
 
   return (
-    <Box my={1} className={classes.root}>
-      <Avatar
-        src={role.portrait}
-        alt={role.name}
-        variant="square"
-        className={classes.small}
-      />
-    </Box>
+    <Avatar
+      src={role.portrait}
+      alt={role.name}
+      variant="square"
+      className={classes[props.size]}
+    />
   );
 }
 
