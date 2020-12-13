@@ -8,6 +8,7 @@ import {
 import React from "react";
 import { useQuery } from "react-query";
 import RaidBoss from "../../components/RaidBoss/RaidBoss";
+import Role from "../../components/Role/Role";
 import {
   getRaidPosts,
   RaidBossDTO,
@@ -21,12 +22,12 @@ interface RaidBossesProps {
 
 export function RaidPostBosses(props: RaidBossesProps) {
   const { bosses } = props;
-  const bossesToDisplay = bosses.slice(0, 5);
+  const bossesToDisplay = bosses.slice(0, bosses.length);
   const hasMoreBosses = bosses.length > bossesToDisplay.length;
   return (
     <React.Fragment>
-      {bossesToDisplay.map((boss) => (
-        <RaidBoss {...boss} key={boss.name} />
+      {bossesToDisplay.map((boss, key) => (
+        <RaidBoss {...boss} key={key} />
       ))}
       {hasMoreBosses && <span>...</span>}
     </React.Fragment>
@@ -39,7 +40,13 @@ interface RolesProps {
 
 export function RaidPostRoles(props: RolesProps) {
   const { roles } = props;
-  return <span>{roles.map((role) => role.name).join(", ")}</span>;
+  return (
+    <React.Fragment>
+      {roles.map((role, key) => (
+        <Role {...role} key={key} />
+      ))}
+    </React.Fragment>
+  );
 }
 
 interface RaidPostProps {
@@ -58,7 +65,7 @@ export function RaidPost(props: RaidPostProps) {
           <Grid item xs={7} container direction="row">
             <RaidPostBosses bosses={raidPost.bosses} />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={4} container direction="row">
             <RaidPostRoles roles={raidPost.roles} />
           </Grid>
           <Grid item xs>

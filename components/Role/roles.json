@@ -1,0 +1,6 @@
+{
+  "roles": [
+    { "name": "dps", "portrait": "https://wiki.guildwars2.com/images/2/23/Power.png" },
+    { "name": "healer", "portrait": "https://wiki.guildwars2.com/images/b/be/Vitality.png" }
+  ]
+}
