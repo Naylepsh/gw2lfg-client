@@ -28,13 +28,12 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface RoleProps extends RoleDTO {}
+interface RoleAvatarProps extends RoleDTO {}
 
-export default function Role(props: RoleProps) {
+export default function RoleAvatar(props: RoleAvatarProps) {
   const classes = useStyles();
 
   const name = props.name.toLowerCase();
-  console.log(name);
   const roleVariants = roles.filter((role) => role.name === name);
   const role = roleVariants[0];
   return role ? (

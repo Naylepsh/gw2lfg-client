@@ -7,8 +7,8 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { useQuery } from "react-query";
-import RaidBoss from "../../components/RaidBoss/RaidBoss";
-import Role from "../../components/Role/Role";
+import RaidBossAvatar from "../../components/RaidBoss/RaidBossAvatar";
+import RoleAvatar from "../../components/Role/RoleAvatar";
 import {
   getRaidPosts,
   RaidBossDTO,
@@ -27,7 +27,7 @@ export function RaidPostBosses(props: RaidBossesProps) {
   return (
     <React.Fragment>
       {bossesToDisplay.map((boss, key) => (
-        <RaidBoss {...boss} key={key} />
+        <RaidBossAvatar {...boss} key={key} />
       ))}
       {hasMoreBosses && <span>...</span>}
     </React.Fragment>
@@ -43,7 +43,7 @@ export function RaidPostRoles(props: RolesProps) {
   return (
     <React.Fragment>
       {roles.map((role, key) => (
-        <Role {...role} key={key} />
+        <RoleAvatar {...role} key={key} />
       ))}
     </React.Fragment>
   );
