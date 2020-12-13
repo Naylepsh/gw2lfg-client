@@ -6,12 +6,6 @@ import {
 } from "@material-ui/core";
 import "../styles/global.css";
 
-const darkTheme = createMuiTheme({
-  palette: {
-    type: "dark",
-  },
-});
-
 const customTheme = createMuiTheme({
   palette: {
     secondary: {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Container } from "@material-ui/core";
+import { Box, Button, Container, Paper } from "@material-ui/core";
 import { Formik, Form } from "formik";
 import {
   registerUser,
@@ -20,52 +20,54 @@ export default function Register() {
   };
 
   return (
-    <Container maxWidth="xs">
-      <Formik
-        onSubmit={registerUserOrFail}
-        initialValues={{ username: "", password: "", apiKey: "" }}
-      >
-        {(props) => {
-          const { handleChange } = props;
-          return (
-            <Form>
-              <UserFormTextField
-                required
-                id="username"
-                label="Username"
-                name="username"
-                autoComplete="username"
-                onChange={handleChange}
-              />
-              <UserFormTextField
-                required
-                type="password"
-                id="password"
-                label="Password"
-                name="password"
-                autoComplete="password"
-                onChange={handleChange}
-              />
-              <UserFormTextField
-                required
-                id="apiKey"
-                label="API key"
-                name="apiKey"
-                autoComplete="apiKey"
-                onChange={handleChange}
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
-                Register
-              </Button>
-            </Form>
-          );
-        }}
-      </Formik>
+    <Container maxWidth="xs" component={Paper}>
+      <Box my={3} pb={1}>
+        <Formik
+          onSubmit={registerUserOrFail}
+          initialValues={{ username: "", password: "", apiKey: "" }}
+        >
+          {(props) => {
+            const { handleChange } = props;
+            return (
+              <Form>
+                <UserFormTextField
+                  required
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoComplete="username"
+                  onChange={handleChange}
+                />
+                <UserFormTextField
+                  required
+                  type="password"
+                  id="password"
+                  label="Password"
+                  name="password"
+                  autoComplete="password"
+                  onChange={handleChange}
+                />
+                <UserFormTextField
+                  required
+                  id="apiKey"
+                  label="API key"
+                  name="apiKey"
+                  autoComplete="apiKey"
+                  onChange={handleChange}
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                >
+                  Register
+                </Button>
+              </Form>
+            );
+          }}
+        </Formik>
+      </Box>
     </Container>
   );
 }

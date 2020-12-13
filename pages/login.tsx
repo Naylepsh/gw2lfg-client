@@ -15,14 +15,6 @@ import {
 } from "../services/gw2lfg-server/user/loginService";
 import { UserFormTextField } from "../components/UserFormTextField";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    box: {
-      // backgroundColor: theme.palette.primary.main,
-    },
-  })
-);
-
 export default function Login() {
   const loginUserOrFail = async (values: LoginUserDTO, {}: any) => {
     try {
@@ -36,10 +28,8 @@ export default function Login() {
     }
   };
 
-  const classes = useStyles();
-
   return (
-    <Container maxWidth="xs" className={classes.box} component={Paper}>
+    <Container maxWidth="xs" component={Paper}>
       <Box my={3} pb={1}>
         <Formik
           onSubmit={loginUserOrFail}
