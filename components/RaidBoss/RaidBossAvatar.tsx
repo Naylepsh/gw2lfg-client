@@ -5,12 +5,6 @@ import { bosses } from "./raidBosses.json";
 
 interface RaidBossAvatarProps extends RaidBossDTO {}
 
-class NullRaidBoss {
-  name: "?";
-  isCm: false;
-  portrait: "";
-}
-
 export default function RaidBossAvatar(props: RaidBossAvatarProps) {
   const { name } = props;
   const bossVariants = bosses.filter((boss) => boss.name == name);
