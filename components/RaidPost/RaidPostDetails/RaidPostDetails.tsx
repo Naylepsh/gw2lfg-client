@@ -1,6 +1,7 @@
-import { AccordionDetails, Box } from "@material-ui/core";
+import { AccordionDetails, Box, Grid } from "@material-ui/core";
 import React from "react";
 import { RaidPostDTO } from "../../../services/gw2lfg-server/raid-post/getRaidPostsService";
+import { RaidPostRolesDetails } from "./RaidPostRolesDetails";
 
 interface RaidPostDetailsProps {
   raidPost: RaidPostDTO;
@@ -11,7 +12,10 @@ export default function RaidPostDetails(props: RaidPostDetailsProps) {
 
   return (
     <AccordionDetails>
-      <Box>{raidPost.description}</Box>
+      <Grid container direction="column">
+        <Box mb={3}>{raidPost.description}</Box>
+        <RaidPostRolesDetails roles={raidPost.roles} />
+      </Grid>
     </AccordionDetails>
   );
 }

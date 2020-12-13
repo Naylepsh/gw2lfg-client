@@ -18,6 +18,7 @@ export interface RequirementDTO {
 
 export interface RoleDTO {
   name: string;
+  description?: string;
 }
 
 export interface RaidPostDTO {
