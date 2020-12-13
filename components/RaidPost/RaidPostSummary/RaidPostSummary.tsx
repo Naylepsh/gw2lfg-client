@@ -1,8 +1,24 @@
-import { AccordionSummary, Grid } from "@material-ui/core";
+import {
+  AccordionSummary,
+  createStyles,
+  Grid,
+  makeStyles,
+  Theme,
+} from "@material-ui/core";
 import React from "react";
 import { RaidPostDTO } from "../../../services/gw2lfg-server/raid-post/getRaidPostsService";
 import { RaidPostBossesSummary } from "./RaidPostBossesSummary";
 import { RaidPostRolesSummary } from "./RolesPostRolesSummary";
+
+const useStyles = makeStyles((_theme: Theme) =>
+  createStyles({
+    spotsLeft: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  })
+);
 
 interface RaidPostSummaryProps {
   raidPost: RaidPostDTO;
@@ -12,6 +28,7 @@ export default function RaidPostSummary(props: RaidPostSummaryProps) {
   const { raidPost } = props;
   const maxSpots = 10;
   const spotsTaken = maxSpots - raidPost.roles.length;
+  const classes = useStyles();
 
   return (
     <AccordionSummary>
@@ -22,7 +39,7 @@ export default function RaidPostSummary(props: RaidPostSummaryProps) {
         <Grid item xs={4} container direction="row">
           <RaidPostRolesSummary roles={raidPost.roles} />
         </Grid>
-        <Grid item xs>
+        <Grid item xs className={classes.spotsLeft}>
           {spotsTaken} / {maxSpots}
         </Grid>
       </Grid>
