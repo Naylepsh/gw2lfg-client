@@ -28,6 +28,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+class NullRole implements RoleDTO {
+  name = "invalid";
+  portrait = "https://wiki.guildwars2.com/images/5/5a/Hints_Menu_Bar_icon.png";
+}
+
 interface RoleAvatarProps extends RoleDTO {}
 
 export default function RoleAvatar(props: RoleAvatarProps) {
@@ -35,8 +40,9 @@ export default function RoleAvatar(props: RoleAvatarProps) {
 
   const name = props.name.toLowerCase();
   const roleVariants = roles.filter((role) => role.name === name);
-  const role = roleVariants[0];
-  return role ? (
+  const role = roleVariants[0] ?? new NullRole();
+  console.log(role);
+  return (
     <Box my={1} className={classes.root}>
       <Avatar
         src={role.portrait}
@@ -45,5 +51,5 @@ export default function RoleAvatar(props: RoleAvatarProps) {
         className={classes.small}
       />
     </Box>
-  ) : null;
+  );
 }
