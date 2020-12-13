@@ -12,7 +12,7 @@ import { RaidPostRolesSummary } from "./RolesPostRolesSummary";
 
 const useStyles = makeStyles((_theme: Theme) =>
   createStyles({
-    spotsLeft: {
+    groupSize: {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -39,7 +39,7 @@ export default function RaidPostSummary(props: RaidPostSummaryProps) {
         <Grid item xs={4} container direction="row">
           <RaidPostRolesSummary roles={raidPost.roles} />
         </Grid>
-        <Grid item xs className={classes.spotsLeft}>
+        <Grid item xs className={classes.groupSize}>
           {spotsTaken} / {maxSpots}
         </Grid>
       </Grid>
