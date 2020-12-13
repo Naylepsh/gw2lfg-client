@@ -8,13 +8,13 @@ import "../styles/global.css";
 
 const customTheme = createMuiTheme({
   palette: {
-    secondary: {
-      main: "#262622",
-      contrastText: "#ffffff",
-    },
     primary: {
       main: "#ce2e26",
       contrastText: "#000000",
+    },
+    secondary: {
+      main: "#262622",
+      contrastText: "#ffffff",
     },
     background: {
       default: "#0d1117",

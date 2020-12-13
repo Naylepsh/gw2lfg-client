@@ -1,17 +1,39 @@
-import { Avatar, Box } from "@material-ui/core";
+import {
+  Avatar,
+  Box,
+  createStyles,
+  makeStyles,
+  Theme,
+} from "@material-ui/core";
 import React from "react";
 import { RaidBossDTO } from "../../services/gw2lfg-server/raid-post/getRaidPostsService";
 import { bosses } from "./raidBosses.json";
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    cm: {
+      borderWidth: 3,
+      borderStyle: "solid",
+      borderColor: theme.palette.primary.main,
+    },
+  })
+);
+
 interface RaidBossAvatarProps extends RaidBossDTO {}
 
 export default function RaidBossAvatar(props: RaidBossAvatarProps) {
-  const { name } = props;
-  const bossVariants = bosses.filter((boss) => boss.name == name);
-  const boss = bossVariants[0];
+  const { name, isCm } = props;
+  const boss = bosses.filter((boss) => boss.name == name)[0];
+
+  const classes = useStyles();
   return boss ? (
     <Box m={1}>
-      <Avatar src={boss.portrait} alt={boss.name} variant="square" />
+      <Avatar
+        src={boss.portrait}
+        alt={boss.name}
+        variant="square"
+        className={isCm && classes.cm}
+      />
     </Box>
   ) : null;
 }

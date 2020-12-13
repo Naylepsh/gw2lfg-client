@@ -17,7 +17,9 @@ export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
       </TableCell>
       <TableCell align="right">{role.description}</TableCell>
       <TableCell align="right">
-        <Button>Join</Button>
+        <Button color="primary" variant="contained">
+          Join
+        </Button>
       </TableCell>
     </React.Fragment>
   );
