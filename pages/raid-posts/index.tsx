@@ -12,7 +12,8 @@ export default function GetRaidPosts() {
   }
 
   if (isError) {
-    return <div>Error occured {error}</div>;
+    console.log({ error });
+    return <div>Error occured ...</div>;
   }
 
   return (

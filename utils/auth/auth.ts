@@ -6,7 +6,7 @@ export function getAccessToken() {
 }
 
 export function saveAccessToken(token: string) {
-  window.localStorage.saveItem(accessToken, token);
+  window.localStorage.setItem(accessToken, token);
 }
 
 export function discardAccessToken() {

@@ -9,19 +9,22 @@ import {
   Paper,
 } from "@material-ui/core";
 import { Formik, Form } from "formik";
+import { useRouter } from "next/router";
 import {
   loginUser,
   LoginUserDTO,
 } from "../services/gw2lfg-server/user/loginService";
 import { UserFormTextField } from "../components/UserFormTextField";
+import { saveAccessToken } from "../utils/auth/auth";
 
 export default function Login() {
+  const router = useRouter();
+
   const loginUserOrFail = async (values: LoginUserDTO, {}: any) => {
     try {
-      console.log(values);
       const token = await loginUser(values);
-      window.localStorage.setItem("jwt", token);
-      console.log({ token });
+      saveAccessToken(token);
+      router.push("/raid-posts");
     } catch (error) {
       console.log({ error });
       throw error;

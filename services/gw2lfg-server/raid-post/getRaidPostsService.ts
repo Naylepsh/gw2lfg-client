@@ -21,5 +21,6 @@ export async function getRaidPosts(dto: GetRaidPostsDTO) {
     `${getRaidPostsUrl}?take=${take}&skip=${skip}`,
     { headers }
   );
+  console.log({ raidPosts });
   return raidPosts;
 }
