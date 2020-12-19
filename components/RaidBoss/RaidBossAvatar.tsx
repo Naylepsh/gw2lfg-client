@@ -7,7 +7,7 @@ import {
   Tooltip,
 } from "@material-ui/core";
 import React from "react";
-import { RaidBossDTO } from "../../services/gw2lfg-server/raid-post/getRaidPostsService";
+import { RaidBossDTO } from "../../services/gw2lfg-server/entities/RaidBossDTO";
 import { bosses } from "./raidBosses.json";
 
 const useStyles = makeStyles((theme: Theme) =>

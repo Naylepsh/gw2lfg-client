@@ -6,7 +6,7 @@ import {
   Theme,
 } from "@material-ui/core";
 import React from "react";
-import { RaidPostDTO } from "../../../services/gw2lfg-server/raid-post/getRaidPostsService";
+import { RaidPostDTO } from "../../../services/gw2lfg-server/entities/RaidPostDTO";
 import { RaidPostBossesSummary } from "./RaidPostBossesSummary";
 import { RaidPostRolesSummary } from "./RolesPostRolesSummary";
 

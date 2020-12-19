@@ -1,6 +1,6 @@
 import React from "react";
 import RaidBossAvatar from "../../RaidBoss/RaidBossAvatar";
-import { RaidBossDTO } from "../../../services/gw2lfg-server/raid-post/getRaidPostsService";
+import { RaidBossDTO } from "../../../services/gw2lfg-server/entities/RaidBossDTO";
 
 interface RaidPostBossesSummaryProps {
   bosses: RaidBossDTO[];

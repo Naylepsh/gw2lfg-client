@@ -1,6 +1,6 @@
 import React from "react";
 import RoleAvatar from "../../Role/RoleAvatar";
-import { RoleDTO } from "../../../services/gw2lfg-server/raid-post/getRaidPostsService";
+import { RoleDTO } from "../../../services/gw2lfg-server/entities/RoleDTO";
 import { makeStyles, Theme, createStyles, Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>

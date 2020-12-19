@@ -6,7 +6,7 @@ import {
   Theme,
 } from "@material-ui/core";
 import React from "react";
-import { RoleDTO } from "../../services/gw2lfg-server/raid-post/getRaidPostsService";
+import { RoleDTO } from "../../services/gw2lfg-server/entities/RoleDTO";
 import { roles, classes } from "./roles.json";
 
 const useStyles = makeStyles((theme: Theme) =>

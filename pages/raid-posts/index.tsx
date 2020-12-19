@@ -1,14 +1,11 @@
 import { Box } from "@material-ui/core";
 import React from "react";
-import { useQuery } from "react-query";
-import { getRaidPosts } from "../../services/gw2lfg-server/raid-post/getRaidPostsService";
 import { RaidPost } from "../../components/RaidPost/RaidPost";
+import { useGetRaidPostsQuery } from "../../hooks/queries/raid-post/useGetRaidPostsQuery";
 
 export default function GetRaidPosts() {
   const page = 1;
-  const { isLoading, error, data } = useQuery(`getRaidPostsOnPage${page}`, () =>
-    getRaidPosts({ page })
-  );
+  const { isLoading, error, data } = useGetRaidPostsQuery(page)
 
   if (isLoading) {
     return <div>Is loading...</div>;

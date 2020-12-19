@@ -1,6 +1,6 @@
 import { AccordionDetails, Box, Grid } from "@material-ui/core";
 import React from "react";
-import { RaidPostDTO } from "../../../services/gw2lfg-server/raid-post/getRaidPostsService";
+import { RaidPostDTO } from "../../../services/gw2lfg-server/entities/RaidPostDTO";
 import { RaidPostRolesDetails } from "./RaidPostRolesDetails";
 
 interface RaidPostDetailsProps {
