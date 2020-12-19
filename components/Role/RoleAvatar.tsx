@@ -1,5 +1,5 @@
 import {
-  Box,
+  Tooltip,
   Avatar,
   createStyles,
   makeStyles,
@@ -44,14 +44,17 @@ export default function RoleAvatar(props: RoleAvatarProps) {
   const roleFound =
     roleClass === "any" ? findRoleByName(name) : findRoleByClass(roleClass);
   const role = roleFound ?? new NullRole();
+  const roleTitle = `${name} ${roleClass}`;
 
   return (
-    <Avatar
-      src={role.portrait}
-      alt={role.name}
-      variant="square"
-      className={classes[props.size]}
-    />
+    <Tooltip title={roleTitle}>
+      <Avatar
+        src={role.portrait}
+        alt={role.name}
+        variant="square"
+        className={classes[props.size]}
+      />
+    </Tooltip>
   );
 }
 
