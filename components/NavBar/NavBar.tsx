@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
+    button: {
+      color: theme.palette.getContrastText(theme.palette.background.default)
+    }
   })
 );
 
@@ -53,10 +56,16 @@ export default function NavBar() {
 }
 
 function NotLoggedInMenu() {
+  const classes = useStyles()
+
   return (
     <div>
-      <Button href="/login">Login</Button>
-      <Button href="/register">Register</Button>
+      <Button href="/login" className={classes.button}>
+        Login
+      </Button>
+      <Button href="/register" className={classes.button}>
+        Register
+      </Button>
     </div>
   );
 }
