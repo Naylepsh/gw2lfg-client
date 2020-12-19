@@ -9,7 +9,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { useMeQuery } from "../../hooks/queries/user/useMeQuery";
-import { Button } from "@material-ui/core";
+import { Button, Link } from "@material-ui/core";
 import { useRouter } from "next/router";
 import { discardAccessToken } from "../../utils/auth/auth";
 
@@ -23,9 +23,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     title: {
       flexGrow: 1,
-    },
-    button: {
-      color: theme.palette.getContrastText(theme.palette.background.default),
     },
   })
 );
@@ -48,7 +45,9 @@ export default function NavBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            GW2LFG
+            <Link href="/raid-posts" color="inherit" underline="none">
+              GW2LFG
+            </Link>
           </Typography>
           {isUserLoggedIn ? <LoggedInMenu /> : <NotLoggedInMenu />}
         </Toolbar>
@@ -58,14 +57,12 @@ export default function NavBar() {
 }
 
 function NotLoggedInMenu() {
-  const classes = useStyles();
-
   return (
     <div>
-      <Button href="/login" className={classes.button}>
+      <Button href="/login" color="inherit">
         Login
       </Button>
-      <Button href="/register" className={classes.button}>
+      <Button href="/register" color="inherit">
         Register
       </Button>
     </div>
