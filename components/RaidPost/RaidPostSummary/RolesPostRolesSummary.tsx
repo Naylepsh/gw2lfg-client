@@ -25,8 +25,8 @@ export function RaidPostRolesSummary(props: RaidRolesSummaryProps) {
   return (
     <React.Fragment>
       {roles.map((role, key) => (
-        <Box my={1} className={classes.root}>
-          <RoleAvatar {...role} key={key} size={"small"} />
+        <Box my={1} className={classes.root} key={key}>
+          <RoleAvatar {...role} size={"small"} />
         </Box>
       ))}
     </React.Fragment>
