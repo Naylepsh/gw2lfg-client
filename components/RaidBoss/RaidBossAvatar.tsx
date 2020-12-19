@@ -4,6 +4,7 @@ import {
   createStyles,
   makeStyles,
   Theme,
+  Tooltip,
 } from "@material-ui/core";
 import React from "react";
 import { RaidBossDTO } from "../../services/gw2lfg-server/raid-post/getRaidPostsService";
@@ -28,12 +29,14 @@ export default function RaidBossAvatar(props: RaidBossAvatarProps) {
   const classes = useStyles();
   return boss ? (
     <Box m={1}>
-      <Avatar
-        src={boss.portrait}
-        alt={boss.name}
-        variant="square"
-        className={isCm && classes.cm}
-      />
+      <Tooltip title={boss.name}>
+        <Avatar
+          src={boss.portrait}
+          alt={boss.name}
+          variant="square"
+          className={isCm && classes.cm}
+        />
+      </Tooltip>
     </Box>
   ) : null;
 }
