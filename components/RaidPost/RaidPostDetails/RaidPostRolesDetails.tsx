@@ -13,10 +13,11 @@ import { RaidPostRoleDetails } from "./RaidPostRoleDetails";
 
 interface RaidPostRolesDetailsProps {
   roles: RoleDTO[];
+  canUserJoin: boolean;
 }
 
 export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
-  const { roles } = props;
+  const { roles, canUserJoin } = props;
 
   return (
     <TableContainer component={Paper}>
@@ -31,7 +32,7 @@ export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
         <TableBody>
           {roles.map((role, key) => (
             <TableRow key={key}>
-              <RaidPostRoleDetails role={role} />
+              <RaidPostRoleDetails role={role} canUserJoin={canUserJoin} />
             </TableRow>
           ))}
         </TableBody>

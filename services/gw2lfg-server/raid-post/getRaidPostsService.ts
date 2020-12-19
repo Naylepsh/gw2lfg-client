@@ -30,6 +30,7 @@ export interface RaidPostDTO {
   author: UserDTO;
   bosses: RaidBossDTO[];
   requirements: RequirementDTO[];
+  userMeetsRequirements: boolean;
   roles: RoleDTO[];
 }
 

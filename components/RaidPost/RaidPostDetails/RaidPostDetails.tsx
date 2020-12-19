@@ -14,7 +14,10 @@ export default function RaidPostDetails(props: RaidPostDetailsProps) {
     <AccordionDetails>
       <Grid container direction="column">
         <Box mb={3}>{raidPost.description}</Box>
-        <RaidPostRolesDetails roles={raidPost.roles} />
+        <RaidPostRolesDetails
+          roles={raidPost.roles}
+          canUserJoin={raidPost.userMeetsRequirements}
+        />
       </Grid>
     </AccordionDetails>
   );

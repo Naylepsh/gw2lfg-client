@@ -5,10 +5,11 @@ import RoleAvatar from "../../Role/RoleAvatar";
 
 interface RaidPostRoleDetailsProps {
   role: RoleDTO;
+  canUserJoin: boolean;
 }
 
 export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
-  const { role } = props;
+  const { role, canUserJoin } = props;
 
   return (
     <React.Fragment>
@@ -20,7 +21,7 @@ export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
       </TableCell>
       <TableCell>{role.description}</TableCell>
       <TableCell align="right">
-        <Button color="primary" variant="contained">
+        <Button color="primary" variant="contained" disabled={!canUserJoin}>
           Join
         </Button>
       </TableCell>
