@@ -1,42 +1,42 @@
-import {
-  Container,
-  createMuiTheme,
-  CssBaseline,
-  ThemeProvider,
-} from "@material-ui/core";
+import React from "react";
+import PropTypes from "prop-types";
+import Head from "next/head";
+import { ThemeProvider } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import NavBar from "../components/NavBar/NavBar";
-import "../styles/global.css";
+import theme from "./theme";
 
-const customTheme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#262622",
-      contrastText: "#ffffff",
-    },
-    secondary: {
-      main: "#ce2e26",
-      contrastText: "#ffffff",
-    },
-    background: {
-      default: "#4e4e49",
-      paper: "#fafafa",
-    },
-  },
-});
+export default function MyApp(props) {
+  const { Component, pageProps } = props;
 
-export default function App({ Component, pageProps }) {
-  const jssStyles = document.querySelector("#jss-server-side");
-  if (jssStyles) {
-    jssStyles.parentElement.removeChild(jssStyles);
-  }
+  React.useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector("#jss-server-side");
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
 
   return (
-    <ThemeProvider theme={customTheme}>
-      <CssBaseline />
-      <NavBar />
-      <Container>
+    <React.Fragment>
+      <Head>
+        <title>My page</title>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
+      </Head>
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <NavBar />
         <Component {...pageProps} />
-      </Container>
-    </ThemeProvider>
+      </ThemeProvider>
+    </React.Fragment>
   );
 }
+
+MyApp.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  pageProps: PropTypes.object.isRequired,
+};

@@ -10,6 +10,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { useMeQuery } from "../../hooks/queries/user/useMeQuery";
 import { Button } from "@material-ui/core";
+import { useRouter } from "next/router";
+import { discardAccessToken } from "../../utils/auth/auth";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,8 +25,8 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     button: {
-      color: theme.palette.getContrastText(theme.palette.background.default)
-    }
+      color: theme.palette.getContrastText(theme.palette.background.default),
+    },
   })
 );
 
@@ -56,7 +58,7 @@ export default function NavBar() {
 }
 
 function NotLoggedInMenu() {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <div>
@@ -73,6 +75,12 @@ function NotLoggedInMenu() {
 function LoggedInMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const router = useRouter();
+
+  const logoutAndReload = () => {
+    discardAccessToken();
+    router.reload();
+  };
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -109,7 +117,7 @@ function LoggedInMenu() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={logoutAndReload}>Logout</MenuItem>
       </Menu>
     </div>
   );
