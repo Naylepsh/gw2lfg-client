@@ -19,7 +19,7 @@ export default function GetRaidPosts() {
   }
 
   return (
-    <Box>
+    <Box mt={5}>
       {data.map((raidPost) => (
         <RaidPost raidPost={raidPost} key={raidPost.id} />
       ))}

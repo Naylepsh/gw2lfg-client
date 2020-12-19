@@ -4,6 +4,7 @@ import {
   CssBaseline,
   ThemeProvider,
 } from "@material-ui/core";
+import NavBar from "../components/NavBar/NavBar";
 import "../styles/global.css";
 
 const customTheme = createMuiTheme({
@@ -27,6 +28,7 @@ export default function App({ Component, pageProps }) {
   return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
+      <NavBar />
       <Container>
         <Component {...pageProps} />
       </Container>

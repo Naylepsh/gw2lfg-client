@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function MenuAppBar() {
+export default function NavBar() {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -86,8 +86,8 @@ export default function MenuAppBar() {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>Logout</MenuItem>
               </Menu>
             </div>
           )}
