@@ -13,9 +13,9 @@ import { useRouter } from "next/router";
 import {
   loginUser,
   LoginUserDTO,
-} from "../services/gw2lfg-server/user/loginService";
-import { UserFormTextField } from "../components/UserFormTextField";
-import { saveAccessToken } from "../utils/auth/auth";
+} from "../src/services/gw2lfg-server/user/loginService";
+import { UserFormTextField } from "../src/components/UserFormTextField";
+import { saveAccessToken } from "../src/utils/auth/auth";
 
 export default function Login() {
   const router = useRouter();

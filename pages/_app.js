@@ -4,8 +4,8 @@ import Head from "next/head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { Container } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import NavBar from "../components/NavBar/NavBar";
-import theme from "./theme";
+import NavBar from "../src/components/NavBar/NavBar";
+import theme from "../src/theme";
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;

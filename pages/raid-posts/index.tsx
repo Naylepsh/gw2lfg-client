@@ -1,7 +1,7 @@
 import { Box } from "@material-ui/core";
 import React from "react";
-import { RaidPost } from "../../components/RaidPost/RaidPost";
-import { useGetRaidPostsQuery } from "../../hooks/queries/raid-post/useGetRaidPostsQuery";
+import { RaidPost } from "../../src/components/RaidPost/RaidPost";
+import { useGetRaidPostsQuery } from "../../src/hooks/queries/raid-post/useGetRaidPostsQuery";
 
 export default function GetRaidPosts() {
   const page = 1;

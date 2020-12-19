@@ -4,8 +4,8 @@ import { Formik, Form } from "formik";
 import {
   registerUser,
   RegisterUserDTO,
-} from "../services/gw2lfg-server/user/registerService";
-import { UserFormTextField } from "../components/UserFormTextField";
+} from "../src/services/gw2lfg-server/user/registerService";
+import { UserFormTextField } from "../src/components/UserFormTextField";
 
 export default function Register() {
   const registerUserOrFail = async (values: RegisterUserDTO, {}: any) => {
