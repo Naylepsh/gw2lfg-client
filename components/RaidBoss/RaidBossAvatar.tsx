@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
     cm: {
       borderWidth: 3,
       borderStyle: "solid",
-      borderColor: theme.palette.primary.main,
+      borderColor: theme.palette.secondary.main,
     },
   })
 );
