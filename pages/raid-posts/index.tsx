@@ -5,13 +5,13 @@ import { useGetRaidPostsQuery } from "../../hooks/queries/raid-post/useGetRaidPo
 
 export default function GetRaidPosts() {
   const page = 1;
-  const { isLoading, error, data } = useGetRaidPostsQuery(page)
+  const { isLoading, isError, error, data } = useGetRaidPostsQuery(page);
 
   if (isLoading) {
     return <div>Is loading...</div>;
   }
 
-  if (error) {
+  if (isError) {
     return <div>Error occured {error}</div>;
   }
 
