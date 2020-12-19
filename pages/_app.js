@@ -25,6 +25,11 @@ const customTheme = createMuiTheme({
 });
 
 export default function App({ Component, pageProps }) {
+  const jssStyles = document.querySelector("#jss-server-side");
+  if (jssStyles) {
+    jssStyles.parentElement.removeChild(jssStyles);
+  }
+
   return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
