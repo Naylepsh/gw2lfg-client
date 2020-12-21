@@ -9,6 +9,6 @@ export interface LoginUserDTO {
 }
 
 export async function loginUser(user: LoginUserDTO) {
-  const token = await httpPost<LoginUserDTO, string>(loginUrl, user);
-  return token;
+  const { data } = await httpPost<LoginUserDTO, { data: { token: string }}>(loginUrl, user);
+  return data.token;
 }

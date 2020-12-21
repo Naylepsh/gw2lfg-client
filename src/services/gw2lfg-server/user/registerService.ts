@@ -10,6 +10,9 @@ export interface RegisterUserDTO {
 }
 
 export async function registerUser(user: RegisterUserDTO) {
-  const token = await httpPost<RegisterUserDTO, string>(registerUrl, user);
-  return token;
+  const { data } = await httpPost<RegisterUserDTO, { data: { token: string } }>(
+    registerUrl,
+    user
+  );
+  return data.token;
 }

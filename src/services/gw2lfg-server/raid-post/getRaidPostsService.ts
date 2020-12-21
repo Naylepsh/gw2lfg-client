@@ -14,13 +14,12 @@ export async function getRaidPosts(dto: GetRaidPostsDTO) {
   const token = getAccessToken();
   const headers = createGw2lfgHeaders(token);
 
-  const resultsPerPage = 10;
+  const resultsPerPage = 1;
   const take = resultsPerPage;
   const skip = Math.max(0, (dto.page - 1) * resultsPerPage);
-  const raidPosts = await httpGet<RaidPostDTO[]>(
-    `${getRaidPostsUrl}?take=${take}&skip=${skip}`,
-    { headers }
-  );
-  console.log({ raidPosts });
-  return raidPosts;
+  const { data: raidPosts, hasMore } = await httpGet<{
+    data: RaidPostDTO[];
+    hasMore: boolean;
+  }>(`${getRaidPostsUrl}?take=${take}&skip=${skip}`, { headers });
+  return { raidPosts, hasMore };
 }

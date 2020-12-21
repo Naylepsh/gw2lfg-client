@@ -1,11 +1,19 @@
-import { Box } from "@material-ui/core";
-import React from "react";
+import { Box, Button } from "@material-ui/core";
+import React, { useState } from "react";
 import { RaidPost } from "../../src/components/RaidPost/RaidPost";
 import { useGetRaidPostsQuery } from "../../src/hooks/queries/raid-post/useGetRaidPostsQuery";
+import { RaidPostDTO } from "../../src/services/gw2lfg-server/entities/RaidPostDTO";
 
 export default function GetRaidPosts() {
-  const page = 1;
-  const { isLoading, isError, error, data } = useGetRaidPostsQuery(page);
+  const [page, setPage] = useState(1);
+  const [prevRaidPosts, setPrevRaidPosts] = useState([] as RaidPostDTO[]);
+  const {
+    isLoading,
+    isError,
+    error,
+    data,
+    isPreviousData,
+  } = useGetRaidPostsQuery(page);
 
   if (isLoading) {
     return <div>Is loading...</div>;
@@ -16,11 +24,30 @@ export default function GetRaidPosts() {
     return <div>Error occured ...</div>;
   }
 
+  const currentRaidPosts = isPreviousData
+    ? prevRaidPosts
+    : [...prevRaidPosts, ...data.raidPosts];
+
+  const loadMore = () => {
+    setPage(page + 1);
+    setPrevRaidPosts(currentRaidPosts);
+  };
+
   return (
     <Box mt={5}>
-      {data.map((raidPost) => (
+      {currentRaidPosts.map((raidPost) => (
         <RaidPost raidPost={raidPost} key={raidPost.id} />
       ))}
+      {data?.hasMore && (
+        <Button
+          variant="contained"
+          color="secondary"
+          fullWidth
+          onClick={loadMore}
+        >
+          Load more
+        </Button>
+      )}
     </Box>
   );
 }

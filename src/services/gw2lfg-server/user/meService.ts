@@ -6,8 +6,9 @@ import { createGw2lfgHeaders } from "../createGw2lfgHeaders";
 
 export const meUrl = `${gw2lfgUrl}/me`;
 
-export function getMe() {
+export async function getMe() {
   const token = getAccessToken();
   const headers = createGw2lfgHeaders(token);
-  return httpGet<UserDTO>(meUrl, { headers });
+  const { data } = await httpGet<{ data: UserDTO }>(meUrl, { headers });
+  return data;
 }
