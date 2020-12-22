@@ -36,7 +36,7 @@ export default function RaidBossAvatar(props: RaidBossAvatarProps) {
           alt={boss.name}
           variant="square"
           className={isCm && classes.cm}
-        />
+        ></Avatar>
       </Tooltip>
     </Box>
   ) : null;

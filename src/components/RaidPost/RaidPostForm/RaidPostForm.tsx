@@ -6,9 +6,11 @@ import {
   Button,
   TextField,
   Checkbox,
+  Badge,
 } from "@material-ui/core";
 import { Formik, Form } from "formik";
-import React, { useState } from "react";
+import React from "react";
+import CheckIcon from "@material-ui/icons/Check";
 import { useGetRaidBossesQuery } from "../../../hooks/queries/raid-bosses/useGetRaidBossesQuery";
 import { RaidBossDTO } from "../../../services/gw2lfg-server/entities/RaidBossDTO";
 import RaidBossAvatar from "../../RaidBoss/RaidBossAvatar";
@@ -16,7 +18,7 @@ import RaidBossAvatar from "../../RaidBoss/RaidBossAvatar";
 interface RaidPostFormProps {}
 
 export default function RaidPostForm(props: RaidPostFormProps) {
-  const initialValues = { description: "", selectedBosses: [] };
+  const initialValues = { description: "", selectedBosses: [] as string[] };
 
   return (
     <Container component={Paper}>
@@ -34,7 +36,7 @@ export default function RaidPostForm(props: RaidPostFormProps) {
           initialValues={initialValues}
         >
           {(formProps) => {
-            const { handleChange } = formProps;
+            const { handleChange, values } = formProps;
             return (
               <Form>
                 <RaidPostFormDescription
@@ -44,6 +46,7 @@ export default function RaidPostForm(props: RaidPostFormProps) {
                 <RaidPostFormRaidBossesOptions
                   onChange={handleChange}
                   name="selectedBosses"
+                  selectedBosses={values.selectedBosses}
                 />
                 <RaidPostFormRequirementsOptions />
                 <RaidPostFormRoles />
@@ -86,11 +89,13 @@ function RaidPostFormDescription(props: RaidPostFormDescriptionProps) {
 interface RaidPostFormRaidBossesOptionsProps {
   onChange: any;
   name: string;
+  selectedBosses: string[];
 }
 
 function RaidPostFormRaidBossesOptions(
   props: RaidPostFormRaidBossesOptionsProps
 ) {
+  const { onChange, name, selectedBosses } = props;
   const { isLoading, isError, data: bosses } = useGetRaidBossesQuery();
 
   if (isLoading) return <div>Loading...</div>;
@@ -108,9 +113,10 @@ function RaidPostFormRaidBossesOptions(
         {bosses.map((boss) => (
           <RaidPostFormRaidBossOption
             boss={boss}
-            onChange={props.onChange}
+            onChange={onChange}
             key={boss.id}
-            name={props.name}
+            name={name}
+            checked={selectedBosses.includes(boss.id.toString())}
           />
         ))}
       </Box>
@@ -122,13 +128,26 @@ interface RaidPostFormRaidBossOptionProps {
   boss: RaidBossDTO;
   onChange: any;
   name: string;
+  checked: boolean;
 }
 
 function RaidPostFormRaidBossOption(props: RaidPostFormRaidBossOptionProps) {
-  const { onChange, boss, name } = props;
+  const { onChange, boss, name, checked } = props;
   return (
     <Checkbox
-      checkedIcon={<RaidBossAvatar {...boss} />}
+      checked={checked}
+      checkedIcon={
+        <Badge
+          badgeContent={<CheckIcon color="secondary" fontSize="large" />}
+          overlap="circle"
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+        >
+          <RaidBossAvatar {...boss} />
+        </Badge>
+      }
       icon={<RaidBossAvatar {...boss} />}
       onChange={onChange}
       name={name}
