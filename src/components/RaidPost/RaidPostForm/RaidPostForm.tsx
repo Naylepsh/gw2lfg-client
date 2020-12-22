@@ -19,6 +19,10 @@ interface RaidPostFormProps {}
 
 export default function RaidPostForm(props: RaidPostFormProps) {
   const initialValues = { description: "", selectedBosses: [] as string[] };
+  const { isLoading, isError, data: bosses } = useGetRaidBossesQuery();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Encountered error...</div>;
 
   return (
     <Container component={Paper}>
@@ -44,6 +48,7 @@ export default function RaidPostForm(props: RaidPostFormProps) {
                   onChange={handleChange}
                 />
                 <RaidPostFormRaidBossesOptions
+                  bosses={bosses}
                   onChange={handleChange}
                   name="selectedBosses"
                   selectedBosses={values.selectedBosses}
@@ -87,6 +92,7 @@ function RaidPostFormDescription(props: RaidPostFormDescriptionProps) {
 }
 
 interface RaidPostFormRaidBossesOptionsProps {
+  bosses: RaidBossDTO[];
   onChange: any;
   name: string;
   selectedBosses: string[];
@@ -95,11 +101,8 @@ interface RaidPostFormRaidBossesOptionsProps {
 function RaidPostFormRaidBossesOptions(
   props: RaidPostFormRaidBossesOptionsProps
 ) {
-  const { onChange, name, selectedBosses } = props;
-  const { isLoading, isError, data: bosses } = useGetRaidBossesQuery();
+  const { onChange, name, selectedBosses, bosses } = props;
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Encountered error...</div>;
   return (
     <Box
       display="flex"
