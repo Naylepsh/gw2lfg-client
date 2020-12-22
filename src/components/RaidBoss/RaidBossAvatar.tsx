@@ -25,11 +25,12 @@ interface RaidBossAvatarProps extends RaidBossDTO {}
 export default function RaidBossAvatar(props: RaidBossAvatarProps) {
   const { name, isCm } = props;
   const boss = bosses.filter((boss) => boss.name == name)[0];
+  const title = boss.name + (isCm ? " (CM)" : "");
 
   const classes = useStyles();
   return boss ? (
     <Box m={1}>
-      <Tooltip title={boss.name}>
+      <Tooltip title={title}>
         <Avatar
           src={boss.portrait}
           alt={boss.name}
