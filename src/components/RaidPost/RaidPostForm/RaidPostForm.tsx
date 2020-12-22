@@ -1,4 +1,4 @@
-import { Box } from "@material-ui/core";
+import { Box, TextField } from "@material-ui/core";
 import { Container, Paper, Typography } from "@material-ui/core";
 import { Formik } from "formik";
 import React from "react";
@@ -24,7 +24,7 @@ export default function RaidPostForm(props: RaidPostFormProps) {
           {(formProps) => {
             return (
               <React.Fragment>
-                <RaidPostFormDescription />
+                <RaidPostFormDescription/>
                 <RaidPostFormRaidBossesOptions />
                 <RaidPostFormRequirementsOptions />
                 <RaidPostFormRoles />
@@ -38,7 +38,17 @@ export default function RaidPostForm(props: RaidPostFormProps) {
 }
 
 function RaidPostFormDescription() {
-  return <div>desc...</div>;
+  return (
+    <TextField
+      id="description"
+      label="Description"
+      multiline
+      rows={4}
+      placeholder="Description..."
+      variant="outlined"
+      fullWidth
+    />
+  );
 }
 
 function RaidPostFormRaidBossesOptions() {
