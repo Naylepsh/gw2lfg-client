@@ -1,7 +1,13 @@
-import { Box, TextField } from "@material-ui/core";
-import { Container, Paper, Typography } from "@material-ui/core";
-import { Formik } from "formik";
-import React from "react";
+import {
+  Container,
+  Paper,
+  Typography,
+  Box,
+  Button,
+  TextField,
+} from "@material-ui/core";
+import { Formik, Form } from "formik";
+import React, { useState } from "react";
 import { useGetRaidBossesQuery } from "../../../hooks/queries/raid-bosses/useGetRaidBossesQuery";
 import RaidBossAvatar from "../../RaidBoss/RaidBossAvatar";
 
@@ -9,6 +15,9 @@ interface RaidPostFormProps {}
 
 export default function RaidPostForm(props: RaidPostFormProps) {
   const initialValues = { description: "" };
+  const [selectedBosses, setSelectedBosses] = useState(
+    new Map<string, boolean>()
+  );
 
   return (
     <Container component={Paper}>
@@ -21,15 +30,30 @@ export default function RaidPostForm(props: RaidPostFormProps) {
         flexDirection="column"
       >
         <Typography variant="h4">Create Raid Post</Typography>
-        <Formik onSubmit={() => console.log("!")} initialValues={initialValues}>
+        <Formik
+          onSubmit={(values, {}) => console.log(values)}
+          initialValues={initialValues}
+        >
           {(formProps) => {
+            const { handleChange } = formProps;
             return (
-              <React.Fragment>
-                <RaidPostFormDescription id="description" />
+              <Form>
+                <RaidPostFormDescription
+                  id="description"
+                  onChange={handleChange}
+                />
                 <RaidPostFormRaidBossesOptions />
                 <RaidPostFormRequirementsOptions />
                 <RaidPostFormRoles />
-              </React.Fragment>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                >
+                  Submit
+                </Button>
+              </Form>
             );
           }}
         </Formik>
@@ -40,6 +64,7 @@ export default function RaidPostForm(props: RaidPostFormProps) {
 
 interface RaidPostFormDescriptionProps {
   id: string;
+  onChange: any;
 }
 
 function RaidPostFormDescription(props: RaidPostFormDescriptionProps) {
@@ -52,6 +77,7 @@ function RaidPostFormDescription(props: RaidPostFormDescriptionProps) {
       placeholder="Description..."
       variant="outlined"
       fullWidth
+      onChange={props.onChange}
     />
   );
 }
