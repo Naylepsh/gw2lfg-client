@@ -6,6 +6,8 @@ import React from "react";
 interface RaidPostFormProps {}
 
 export default function RaidPostForm(props: RaidPostFormProps) {
+  const initialValues = { description: "" };
+
   return (
     <Container component={Paper}>
       <Box
@@ -17,14 +19,11 @@ export default function RaidPostForm(props: RaidPostFormProps) {
         flexDirection="column"
       >
         <Typography variant="h4">Create Raid Post</Typography>
-        <Formik
-          onSubmit={() => console.log("!")}
-          initialValues={{ x: "hello" }}
-        >
+        <Formik onSubmit={() => console.log("!")} initialValues={initialValues}>
           {(formProps) => {
             return (
               <React.Fragment>
-                <RaidPostFormDescription/>
+                <RaidPostFormDescription id="description" />
                 <RaidPostFormRaidBossesOptions />
                 <RaidPostFormRequirementsOptions />
                 <RaidPostFormRoles />
@@ -37,10 +36,14 @@ export default function RaidPostForm(props: RaidPostFormProps) {
   );
 }
 
-function RaidPostFormDescription() {
+interface RaidPostFormDescriptionProps {
+  id: string;
+}
+
+function RaidPostFormDescription(props: RaidPostFormDescriptionProps) {
   return (
     <TextField
-      id="description"
+      id={props.id}
       label="Description"
       multiline
       rows={4}
