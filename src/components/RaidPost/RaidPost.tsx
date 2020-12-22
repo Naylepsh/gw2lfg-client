@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, Box } from "@material-ui/core";
+import { Accordion } from "@material-ui/core";
 import React from "react";
 import { RaidPostDTO } from "../../services/gw2lfg-server/entities/RaidPostDTO";
 import RaidPostDetails from "./RaidPostDetails/RaidPostDetails";
