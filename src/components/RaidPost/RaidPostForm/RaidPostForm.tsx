@@ -5,16 +5,25 @@ import {
   Box,
   Button,
   TextField,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
 } from "@material-ui/core";
-import { Formik, Form } from "formik";
+import { Formik, Form, Field } from "formik";
 import React from "react";
 import { useGetRaidBossesQuery } from "../../../hooks/queries/raid-bosses/useGetRaidBossesQuery";
+import FormikSelect from "../../common/inputs/FormikSelect";
 import RaidPostFormRaidBossesOptions from "./RaidPostFormRaidBossesOptions";
 
 interface RaidPostFormProps {}
 
 export default function RaidPostForm(props: RaidPostFormProps) {
-  const initialValues = { description: "", selectedBosses: [] as string[] };
+  const initialValues = {
+    server: "",
+    description: "",
+    selectedBosses: [] as string[],
+  };
   const { isLoading, isError, data: bosses } = useGetRaidBossesQuery();
 
   if (isLoading) return <div>Loading...</div>;
@@ -39,8 +48,9 @@ export default function RaidPostForm(props: RaidPostFormProps) {
             const { handleChange, values } = formProps;
             return (
               <Form>
-                <RaidPostFormDescription
-                  id="description"
+                <RaidPostFormGeneral
+                  serverId="server"
+                  descriptionId="description"
                   onChange={handleChange}
                 />
                 <RaidPostFormRaidBossesOptions
@@ -65,6 +75,44 @@ export default function RaidPostForm(props: RaidPostFormProps) {
         </Formik>
       </Box>
     </Container>
+  );
+}
+
+interface RaidPostFormGeneralProps {
+  serverId: string;
+  descriptionId: string;
+  onChange: any;
+}
+
+function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
+  const { serverId, descriptionId, onChange } = props;
+  const servers = [
+    { label: "EU", value: "EU" },
+    { label: "NA", value: "NA" },
+  ];
+
+  return (
+    <Box
+      my={3}
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Typography variant="h6">General</Typography>
+      <Box display="flex" flexDirection="row" width="100%">
+        <Box mx={3} minWidth={120}>
+          <FormikSelect
+            name={serverId}
+            items={servers}
+            label="Server"
+            required
+          />
+          <span>Date</span>
+        </Box>
+        <RaidPostFormDescription id={descriptionId} onChange={onChange} />
+      </Box>
+    </Box>
   );
 }
 
