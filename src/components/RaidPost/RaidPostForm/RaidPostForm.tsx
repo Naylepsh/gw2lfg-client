@@ -1,17 +1,16 @@
-import {
-  Container,
-  Paper,
-  Typography,
-  Box,
-  Button,
-} from "@material-ui/core";
-import { Formik, Form } from "formik";
+import { Box, Button, Container, Paper, Typography } from "@material-ui/core";
+import { Form, Formik } from "formik";
 import React from "react";
 import { useGetRaidBossesQuery } from "../../../hooks/queries/raid-bosses/useGetRaidBossesQuery";
+import RaidPostFormGeneral from "./RaidPostFormGeneral";
 import RaidPostFormRaidBossesOptions from "./RaidPostFormRaidBossesOptions";
-import { RaidPostFormGeneral } from "./RaidPostFormGeneral";
+import RaidPostFormRequirementsOptions from "./RaidPostFormRequirementsOptions";
 
 interface RaidPostFormProps {}
+
+interface Requirements {
+  [key: string]: number;
+}
 
 export default function RaidPostForm(props: RaidPostFormProps) {
   const initialValues = {
@@ -19,6 +18,7 @@ export default function RaidPostForm(props: RaidPostFormProps) {
     date: new Date().toISOString(),
     description: "",
     selectedBosses: [] as string[],
+    requirements: {} as Requirements,
   };
   const { isLoading, isError, data: bosses } = useGetRaidBossesQuery();
 
@@ -57,7 +57,10 @@ export default function RaidPostForm(props: RaidPostFormProps) {
                   name="selectedBosses"
                   selectedBosses={values.selectedBosses}
                 />
-                <RaidPostFormRequirementsOptions />
+                <RaidPostFormRequirementsOptions
+                  requirementsId="requirements"
+                  onChange={handleChange}
+                />
                 <RaidPostFormRoles />
                 <Button
                   type="submit"
@@ -74,10 +77,6 @@ export default function RaidPostForm(props: RaidPostFormProps) {
       </Box>
     </Container>
   );
-}
-
-function RaidPostFormRequirementsOptions() {
-  return <div>requirements...</div>;
 }
 
 function RaidPostFormRoles() {

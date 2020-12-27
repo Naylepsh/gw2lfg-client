@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface RaidBossAvatarProps extends RaidBossDTO {}
+interface RaidBossAvatarProps extends Omit<RaidBossDTO, "id"> {}
 
 function RaidBossAvatar(props: RaidBossAvatarProps) {
   const { name, isCm } = props;

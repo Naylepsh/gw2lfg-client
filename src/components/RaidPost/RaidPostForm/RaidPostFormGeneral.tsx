@@ -1,7 +1,4 @@
-import {
-  Typography,
-  Box
-} from "@material-ui/core";
+import { Typography, Box } from "@material-ui/core";
 import React from "react";
 import MuiDateTimePicker from "../../common/inputs/MuiDateTimePicker";
 import FormikSelect from "../../common/inputs/FormikSelect";
@@ -15,7 +12,7 @@ interface RaidPostFormGeneralProps {
   onChange: any;
 }
 
-export function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
+export default function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
   const { serverId, dateId, dateSelected, descriptionId, onChange } = props;
   const servers = [
     { label: "EU", value: "EU" },
@@ -24,7 +21,8 @@ export function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
 
   // onChange on DateTimePicker passes date instead of an event,
   // but Formik requires an event as an argument, thus this weird wrapper
-  const handleDateChange = (value: Date) => onChange({ target: { value, id: dateId } });
+  const handleDateChange = (value: Date) =>
+    onChange({ target: { value, id: dateId } });
 
   return (
     <Box
@@ -41,12 +39,14 @@ export function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
             name={serverId}
             items={servers}
             label="Server"
-            required />
+            required
+          />
           <MuiDateTimePicker
             id={dateId}
             label="Date"
             value={dateSelected}
-            onChange={handleDateChange} />
+            onChange={handleDateChange}
+          />
         </Box>
         <RaidPostFormDescription id={descriptionId} onChange={onChange} />
       </Box>
