@@ -1,7 +1,7 @@
 import { MenuItem } from "@material-ui/core";
 import { ErrorMessage, Field } from "formik";
 import React from "react";
-import MaterialUISelectField from "./MaterialUISelectField";
+import MuiSelectField from "./MuiSelectField";
 
 export interface FormikSelectItem {
   label: string;
@@ -25,7 +25,7 @@ export default function FormikSelect({
     <div className="FormikSelect">
       <Field
         name={name}
-        as={MaterialUISelectField}
+        as={MuiSelectField}
         label={label}
         errorString={<ErrorMessage name={name} />}
         required={required}

@@ -5,14 +5,11 @@ import {
   Box,
   Button,
   TextField,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
 } from "@material-ui/core";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import React from "react";
 import { useGetRaidBossesQuery } from "../../../hooks/queries/raid-bosses/useGetRaidBossesQuery";
+import MuiDateTimePicker from "../../common/inputs/MuiDateTimePicker";
 import FormikSelect from "../../common/inputs/FormikSelect";
 import RaidPostFormRaidBossesOptions from "./RaidPostFormRaidBossesOptions";
 
@@ -21,6 +18,7 @@ interface RaidPostFormProps {}
 export default function RaidPostForm(props: RaidPostFormProps) {
   const initialValues = {
     server: "",
+    date: new Date().toISOString(),
     description: "",
     selectedBosses: [] as string[],
   };
@@ -50,6 +48,8 @@ export default function RaidPostForm(props: RaidPostFormProps) {
               <Form>
                 <RaidPostFormGeneral
                   serverId="server"
+                  dateId="date"
+                  dateSelected={values.date}
                   descriptionId="description"
                   onChange={handleChange}
                 />
@@ -80,12 +80,14 @@ export default function RaidPostForm(props: RaidPostFormProps) {
 
 interface RaidPostFormGeneralProps {
   serverId: string;
+  dateId: string;
+  dateSelected: string;
   descriptionId: string;
   onChange: any;
 }
 
 function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
-  const { serverId, descriptionId, onChange } = props;
+  const { serverId, dateId, dateSelected, descriptionId, onChange } = props;
   const servers = [
     { label: "EU", value: "EU" },
     { label: "NA", value: "NA" },
@@ -101,14 +103,19 @@ function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
     >
       <Typography variant="h6">General</Typography>
       <Box display="flex" flexDirection="row" width="100%">
-        <Box mx={3} minWidth={120}>
+        <Box ml={3} mr={5} minWidth={120}>
           <FormikSelect
             name={serverId}
             items={servers}
             label="Server"
             required
           />
-          <span>Date</span>
+          <MuiDateTimePicker
+            id={dateId}
+            label="Date"
+            value={dateSelected}
+            onChange={onChange}
+          />
         </Box>
         <RaidPostFormDescription id={descriptionId} onChange={onChange} />
       </Box>
