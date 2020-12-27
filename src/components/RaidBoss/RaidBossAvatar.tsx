@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface RaidBossAvatarProps extends RaidBossDTO {}
 
-export default function RaidBossAvatar(props: RaidBossAvatarProps) {
+function RaidBossAvatar(props: RaidBossAvatarProps) {
   const { name, isCm } = props;
   const boss = bosses.filter((boss) => boss.name == name)[0];
   const title = boss.name + (isCm ? " (CM)" : "");
@@ -41,3 +41,5 @@ export default function RaidBossAvatar(props: RaidBossAvatarProps) {
     </Box>
   ) : null;
 }
+
+export default React.memo(RaidBossAvatar);
