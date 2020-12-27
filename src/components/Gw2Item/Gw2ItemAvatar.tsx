@@ -1,4 +1,4 @@
-import { Avatar, Box, Tooltip } from "@material-ui/core";
+import { Avatar, Tooltip } from "@material-ui/core";
 import React from "react";
 import { items } from "./gw2items.json";
 
@@ -11,11 +11,9 @@ function Gw2ItemAvatar(props: Gw2ItemAvatarProps) {
   const item = items[name];
 
   return item ? (
-    <Box m={1}>
-      <Tooltip title={name}>
-        <Avatar src={item.portrait} alt={name} variant="square"></Avatar>
-      </Tooltip>
-    </Box>
+    <Tooltip title={name}>
+      <Avatar src={item.portrait} alt={name} variant="square"></Avatar>
+    </Tooltip>
   ) : null;
 }
 
