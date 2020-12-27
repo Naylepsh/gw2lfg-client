@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Box,
   createStyles,
   makeStyles,
   Theme,
@@ -29,16 +28,14 @@ function RaidBossAvatar(props: RaidBossAvatarProps) {
 
   const classes = useStyles();
   return boss ? (
-    <Box m={1}>
-      <Tooltip title={title}>
-        <Avatar
-          src={boss.portrait}
-          alt={boss.name}
-          variant="square"
-          className={isCm && classes.cm}
-        ></Avatar>
-      </Tooltip>
-    </Box>
+    <Tooltip title={title}>
+      <Avatar
+        src={boss.portrait}
+        alt={boss.name}
+        variant="square"
+        className={isCm && classes.cm}
+      ></Avatar>
+    </Tooltip>
   ) : null;
 }
 

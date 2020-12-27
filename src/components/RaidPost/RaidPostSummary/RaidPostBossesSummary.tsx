@@ -1,6 +1,7 @@
+import { Box } from "@material-ui/core";
 import React from "react";
-import RaidBossAvatar from "../../RaidBoss/RaidBossAvatar";
 import { RaidBossDTO } from "../../../services/gw2lfg-server/entities/RaidBossDTO";
+import RaidBossAvatar from "../../RaidBoss/RaidBossAvatar";
 
 interface RaidPostBossesSummaryProps {
   bosses: RaidBossDTO[];
@@ -13,7 +14,9 @@ export function RaidPostBossesSummary(props: RaidPostBossesSummaryProps) {
   return (
     <React.Fragment>
       {bossesToDisplay.map((boss, key) => (
-        <RaidBossAvatar {...boss} key={key} />
+        <Box key={key} m={1}>
+          <RaidBossAvatar {...boss} />
+        </Box>
       ))}
       {hasMoreBosses && <span>...</span>}
     </React.Fragment>
