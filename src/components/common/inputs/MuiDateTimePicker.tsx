@@ -12,10 +12,6 @@ interface MuiDateTimePickerProps {
 export default function MuiDateTimePicker(props: MuiDateTimePickerProps) {
   const { id, label, value, onChange } = props;
 
-  // onChange on DateTimePicker passes date instead of an event,
-  // but Formik requires an event as an argument, thus this weird wrapper
-  const handleChange = (value: Date) => onChange({ target: { value, id } });
-
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <DateTimePicker
@@ -24,7 +20,7 @@ export default function MuiDateTimePicker(props: MuiDateTimePickerProps) {
         ampm={false}
         value={value}
         disablePast
-        onChange={handleChange}
+        onChange={onChange}
         label={label}
       />
     </MuiPickersUtilsProvider>
