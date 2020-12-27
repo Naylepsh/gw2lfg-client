@@ -5,15 +5,12 @@ import {
   Box,
   Button,
   TextField,
-  Checkbox,
-  Badge,
 } from "@material-ui/core";
 import { Formik, Form } from "formik";
 import React from "react";
-import CheckIcon from "@material-ui/icons/Check";
 import { useGetRaidBossesQuery } from "../../../hooks/queries/raid-bosses/useGetRaidBossesQuery";
 import { RaidBossDTO } from "../../../services/gw2lfg-server/entities/RaidBossDTO";
-import RaidBossAvatar from "../../RaidBoss/RaidBossAvatar";
+import RaidPostFormRaidBossOption from "./RaidPostFormRaidBossOption";
 
 interface RaidPostFormProps {}
 
@@ -124,38 +121,6 @@ function RaidPostFormRaidBossesOptions(
         ))}
       </Box>
     </Box>
-  );
-}
-
-interface RaidPostFormRaidBossOptionProps {
-  boss: RaidBossDTO;
-  onChange: any;
-  name: string;
-  checked: boolean;
-}
-
-function RaidPostFormRaidBossOption(props: RaidPostFormRaidBossOptionProps) {
-  const { onChange, boss, name, checked } = props;
-  return (
-    <Checkbox
-      checked={checked}
-      checkedIcon={
-        <Badge
-          badgeContent={<CheckIcon color="secondary" fontSize="large" />}
-          overlap="circle"
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-        >
-          <RaidBossAvatar {...boss} />
-        </Badge>
-      }
-      icon={<RaidBossAvatar {...boss} />}
-      onChange={onChange}
-      name={name}
-      value={boss.id}
-    />
   );
 }
 
