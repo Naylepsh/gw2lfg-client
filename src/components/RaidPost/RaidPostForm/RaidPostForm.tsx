@@ -2,9 +2,11 @@ import { Box, Button, Container, Paper, Typography } from "@material-ui/core";
 import { Form, Formik } from "formik";
 import React from "react";
 import { useGetRaidBossesQuery } from "../../../hooks/queries/raid-bosses/useGetRaidBossesQuery";
+import { RoleDTO } from "../../../services/gw2lfg-server/entities/RoleDTO";
 import RaidPostFormGeneral from "./RaidPostFormGeneral";
 import RaidPostFormRaidBossesOptions from "./RaidPostFormRaidBossesOptions";
 import RaidPostFormRequirementsOptions from "./RaidPostFormRequirementsOptions";
+import RaidPostFormRoles from "./RaidPostFormRoles";
 
 interface RaidPostFormProps {}
 
@@ -19,6 +21,7 @@ export default function RaidPostForm(props: RaidPostFormProps) {
     description: "",
     selectedBosses: [] as string[],
     requirements: {} as Requirements,
+    roles: [] as RoleDTO[],
   };
   const { isLoading, isError, data: bosses } = useGetRaidBossesQuery();
 
@@ -61,7 +64,11 @@ export default function RaidPostForm(props: RaidPostFormProps) {
                   requirementsId="requirements"
                   onChange={handleChange}
                 />
-                <RaidPostFormRoles />
+                <RaidPostFormRoles
+                  roles={values.roles}
+                  rolesId="roles"
+                  onChange={handleChange}
+                />
                 <Button
                   type="submit"
                   fullWidth
@@ -77,8 +84,4 @@ export default function RaidPostForm(props: RaidPostFormProps) {
       </Box>
     </Container>
   );
-}
-
-function RaidPostFormRoles() {
-  return <div>roles...</div>;
 }

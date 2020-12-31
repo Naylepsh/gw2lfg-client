@@ -4,6 +4,7 @@ import React from "react";
 interface RaidPostFormDescriptionProps {
   id: string;
   onChange: any;
+  variant?: "filled" | "outlined" | "standard";
 }
 
 export function RaidPostFormDescription(props: RaidPostFormDescriptionProps) {
@@ -13,9 +14,9 @@ export function RaidPostFormDescription(props: RaidPostFormDescriptionProps) {
       multiline
       rows={4}
       placeholder="Description..."
-      variant="outlined"
       fullWidth
       {...props}
+      variant={props.variant ?? "standard"}
     />
   );
 }
