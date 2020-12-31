@@ -1,8 +1,8 @@
 import { Checkbox, Badge } from "@material-ui/core";
 import React from "react";
 import CheckIcon from "@material-ui/icons/Check";
-import { RaidBossDTO } from "../../../services/gw2lfg-server/entities/RaidBossDTO";
-import RaidBossAvatar from "../../RaidBoss/RaidBossAvatar";
+import { RaidBossDTO } from "../../../../services/gw2lfg-server/entities/RaidBossDTO";
+import RaidBossAvatar from "../../../RaidBoss/RaidBossAvatar";
 
 interface RaidPostFormRaidBossOptionProps {
   boss: RaidBossDTO;

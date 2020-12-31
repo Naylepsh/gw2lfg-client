@@ -1,8 +1,8 @@
 import { Box, Button, Paper, Typography } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import React from "react";
-import { RoleDTO } from "../../../services/gw2lfg-server/entities/RoleDTO";
-import { RaidPostFormRole } from "./RaidPostFormRole";
+import { RoleDTO } from "../../../../services/gw2lfg-server/entities/RoleDTO";
+import RaidPostFormRole from "./RaidPostFormRole";
 
 interface RaidPostFormRolesProps {
   roles: RoleDTO[];
@@ -10,7 +10,7 @@ interface RaidPostFormRolesProps {
   onChange: any;
 }
 
-export default function RaidPostFormRoles(props: RaidPostFormRolesProps) {
+export function RaidPostFormRoles(props: RaidPostFormRolesProps) {
   const { roles, rolesId, onChange } = props;
   const defaultRole: RoleDTO = { name: "any", class: "any" };
   const handleNewRoleAdditon = () =>
@@ -50,3 +50,5 @@ export default function RaidPostFormRoles(props: RaidPostFormRolesProps) {
     </Box>
   );
 }
+
+export default React.memo(RaidPostFormRoles);

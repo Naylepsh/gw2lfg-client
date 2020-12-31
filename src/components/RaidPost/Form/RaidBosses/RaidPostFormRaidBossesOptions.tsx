@@ -1,6 +1,6 @@
 import { Typography, Box } from "@material-ui/core";
 import React from "react";
-import { RaidBossDTO } from "../../../services/gw2lfg-server/entities/RaidBossDTO";
+import { RaidBossDTO } from "../../../../services/gw2lfg-server/entities/RaidBossDTO";
 import RaidPostFormRaidBossOption from "./RaidPostFormRaidBossOption";
 
 interface RaidPostFormRaidBossesOptionsProps {

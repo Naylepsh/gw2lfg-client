@@ -1,8 +1,8 @@
 import { Typography, Box } from "@material-ui/core";
 import React from "react";
-import MuiDateTimePicker from "../../common/inputs/MuiDateTimePicker";
-import FormikSelect from "../../common/inputs/FormikSelect";
-import { RaidPostFormDescription } from "./RaidPostFormDescription";
+import MuiDateTimePicker from "../../../common/inputs/MuiDateTimePicker";
+import FormikSelect from "../../../common/inputs/FormikSelect";
+import RaidPostFormDescription from "./RaidPostFormDescription";
 
 interface RaidPostFormGeneralProps {
   serverId: string;

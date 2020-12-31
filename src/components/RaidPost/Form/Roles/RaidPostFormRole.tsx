@@ -1,9 +1,10 @@
 import { Box, Button } from "@material-ui/core";
 import React from "react";
-import { RaidPostFormDescription } from "./RaidPostFormDescription";
-import { roles, classes } from "../../Role/roles.json";
-import FormikSelect from "../../common/inputs/FormikSelect";
+import RaidPostFormDescription from "../General/RaidPostFormDescription";
+import { roles } from "../../../Role/roles.json";
+import FormikSelect from "../../../common/inputs/FormikSelect";
 import ClearIcon from "@material-ui/icons/Clear";
+import RoleClassOptions from "./RoleClassOptions";
 
 interface RaidPostFormRoleProps {
   formId: string;
@@ -14,7 +15,6 @@ interface RaidPostFormRoleProps {
 export function RaidPostFormRole(props: RaidPostFormRoleProps) {
   const { onChange, handleRoleRemoval, formId } = props;
   const availableRoles = [{ name: "any", portrait: "#" }, ...roles];
-  const availableClasses = [{ name: "any", portrait: "#" }, ...classes];
 
   return (
     <Box display="flex" flexDirection="row" padding={3}>
@@ -29,14 +29,7 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
         />
       </Box>
       <Box minWidth={120} mr={3}>
-        <FormikSelect
-          name={`${formId}.class`}
-          items={availableClasses.map((cl) => ({
-            label: cl.name,
-            value: cl.name,
-          }))}
-          label="Class"
-        />
+        <RoleClassOptions formId={formId} />
       </Box>
       <Box width={1}>
         <RaidPostFormDescription
@@ -52,3 +45,5 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
     </Box>
   );
 }
+
+export default React.memo(RaidPostFormRole);

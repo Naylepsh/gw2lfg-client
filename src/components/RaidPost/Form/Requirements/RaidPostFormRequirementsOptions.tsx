@@ -7,7 +7,7 @@ interface RaidPostFormRequirementsOptionsProps {
   onChange: any;
 }
 
-export default function RaidPostFormRequirementsOptions(
+export function RaidPostFormRequirementsOptions(
   props: RaidPostFormRequirementsOptionsProps
 ) {
   const requirements = [{ name: "Legendary Insight" }];
@@ -34,3 +34,5 @@ export default function RaidPostFormRequirementsOptions(
     </Box>
   );
 }
+
+export default React.memo(RaidPostFormRequirementsOptions);

@@ -7,7 +7,9 @@ interface RaidPostFormDescriptionProps {
   variant?: "filled" | "outlined" | "standard";
 }
 
-export function RaidPostFormDescription(props: RaidPostFormDescriptionProps) {
+export default function RaidPostFormDescription(
+  props: RaidPostFormDescriptionProps
+) {
   return (
     <TextField
       label="Description"

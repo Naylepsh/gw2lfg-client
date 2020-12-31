@@ -3,10 +3,10 @@ import { Form, Formik } from "formik";
 import React from "react";
 import { useGetRaidBossesQuery } from "../../../hooks/queries/raid-bosses/useGetRaidBossesQuery";
 import { RoleDTO } from "../../../services/gw2lfg-server/entities/RoleDTO";
-import RaidPostFormGeneral from "./RaidPostFormGeneral";
-import RaidPostFormRaidBossesOptions from "./RaidPostFormRaidBossesOptions";
-import RaidPostFormRequirementsOptions from "./RaidPostFormRequirementsOptions";
-import RaidPostFormRoles from "./RaidPostFormRoles";
+import RaidPostFormGeneral from "./General/RaidPostFormGeneral";
+import RaidPostFormRaidBossesOptions from "./RaidBosses/RaidPostFormRaidBossesOptions";
+import RaidPostFormRequirementsOptions from "./Requirements/RaidPostFormRequirementsOptions";
+import RaidPostFormRoles from "./Roles/RaidPostFormRoles";
 
 interface RaidPostFormProps {}
 

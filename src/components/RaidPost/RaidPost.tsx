@@ -1,8 +1,8 @@
 import { Accordion } from "@material-ui/core";
 import React from "react";
 import { RaidPostDTO } from "../../services/gw2lfg-server/entities/RaidPostDTO";
-import RaidPostDetails from "./RaidPostDetails/RaidPostDetails";
-import RaidPostSummary from "./RaidPostSummary/RaidPostSummary";
+import RaidPostDetails from "./Details/RaidPostDetails";
+import RaidPostSummary from "./Summary/RaidPostSummary";
 
 interface RaidPostProps {
   raidPost: RaidPostDTO;

@@ -14,7 +14,7 @@ interface MaterialUISelectFieldProps extends FieldInputProps<string> {
   required: boolean;
 }
 
-export default function MaterialUISelectField({
+export function MaterialUISelectField({
   errorString,
   label,
   children,
@@ -34,3 +34,8 @@ export default function MaterialUISelectField({
     </FormControl>
   );
 }
+
+export default React.memo(
+  MaterialUISelectField,
+  (prevProps, nextProps) => prevProps.value === nextProps.value
+);

@@ -1,6 +1,6 @@
 import { Box, createStyles, makeStyles, TextField } from "@material-ui/core";
 import React from "react";
-import Gw2ItemAvatar from "../../Gw2Item/Gw2ItemAvatar";
+import Gw2ItemAvatar from "../../../Gw2Item/Gw2ItemAvatar";
 
 const useStyles = makeStyles(() =>
   createStyles({
