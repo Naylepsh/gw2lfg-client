@@ -1,9 +1,8 @@
 import { Box, Button, Paper, Typography } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import React from "react";
 import { RoleDTO } from "../../../services/gw2lfg-server/entities/RoleDTO";
-import { RaidPostFormDescription } from "./RaidPostFormDescription";
-import { roles, classes } from "../../Role/roles.json";
-import FormikSelect from "../../common/inputs/FormikSelect";
+import { RaidPostFormRole } from "./RaidPostFormRole";
 
 interface RaidPostFormRolesProps {
   roles: RoleDTO[];
@@ -42,58 +41,12 @@ export default function RaidPostFormRoles(props: RaidPostFormRolesProps) {
           />
         ))}
       </Box>
-      <Box mr="auto">
-        <Button onClick={handleNewRoleAdditon}>Add new role</Button>
+      <Box mr="auto" mt={1} mb={3}>
+        <Button onClick={handleNewRoleAdditon}>
+          <AddIcon />
+          Add new role
+        </Button>
       </Box>
-    </Box>
-  );
-}
-
-interface RaidPostFormRoleProps {
-  formId: string;
-  onChange: any;
-  handleRoleRemoval: (roleFormId: string) => any;
-}
-
-function RaidPostFormRole(props: RaidPostFormRoleProps) {
-  const { onChange, handleRoleRemoval, formId } = props;
-  const availableRoles = [{ name: "any", portrait: "#" }, ...roles];
-  const availableClasses = [{ name: "any", portrait: "#" }, ...classes];
-
-  return (
-    <Box
-      display="flex"
-      flexDirection="row"
-      justifyContent="space-between"
-      padding={3}
-    >
-      <Box minWidth={120}>
-        <FormikSelect
-          name={`${formId}.name`}
-          items={availableRoles.map((role) => ({
-            label: role.name,
-            value: role.name,
-          }))}
-          label="Name"
-        />
-      </Box>
-      <Box minWidth={120}>
-        <FormikSelect
-          name={`${formId}.class`}
-          items={availableClasses.map((cl) => ({
-            label: cl.name,
-            value: cl.name,
-          }))}
-          label="Name"
-        />
-      </Box>
-      <Box>
-        <RaidPostFormDescription
-          id={`${formId}.description`}
-          onChange={onChange}
-        />
-      </Box>
-      <Button onClick={() => handleRoleRemoval(formId)}>Remove</Button>
     </Box>
   );
 }
