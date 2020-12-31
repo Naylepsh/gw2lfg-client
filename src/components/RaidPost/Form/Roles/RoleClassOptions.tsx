@@ -6,7 +6,7 @@ interface RoleClassOptionsProps {
   formId: string;
 }
 
-export function RoleClassOptions(props: RoleClassOptionsProps) {
+export default function RoleClassOptions(props: RoleClassOptionsProps) {
   const availableClasses = [{ name: "any", portrait: "#" }, ...classes];
 
   return (
@@ -17,5 +17,3 @@ export function RoleClassOptions(props: RoleClassOptionsProps) {
     />
   );
 }
-
-export default React.memo(RoleClassOptions);
