@@ -11,6 +11,7 @@ interface RaidPostFormRolesProps {
 }
 
 export function RaidPostFormRoles(props: RaidPostFormRolesProps) {
+  const maxNumberOfRoles = 10;
   const { roles, rolesId, onChange } = props;
   const defaultRole: RoleDTO = { name: "any", class: "any" };
   const handleNewRoleAdditon = () =>
@@ -41,12 +42,14 @@ export function RaidPostFormRoles(props: RaidPostFormRolesProps) {
           />
         ))}
       </Box>
-      <Box mr="auto" mt={1} mb={3}>
-        <Button onClick={handleNewRoleAdditon}>
-          <AddIcon />
-          Add new role
-        </Button>
-      </Box>
+      {roles.length < maxNumberOfRoles && (
+        <Box mr="auto" mt={1} mb={3}>
+          <Button onClick={handleNewRoleAdditon}>
+            <AddIcon />
+            Add new role
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 }
