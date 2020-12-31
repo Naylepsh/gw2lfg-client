@@ -16,7 +16,9 @@ export default function RaidPostFormRoles(props: RaidPostFormRolesProps) {
   const defaultRole: RoleDTO = { name: "any", class: "any" };
   const handleNewRoleAdditon = () =>
     onChange({ target: { value: [...roles, defaultRole], id: rolesId } });
-  const handleRoleRemoval = (index: number) => {
+  const handleRoleRemoval = (formId: string) => {
+    const [roleKey] = formId.split(".").slice(-1);
+    const index = parseInt(roleKey);
     const rolesLeft = [...roles.slice(0, index), ...roles.slice(index + 1)];
     onChange({ target: { value: rolesLeft, id: rolesId } });
   };
@@ -34,7 +36,6 @@ export default function RaidPostFormRoles(props: RaidPostFormRolesProps) {
         {roles.map((_role, key) => (
           <RaidPostFormRole
             key={key}
-            id={key}
             formId={`${rolesId}.${key}`}
             onChange={onChange}
             handleRoleRemoval={handleRoleRemoval}
@@ -49,14 +50,13 @@ export default function RaidPostFormRoles(props: RaidPostFormRolesProps) {
 }
 
 interface RaidPostFormRoleProps {
-  id: number;
   formId: string;
   onChange: any;
-  handleRoleRemoval: (id: number) => any;
+  handleRoleRemoval: (roleFormId: string) => any;
 }
 
 function RaidPostFormRole(props: RaidPostFormRoleProps) {
-  const { onChange, handleRoleRemoval, id, formId } = props;
+  const { onChange, handleRoleRemoval, formId } = props;
   const availableRoles = [{ name: "any", portrait: "#" }, ...roles];
   const availableClasses = [{ name: "any", portrait: "#" }, ...classes];
 
@@ -93,7 +93,7 @@ function RaidPostFormRole(props: RaidPostFormRoleProps) {
           onChange={onChange}
         />
       </Box>
-      <Button onClick={() => handleRoleRemoval(id)}>Remove</Button>
+      <Button onClick={() => handleRoleRemoval(formId)}>Remove</Button>
     </Box>
   );
 }
