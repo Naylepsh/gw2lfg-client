@@ -1,4 +1,6 @@
 import { Box, Button } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Loading from "../../src/components/Loading/Loading";
 import { RaidPost } from "../../src/components/RaidPost/RaidPost";
@@ -6,6 +8,7 @@ import { useGetRaidPostsQuery } from "../../src/hooks/queries/raid-posts/useGetR
 import { RaidPostDTO } from "../../src/services/gw2lfg-server/entities/RaidPostDTO";
 
 export default function GetRaidPosts() {
+  const router = useRouter();
   const [page, setPage] = useState(1);
   const [prevRaidPosts, setPrevRaidPosts] = useState([] as RaidPostDTO[]);
   const {
@@ -16,15 +19,6 @@ export default function GetRaidPosts() {
     isPreviousData,
   } = useGetRaidPostsQuery(page);
 
-  if (isLoading) {
-    return <Loading size="large" />;
-  }
-
-  if (isError) {
-    console.log({ error });
-    return <div>Error occured ...</div>;
-  }
-
   const currentRaidPosts = isPreviousData
     ? prevRaidPosts
     : [...prevRaidPosts, ...data.raidPosts];
@@ -34,8 +28,32 @@ export default function GetRaidPosts() {
     setPrevRaidPosts(currentRaidPosts);
   };
 
+  const redirectToCreateNewPost = () => {
+    router.push("/raid-posts/create");
+  };
+
+  if (isLoading) {
+    return <Loading size="large" />;
+  }
+
+  if (isError) {
+    console.log({ error });
+    return <div>Error occured ...</div>;
+  }
+
   return (
     <Box my={5}>
+      <Box mb={1}>
+        <Button
+          color="primary"
+          variant="contained"
+          fullWidth
+          onClick={redirectToCreateNewPost}
+        >
+          <AddIcon />
+          Create new post
+        </Button>
+      </Box>
       {currentRaidPosts.map((raidPost) => (
         <RaidPost raidPost={raidPost} key={raidPost.id} />
       ))}
