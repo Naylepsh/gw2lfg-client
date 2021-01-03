@@ -22,10 +22,11 @@ const useStyles = makeStyles((_theme: Theme) =>
 
 interface RaidPostSummaryProps {
   raidPost: RaidPostDTO;
+  maxNumberOfBosses: number;
 }
 
 export default function RaidPostSummary(props: RaidPostSummaryProps) {
-  const { raidPost } = props;
+  const { raidPost, maxNumberOfBosses } = props;
   const maxSpots = 10;
   const spotsTaken = maxSpots - raidPost.roles.length;
   const classes = useStyles();
@@ -34,7 +35,10 @@ export default function RaidPostSummary(props: RaidPostSummaryProps) {
     <AccordionSummary>
       <Grid container>
         <Grid item xs={7} container direction="row">
-          <RaidPostBossesSummary bosses={raidPost.bosses} />
+          <RaidPostBossesSummary
+            bosses={raidPost.bosses}
+            max={maxNumberOfBosses}
+          />
         </Grid>
         <Grid item xs={4} container direction="row">
           <RaidPostRolesSummary roles={raidPost.roles} />
