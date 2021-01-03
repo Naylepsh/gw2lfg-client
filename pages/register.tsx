@@ -1,17 +1,16 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { invalidateMeQuery } from "../src/hooks/queries/users/useMeQuery";
-import {
-  registerUser,
-  RegisterUserDTO,
-} from "../src/services/gw2lfg-server/user/registerService";
+import { RegisterUserDTO } from "../src/services/gw2lfg-server/user/registerService";
 import { saveAccessToken } from "../src/utils/auth/saveAccessToken";
 import RegisterForm from "../src/components/User/RegisterForm";
+import { useRegisterMutation } from "../src/hooks/mutations/users/useRegisterMutation";
 
 export default function Register() {
   const router = useRouter();
+  const [registerUser] = useRegisterMutation();
 
-  const registerUserOrFail = async (values: RegisterUserDTO, {}: any) => {
+  const registerAndGoToMainPage = async (values: RegisterUserDTO, {}: any) => {
     try {
       const token = await registerUser(values);
       saveAccessToken(token);
@@ -26,7 +25,7 @@ export default function Register() {
   return (
     <RegisterForm
       initialValues={{ username: "", password: "", apiKey: "" }}
-      onSubmit={registerUserOrFail}
+      onSubmit={registerAndGoToMainPage}
     />
   );
 }

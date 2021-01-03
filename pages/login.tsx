@@ -10,7 +10,7 @@ export default function Login() {
   const router = useRouter();
   const [loginUser] = useLoginMutation();
 
-  const loginUserOrFail = async (values: LoginUserDTO, {}) => {
+  const loginAndGoToMainPage = async (values: LoginUserDTO, {}) => {
     try {
       const token = await loginUser(values);
       saveAccessToken(token);
@@ -25,7 +25,7 @@ export default function Login() {
   return (
     <LoginForm
       initialValues={{ username: "", password: "" }}
-      onSubmit={loginUserOrFail}
+      onSubmit={loginAndGoToMainPage}
     />
   );
 }
