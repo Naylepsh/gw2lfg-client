@@ -10,7 +10,11 @@ import RaidPostFormRoles from "./Roles/RaidPostFormRoles";
 
 interface RaidPostFormProps {}
 
-interface Requirements {
+interface RequirementsProps {
+  itemsProps: RequirementsItemsProps;
+}
+
+interface RequirementsItemsProps {
   [key: string]: number;
 }
 
@@ -20,7 +24,7 @@ export default function RaidPostForm(props: RaidPostFormProps) {
     date: "",
     description: "",
     selectedBosses: [] as string[],
-    requirements: {} as Requirements,
+    requirementsProps: {} as RequirementsProps,
     roles: [] as RoleDTO[],
   };
   const { isLoading, isError, data: bosses } = useGetRaidBossesQuery();
@@ -61,12 +65,13 @@ export default function RaidPostForm(props: RaidPostFormProps) {
                   selectedBosses={values.selectedBosses}
                 />
                 <RaidPostFormRequirementsOptions
-                  requirementsId="requirements"
+                  requirementsId="requirementsProps"
+                  itemsId="itemsProps"
                   onChange={handleChange}
                 />
                 <RaidPostFormRoles
                   roles={values.roles}
-                  rolesId="roles"
+                  rolesId="rolesProps"
                   onChange={handleChange}
                 />
                 <Button
