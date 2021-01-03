@@ -3,7 +3,6 @@ import { RaidBossDTO } from "./RaidBossDTO";
 import { RequirementDTO } from "./RequirementDTO";
 import { RoleDTO } from "./RoleDTO";
 
-
 export interface RaidPostDTO {
   id: number;
   date: Date;

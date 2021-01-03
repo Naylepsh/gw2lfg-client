@@ -8,7 +8,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import { useMeQuery } from "../../hooks/queries/user/useMeQuery";
+import { useMeQuery } from "../../hooks/queries/users/useMeQuery";
 import { Button, Link } from "@material-ui/core";
 import { useRouter } from "next/router";
 import { discardAccessToken } from "../../utils/auth/auth";

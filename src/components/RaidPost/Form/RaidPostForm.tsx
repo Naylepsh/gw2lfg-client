@@ -1,6 +1,8 @@
 import { Box, Button, Container, Paper, Typography } from "@material-ui/core";
 import { Form, Formik } from "formik";
+import { useRouter } from "next/router";
 import React from "react";
+import { useCreateRaidPostMutation } from "../../../hooks/mutations/raid-posts/useCreateRaidPostMutation";
 import { useGetRaidBossesQuery } from "../../../hooks/queries/raid-bosses/useGetRaidBossesQuery";
 import { RoleDTO } from "../../../services/gw2lfg-server/entities/RoleDTO";
 import RaidPostFormGeneral from "./General/RaidPostFormGeneral";
@@ -19,7 +21,7 @@ interface RequirementsItemsProps {
 }
 
 export default function RaidPostForm(props: RaidPostFormProps) {
-  const initialValues = {
+  const initialValues: RaidPostFormValues = {
     server: "",
     date: "",
     description: "",
@@ -27,6 +29,8 @@ export default function RaidPostForm(props: RaidPostFormProps) {
     requirementsProps: {} as RequirementsProps,
     rolesProps: [] as RoleDTO[],
   };
+  const [mutate] = useCreateRaidPostMutation();
+  const router = useRouter();
   const { isLoading, isError, data: bosses } = useGetRaidBossesQuery();
 
   if (isLoading) return <div>Loading...</div>;
@@ -44,7 +48,11 @@ export default function RaidPostForm(props: RaidPostFormProps) {
       >
         <Typography variant="h4">Create Raid Post</Typography>
         <Formik
-          onSubmit={(values, {}) => console.log(values)}
+          onSubmit={async (values, {}) => {
+            const raidPost = mapRaidPostFormToDto(values);
+            await mutate(raidPost);
+            router.push("/raid-posts");
+          }}
           initialValues={initialValues}
         >
           {(formProps) => {
@@ -89,4 +97,29 @@ export default function RaidPostForm(props: RaidPostFormProps) {
       </Box>
     </Container>
   );
+}
+
+interface RaidPostFormValues {
+  server: string;
+  date: string;
+  description: string;
+  selectedBosses: string[];
+  requirementsProps: RequirementsProps;
+  rolesProps: RoleDTO[];
+}
+
+function mapRaidPostFormToDto(values: RaidPostFormValues) {
+  const formItems = values.requirementsProps.itemsProps;
+  const itemsProps = Object.keys(formItems).map((name) => ({
+    name,
+    quantity: formItems[name],
+  }));
+  const bossesIds = values.selectedBosses.map((id) => parseInt(id));
+  const raidPost = {
+    ...values,
+    bossesIds,
+    requirementsProps: { itemsProps },
+  };
+
+  return raidPost;
 }

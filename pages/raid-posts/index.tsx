@@ -1,7 +1,7 @@
 import { Box, Button } from "@material-ui/core";
 import React, { useState } from "react";
 import { RaidPost } from "../../src/components/RaidPost/RaidPost";
-import { useGetRaidPostsQuery } from "../../src/hooks/queries/raid-post/useGetRaidPostsQuery";
+import { useGetRaidPostsQuery } from "../../src/hooks/queries/raid-posts/useGetRaidPostsQuery";
 import { RaidPostDTO } from "../../src/services/gw2lfg-server/entities/RaidPostDTO";
 
 export default function GetRaidPosts() {
