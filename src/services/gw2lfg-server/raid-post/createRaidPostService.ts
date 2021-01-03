@@ -1,4 +1,4 @@
-import { getAccessToken } from "../../../utils/auth/auth";
+import { getAccessToken } from "../../../utils/auth/getAccessToken";
 import { httpPost } from "../../http/postHttpService";
 import { createGw2lfgHeaders } from "../createGw2lfgHeaders";
 import { ItemRequirementDTO } from "../entities/ItemRequirementDTO";

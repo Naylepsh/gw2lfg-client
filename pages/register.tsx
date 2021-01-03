@@ -1,18 +1,21 @@
+import { useRouter } from "next/router";
 import React from "react";
-import { Box, Button, Container, Paper } from "@material-ui/core";
-import { Formik, Form } from "formik";
-import {
-  registerUser,
-  RegisterUserDTO,
-} from "../src/services/gw2lfg-server/user/registerService";
-import { UserFormTextField } from "../src/components/UserFormTextField";
+import { invalidateMeQuery } from "../src/hooks/queries/users/useMeQuery";
+import { RegisterUserDTO } from "../src/services/gw2lfg-server/user/registerService";
+import { saveAccessToken } from "../src/utils/auth/saveAccessToken";
+import RegisterForm from "../src/components/User/RegisterForm";
+import { useRegisterMutation } from "../src/hooks/mutations/users/useRegisterMutation";
 
 export default function Register() {
-  const registerUserOrFail = async (values: RegisterUserDTO, {}: any) => {
+  const router = useRouter();
+  const [registerUser] = useRegisterMutation();
+
+  const registerAndGoToMainPage = async (values: RegisterUserDTO, {}: any) => {
     try {
       const token = await registerUser(values);
-      window.localStorage.setItem("jwt", token);
-      console.log({ token });
+      saveAccessToken(token);
+      invalidateMeQuery();
+      router.push("/raid-posts");
     } catch (error) {
       console.log({ error });
       throw error;
@@ -20,54 +23,9 @@ export default function Register() {
   };
 
   return (
-    <Container maxWidth="xs" component={Paper}>
-      <Box my={3} pb={1}>
-        <Formik
-          onSubmit={registerUserOrFail}
-          initialValues={{ username: "", password: "", apiKey: "" }}
-        >
-          {(props) => {
-            const { handleChange } = props;
-            return (
-              <Form>
-                <UserFormTextField
-                  required
-                  id="username"
-                  label="Username"
-                  name="username"
-                  autoComplete="username"
-                  onChange={handleChange}
-                />
-                <UserFormTextField
-                  required
-                  type="password"
-                  id="password"
-                  label="Password"
-                  name="password"
-                  autoComplete="password"
-                  onChange={handleChange}
-                />
-                <UserFormTextField
-                  required
-                  id="apiKey"
-                  label="API key"
-                  name="apiKey"
-                  autoComplete="apiKey"
-                  onChange={handleChange}
-                />
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                >
-                  Register
-                </Button>
-              </Form>
-            );
-          }}
-        </Formik>
-      </Box>
-    </Container>
+    <RegisterForm
+      initialValues={{ username: "", password: "", apiKey: "" }}
+      onSubmit={registerAndGoToMainPage}
+    />
   );
 }
