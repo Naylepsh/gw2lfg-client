@@ -25,7 +25,7 @@ export default function RaidPostForm(props: RaidPostFormProps) {
     description: "",
     selectedBosses: [] as string[],
     requirementsProps: {} as RequirementsProps,
-    roles: [] as RoleDTO[],
+    rolesProps: [] as RoleDTO[],
   };
   const { isLoading, isError, data: bosses } = useGetRaidBossesQuery();
 
@@ -70,7 +70,7 @@ export default function RaidPostForm(props: RaidPostFormProps) {
                   onChange={handleChange}
                 />
                 <RaidPostFormRoles
-                  roles={values.roles}
+                  roles={values.rolesProps}
                   rolesId="rolesProps"
                   onChange={handleChange}
                 />
