@@ -1,5 +1,6 @@
 import { Box, Button } from "@material-ui/core";
 import React, { useState } from "react";
+import Loading from "../../src/components/Loading/Loading";
 import { RaidPost } from "../../src/components/RaidPost/RaidPost";
 import { useGetRaidPostsQuery } from "../../src/hooks/queries/raid-posts/useGetRaidPostsQuery";
 import { RaidPostDTO } from "../../src/services/gw2lfg-server/entities/RaidPostDTO";
@@ -16,7 +17,7 @@ export default function GetRaidPosts() {
   } = useGetRaidPostsQuery(page);
 
   if (isLoading) {
-    return <div>Is loading...</div>;
+    return <Loading size="large" />;
   }
 
   if (isError) {

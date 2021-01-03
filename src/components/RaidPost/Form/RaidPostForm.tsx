@@ -5,6 +5,7 @@ import React from "react";
 import { useCreateRaidPostMutation } from "../../../hooks/mutations/raid-posts/useCreateRaidPostMutation";
 import { useGetRaidBossesQuery } from "../../../hooks/queries/raid-bosses/useGetRaidBossesQuery";
 import { RoleDTO } from "../../../services/gw2lfg-server/entities/RoleDTO";
+import Loading from "../../Loading/Loading";
 import RaidPostFormGeneral from "./General/RaidPostFormGeneral";
 import RaidPostFormRaidBossesOptions from "./RaidBosses/RaidPostFormRaidBossesOptions";
 import RaidPostFormRequirementsOptions from "./Requirements/RaidPostFormRequirementsOptions";
@@ -29,11 +30,11 @@ export default function RaidPostForm(props: RaidPostFormProps) {
     requirementsProps: {} as RequirementsProps,
     rolesProps: [] as RoleDTO[],
   };
-  const [mutate] = useCreateRaidPostMutation();
+  const [createPost] = useCreateRaidPostMutation();
   const router = useRouter();
   const { isLoading, isError, data: bosses } = useGetRaidBossesQuery();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading size="large" />;
   if (isError) return <div>Encountered error...</div>;
 
   return (
@@ -50,7 +51,7 @@ export default function RaidPostForm(props: RaidPostFormProps) {
         <Formik
           onSubmit={async (values, {}) => {
             const raidPost = mapRaidPostFormToDto(values);
-            await mutate(raidPost);
+            await createPost(raidPost);
             router.push("/raid-posts");
           }}
           initialValues={initialValues}
