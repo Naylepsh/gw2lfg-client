@@ -7,7 +7,7 @@ import {
   LoginUserDTO,
 } from "../src/services/gw2lfg-server/user/loginService";
 import { UserFormTextField } from "../src/components/UserFormTextField";
-import { saveAccessToken } from "../src/utils/auth/auth";
+import { saveAccessToken } from "../src/utils/auth/saveAccessToken";
 
 export default function Login() {
   const router = useRouter();

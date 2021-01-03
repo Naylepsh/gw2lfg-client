@@ -1,7 +1,7 @@
 import { httpGet } from "../../http/getHttpService";
 import { raidPostsUrl } from "./constants";
 import { RaidPostDTO } from "../entities/RaidPostDTO";
-import { getAccessToken } from "../../../utils/auth/auth";
+import { getAccessToken } from "../../../utils/auth/getAccessToken";
 import { createGw2lfgHeaders } from "../createGw2lfgHeaders";
 
 export interface GetRaidPostsDTO {

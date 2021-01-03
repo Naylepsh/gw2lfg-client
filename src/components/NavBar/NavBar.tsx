@@ -11,7 +11,7 @@ import Menu from "@material-ui/core/Menu";
 import { useMeQuery } from "../../hooks/queries/users/useMeQuery";
 import { Button, Link } from "@material-ui/core";
 import { useRouter } from "next/router";
-import { discardAccessToken } from "../../utils/auth/auth";
+import { discardAccessToken } from "../../utils/auth/discardAccessToken";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

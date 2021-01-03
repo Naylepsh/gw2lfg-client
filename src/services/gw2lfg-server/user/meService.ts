@@ -1,4 +1,4 @@
-import { getAccessToken } from "../../../utils/auth/auth";
+import { getAccessToken } from "../../../utils/auth/getAccessToken";
 import { httpGet } from "../../http/getHttpService";
 import { gw2lfgUrl } from "../constants";
 import { UserDTO } from "../entities/UserDTO";
