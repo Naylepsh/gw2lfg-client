@@ -17,7 +17,7 @@ interface Requirements {
 export default function RaidPostForm(props: RaidPostFormProps) {
   const initialValues = {
     server: "",
-    date: new Date().toISOString(),
+    date: "",
     description: "",
     selectedBosses: [] as string[],
     requirements: {} as Requirements,

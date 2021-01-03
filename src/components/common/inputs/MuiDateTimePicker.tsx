@@ -18,10 +18,11 @@ export default function MuiDateTimePicker(props: MuiDateTimePickerProps) {
         id={id}
         autoOk
         ampm={false}
-        value={value}
+        value={value !== "" ? value : null}
         disablePast
         onChange={onChange}
         label={label}
+        required
       />
     </MuiPickersUtilsProvider>
   );
