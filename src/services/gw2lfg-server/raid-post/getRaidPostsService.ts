@@ -14,7 +14,7 @@ export async function getRaidPosts(dto: GetRaidPostsDTO) {
   const token = getAccessToken();
   const headers = createGw2lfgHeaders(token);
 
-  const resultsPerPage = 1;
+  const resultsPerPage = 10;
   const take = resultsPerPage;
   const skip = Math.max(0, (dto.page - 1) * resultsPerPage);
   const { data: raidPosts, hasMore } = await httpGet<{

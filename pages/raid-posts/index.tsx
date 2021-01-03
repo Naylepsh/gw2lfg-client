@@ -35,7 +35,7 @@ export default function GetRaidPosts() {
   };
 
   return (
-    <Box mt={5}>
+    <Box my={5}>
       {currentRaidPosts.map((raidPost) => (
         <RaidPost raidPost={raidPost} key={raidPost.id} />
       ))}
