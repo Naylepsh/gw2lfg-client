@@ -3,19 +3,19 @@ import { Box, Button, Container, Paper } from "@material-ui/core";
 import { Formik, Form } from "formik";
 import { UserFormTextField } from "../UserFormTextField";
 
-interface LoginFormProps {
-  initialValues: LoginFormValues;
+interface RegisterFormProps {
   onSubmit: any;
+  initialValues: RegisterFormValues;
 }
 
-interface LoginFormValues {
+interface RegisterFormValues {
   username: string;
   password: string;
+  apiKey: string;
 }
 
-export default function LoginForm(props: LoginFormProps) {
+export default function RegisterForm(props: RegisterFormProps) {
   const { initialValues, onSubmit } = props;
-
   return (
     <Container maxWidth="xs" component={Paper}>
       <Box my={3} pb={1}>
@@ -37,8 +37,17 @@ export default function LoginForm(props: LoginFormProps) {
                   required
                   type="password"
                   id="password"
-                  label="password"
+                  label="Password"
                   name="password"
+                  autoComplete="password"
+                  onChange={handleChange}
+                />
+                <UserFormTextField
+                  required
+                  id="apiKey"
+                  label="API key"
+                  name="apiKey"
+                  autoComplete="apiKey"
                   onChange={handleChange}
                 />
                 <Button
@@ -47,7 +56,7 @@ export default function LoginForm(props: LoginFormProps) {
                   variant="contained"
                   color="primary"
                 >
-                  Login
+                  Register
                 </Button>
               </Form>
             );
