@@ -1,15 +1,14 @@
 import { useRouter } from "next/router";
 import React from "react";
 import LoginForm from "../src/components/User/LoginForm";
+import { useLoginMutation } from "../src/hooks/mutations/users/useLoginMutation";
 import { invalidateMeQuery } from "../src/hooks/queries/users/useMeQuery";
-import {
-  loginUser,
-  LoginUserDTO,
-} from "../src/services/gw2lfg-server/user/loginService";
+import { LoginUserDTO } from "../src/services/gw2lfg-server/user/loginService";
 import { saveAccessToken } from "../src/utils/auth/saveAccessToken";
 
 export default function Login() {
   const router = useRouter();
+  const [loginUser] = useLoginMutation();
 
   const loginUserOrFail = async (values: LoginUserDTO, {}) => {
     try {
