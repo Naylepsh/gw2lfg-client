@@ -11,6 +11,7 @@ import {
   RequirementsProps,
 } from "../../src/components/RaidPost/Form/RaidPostFormValues";
 import { mapRaidPostFormToDto } from "../../src/utils/mapRaidPostFormToDto";
+import { invalidateGetRaidPostsQueries } from "../../src/hooks/queries/raid-posts/useGetRaidPostsQuery";
 
 export default function CreateNewPost() {
   const { isAuthenticating } = useIsAuthenticated();
@@ -20,10 +21,14 @@ export default function CreateNewPost() {
   const [createPost] = useCreateRaidPostMutation();
   const router = useRouter();
   const handleFormSubmit = async (values: RaidPostFormValues, {}) => {
-    const raidPost = mapRaidPostFormToDto(values);
-    const res = await createPost(raidPost);
-    console.log(res);
-    router.push("/raid-posts");
+    try {
+      const raidPost = mapRaidPostFormToDto(values);
+      await createPost(raidPost);
+      invalidateGetRaidPostsQueries();
+      router.push("/raid-posts");
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const initialValues: RaidPostFormValues = {
