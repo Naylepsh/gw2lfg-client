@@ -5,6 +5,6 @@ const CreateRaidPostWithoutSSR = dynamic(
   { ssr: false }
 );
 
-export default function CreateRaidPostPage() {
+export default function () {
   return <CreateRaidPostWithoutSSR />;
 }

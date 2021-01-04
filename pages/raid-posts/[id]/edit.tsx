@@ -5,6 +5,6 @@ const EditPageWithoutSSR = dynamic(
   { ssr: false }
 );
 
-export default function EditRaidPostPage() {
+export default function () {
   return <EditPageWithoutSSR />;
 }
