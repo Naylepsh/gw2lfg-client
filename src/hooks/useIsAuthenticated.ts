@@ -13,7 +13,7 @@ export function useIsAuthenticated() {
     }
   }, [data, isFetching, router]);
 
-  const isAuthenticating = isFetching || isLoading
+  const isAuthenticating = isFetching || isLoading;
 
   return { isAuthenticating };
 }

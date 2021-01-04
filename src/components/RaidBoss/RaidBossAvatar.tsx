@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface RaidBossAvatarProps extends Omit<RaidBossDTO, "id"> {
-  variant?: 'square' | 'circle'
+  variant?: "square" | "circular";
 }
 
 function RaidBossAvatar(props: RaidBossAvatarProps) {
   const { name, isCm, variant } = props;
-  const defaultVariant = 'circle'
+  const defaultVariant = "circular";
   const boss = bosses.filter((boss) => boss.name == name)[0];
   const title = boss.name + (isCm ? " (CM)" : "");
 

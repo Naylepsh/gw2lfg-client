@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function NavBar() {
   const classes = useStyles();
-  const { isLoading, isError, data } = useMeQuery();
+  const { isLoading: isLoading, isError, data } = useMeQuery();
   const isUserLoggedIn = (!isLoading || !isError) && data;
 
   return (

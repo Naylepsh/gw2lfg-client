@@ -5,7 +5,7 @@ import { RoleDTO } from "./RoleDTO";
 
 export interface RaidPostDTO {
   id: number;
-  date: Date;
+  date: string;
   server: string;
   description?: string;
   author: UserDTO;
