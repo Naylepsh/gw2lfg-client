@@ -7,11 +7,13 @@ import { useGetRaidBossesQuery } from "../../hooks/queries/raid-bosses/useGetRai
 import { useGetRaidPostQuery } from "../../hooks/queries/raid-posts/useGetRaidPostQuery";
 import { useIsAuthenticated } from "../../hooks/useIsAuthenticated";
 import { mapRaidPostDtoToFormValues } from "../../utils/mapRaidPostDtoToFormValues";
+import { useUpdateRaidPostMutation } from "../../hooks/mutations/raid-posts/useUpdateRaidPostMutation";
+import { mapRaidPostFormToDto } from "../../utils/mapRaidPostFormToDto";
+import { invalidateGetRaidPostsQueries } from "../../hooks/queries/raid-posts/useGetRaidPostsQuery";
 
 export default function EditRaidPost() {
   const router = useRouter();
   const { id } = router.query;
-  console.log({ id });
 
   const { isAuthenticating } = useIsAuthenticated();
   const {
@@ -24,10 +26,14 @@ export default function EditRaidPost() {
     isError: getRaidBossesFailed,
     data: bosses,
   } = useGetRaidBossesQuery();
+  const [updatePost] = useUpdateRaidPostMutation();
 
   const handleFormSubmit = async (values: RaidPostFormValues, {}) => {
     try {
-      console.log(values);
+      const raidPost = mapRaidPostFormToDto(values);
+      await updatePost({ id: id as string, ...raidPost });
+      invalidateGetRaidPostsQueries();
+      router.push("/raid-posts");
     } catch (err) {
       console.error(err);
     }
