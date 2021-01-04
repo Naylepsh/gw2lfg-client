@@ -1,7 +1,7 @@
 import { UserDTO } from "./UserDTO";
 import { RaidBossDTO } from "./RaidBossDTO";
-import { RequirementDTO } from "./RequirementDTO";
 import { RoleDTO } from "./RoleDTO";
+import { ItemRequirementDTO } from "./ItemRequirementDTO";
 
 export interface RaidPostDTO {
   id: number;
@@ -10,7 +10,9 @@ export interface RaidPostDTO {
   description?: string;
   author: UserDTO;
   bosses: RaidBossDTO[];
-  requirements: RequirementDTO[];
+  requirements: {
+    items: ItemRequirementDTO[];
+  };
   userMeetsRequirements: boolean;
   roles: RoleDTO[];
 }

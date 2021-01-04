@@ -51,6 +51,7 @@ export default function RaidPostForm(props: RaidPostFormProps) {
                   requirementsId="requirementsProps"
                   itemsId="itemsProps"
                   onChange={handleChange}
+                  values={initialValues.requirementsProps.itemsProps}
                 />
                 <RaidPostFormRoles
                   roles={values.rolesProps}

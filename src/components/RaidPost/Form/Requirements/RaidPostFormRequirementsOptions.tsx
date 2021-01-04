@@ -6,12 +6,13 @@ interface RaidPostFormRequirementsOptionsProps {
   requirementsId: string;
   itemsId: string;
   onChange: any;
+  values: { [key: string]: number };
 }
 
 export function RaidPostFormRequirementsOptions(
   props: RaidPostFormRequirementsOptionsProps
 ) {
-  const { requirementsId, itemsId, onChange } = props;
+  const { requirementsId, itemsId, onChange, values } = props;
   const requirements = [{ name: "Legendary Insight" }];
 
   return (
@@ -30,6 +31,7 @@ export function RaidPostFormRequirementsOptions(
             key={requirement.name}
             id={`${requirementsId}.${itemsId}.${requirement.name}`}
             onChange={onChange}
+            value={values[requirement.name] ?? 0}
           />
         ))}
       </Box>

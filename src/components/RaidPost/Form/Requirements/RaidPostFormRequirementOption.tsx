@@ -15,19 +15,21 @@ interface RaidPostFormRequirementOptionProps {
   id: string;
   name: string;
   onChange: any;
+  value: number;
 }
 
 export default function RaidPostFormRequirementOption(
   props: RaidPostFormRequirementOptionProps
 ) {
+  const { id, name, onChange, value } = props;
   const classes = useStyles();
 
   return (
     <Box display="flex" alignItems="center">
-      <Gw2ItemAvatar name={props.name} />
+      <Gw2ItemAvatar name={name} />
       <TextField
         className={classes.textField}
-        id={props.id}
+        id={id}
         type="number"
         InputProps={{
           inputProps: {
@@ -35,8 +37,8 @@ export default function RaidPostFormRequirementOption(
             min: 0,
           },
         }}
-        defaultValue={0}
-        onChange={props.onChange}
+        value={value}
+        onChange={onChange}
       />
     </Box>
   );

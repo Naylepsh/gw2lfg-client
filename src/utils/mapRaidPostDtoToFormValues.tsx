@@ -1,13 +1,10 @@
 import { RaidPostFormValues } from "../components/RaidPost/Form/RaidPostFormValues";
 import { RaidPostDTO } from "../services/gw2lfg-server/entities/RaidPostDTO";
-import { ItemRequirementDTO } from "../services/gw2lfg-server/entities/ItemRequirementDTO";
 
 export function mapRaidPostDtoToFormValues(
   dto: RaidPostDTO
 ): RaidPostFormValues {
-  const items = dto.requirements.filter(
-    (requirement) => (requirement as ItemRequirementDTO).quantity !== undefined
-  ) as ItemRequirementDTO[];
+  const items = dto.requirements.items;
   const requirementsProps = {
     itemsProps: Object.fromEntries(
       items.map((item) => [item.name, item.quantity])
