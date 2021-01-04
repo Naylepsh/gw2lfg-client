@@ -37,7 +37,7 @@ export default function RaidPostFormRequirementOption(
             min: 0,
           },
         }}
-        value={value}
+        defaultValue={value}
         onChange={onChange}
       />
     </Box>
