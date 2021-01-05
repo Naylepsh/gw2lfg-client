@@ -24,7 +24,6 @@ export default function CreateRaidPost() {
     try {
       const raidPost = mapRaidPostFormToDto(values);
       const res = await createPost(raidPost);
-      console.log(res);
       invalidateGetRaidPostsQueries();
       router.push("/raid-posts");
     } catch (err) {
@@ -37,7 +36,7 @@ export default function CreateRaidPost() {
     date: "",
     description: "",
     selectedBosses: [] as string[],
-    requirementsProps: {} as RequirementsProps,
+    requirementsProps: { itemsProps: {} } as RequirementsProps,
     rolesProps: [] as RoleDTO[],
   };
 
