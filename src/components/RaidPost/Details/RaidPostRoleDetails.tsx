@@ -1,14 +1,9 @@
-import {
-  Box,
-  Button,
-  TableCell,
-  ButtonProps,
-  CircularProgress,
-} from "@material-ui/core";
+import { Box, TableCell } from "@material-ui/core";
 import React, { useState } from "react";
 import { useCreateJoinRequestMutation } from "../../../hooks/mutations/join-requests/useCreateJoinRequestMutation";
 import { RoleDTO } from "../../../services/gw2lfg-server/entities/RoleDTO";
 import RoleAvatar from "../../Role/RoleAvatar";
+import LoadingButton from "../../common/buttons/LoadingButton";
 
 interface RaidPostRoleDetailsProps {
   postId: number;
@@ -49,19 +44,5 @@ export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
         </LoadingButton>
       </TableCell>
     </React.Fragment>
-  );
-}
-
-interface LoadingButtonProps extends ButtonProps {
-  isLoading: boolean;
-}
-
-function LoadingButton(props: LoadingButtonProps) {
-  const { isLoading, children, disabled, ...rest } = props;
-  return (
-    <Button {...rest} disabled={disabled || isLoading}>
-      {isLoading && <CircularProgress size={24} />}
-      {!isLoading && children}
-    </Button>
   );
 }
