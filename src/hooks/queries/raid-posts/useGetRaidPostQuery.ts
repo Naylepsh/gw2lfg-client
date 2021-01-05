@@ -1,5 +1,5 @@
 import { useQuery, queryCache } from "react-query";
-import { getRaidPost } from "../../../services/gw2lfg-server/raid-post/getRaidPostService";
+import { getRaidPost } from "../../../services/gw2lfg-server/raid-posts/getRaidPostService";
 
 const queryKey = "getRaidPost";
 
