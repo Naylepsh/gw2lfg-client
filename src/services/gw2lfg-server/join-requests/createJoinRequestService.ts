@@ -9,7 +9,7 @@ export interface CreateJoinRequestDTO {
   postId: number;
 }
 
-export async function CreateJoinRequest(dto: CreateJoinRequestDTO) {
+export async function createJoinRequest(dto: CreateJoinRequestDTO) {
   const createJoinRequestUrl = joinRequestsUrl;
 
   const token = getAccessToken();
