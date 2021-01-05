@@ -15,6 +15,7 @@ export default function RaidPostDetails(props: RaidPostDetailsProps) {
       <Grid container direction="column">
         <Box mb={3}>{raidPost.description}</Box>
         <RaidPostRolesDetails
+          postId={raidPost.id}
           roles={raidPost.roles}
           canUserJoin={raidPost.userMeetsRequirements}
         />

@@ -12,12 +12,13 @@ import { RoleDTO } from "../../../services/gw2lfg-server/entities/RoleDTO";
 import { RaidPostRoleDetails } from "./RaidPostRoleDetails";
 
 interface RaidPostRolesDetailsProps {
+  postId: number;
   roles: RoleDTO[];
   canUserJoin: boolean;
 }
 
 export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
-  const { roles, canUserJoin } = props;
+  const { roles, canUserJoin, postId } = props;
 
   return (
     <TableContainer component={Paper}>
@@ -32,7 +33,11 @@ export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
         <TableBody>
           {roles.map((role, key) => (
             <TableRow key={key}>
-              <RaidPostRoleDetails role={role} canUserJoin={canUserJoin} />
+              <RaidPostRoleDetails
+                role={role}
+                canUserJoin={canUserJoin}
+                postId={postId}
+              />
             </TableRow>
           ))}
         </TableBody>
