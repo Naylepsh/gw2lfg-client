@@ -6,6 +6,7 @@ import { invalidateMeQuery } from "../../hooks/queries/users/useMeQuery";
 import { LoginUserDTO } from "../../services/gw2lfg-server/user/loginService";
 import { saveAccessToken } from "../../utils/auth/saveAccessToken";
 
+// Sets up initial form values and submit handler. Creates a login form
 export default function Login() {
   const router = useRouter();
   const [loginUser] = useLoginMutation();

@@ -7,6 +7,10 @@ import { RaidPost } from "./RaidPost";
 import { useGetRaidPostsQuery } from "../../hooks/queries/raid-posts/useGetRaidPostsQuery";
 import { RaidPostDTO } from "../../services/gw2lfg-server/entities/RaidPostDTO";
 
+/* 
+Paginated Raid Posts component.
+Gets posts from gw2lfg-server and displays them.
+*/
 export default function GetRaidPosts() {
   const router = useRouter();
   const [page, setPage] = useState(1);
@@ -40,7 +44,6 @@ export default function GetRaidPosts() {
   const redirectToCreateNewPost = () => {
     router.push("/raid-posts/create");
   };
-
 
   return (
     <Box my={5}>

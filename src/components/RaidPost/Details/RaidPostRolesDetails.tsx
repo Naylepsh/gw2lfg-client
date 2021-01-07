@@ -17,6 +17,7 @@ interface RaidPostRolesDetailsProps {
   canUserJoin: boolean;
 }
 
+// Renders detailed information on given raid post's roles
 export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
   const { roles, canUserJoin, postId } = props;
 

@@ -1,36 +1,13 @@
 import {
-  Tooltip,
   Avatar,
   createStyles,
   makeStyles,
   Theme,
+  Tooltip,
 } from "@material-ui/core";
 import React from "react";
 import { RoleDTO } from "../../services/gw2lfg-server/entities/RoleDTO";
-import { roles, classes } from "./roles.json";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    small: {
-      width: theme.spacing(3),
-      height: theme.spacing(3),
-    },
-    medium: {
-      width: theme.spacing(5),
-      height: theme.spacing(5),
-    },
-    large: {
-      width: theme.spacing(7),
-      height: theme.spacing(7),
-    },
-  })
-);
-
-class NullRole implements RoleDTO {
-  name = "invalid";
-  class = "invalid";
-  portrait = "https://wiki.guildwars2.com/images/5/5a/Hints_Menu_Bar_icon.png";
-}
+import { classes, roles } from "./roles.json";
 
 interface RoleAvatarProps extends RoleDTO {
   size: "small" | "medium" | "large";
@@ -39,6 +16,8 @@ interface RoleAvatarProps extends RoleDTO {
 export default function RoleAvatar(props: RoleAvatarProps) {
   const classes = useStyles();
 
+  // Assigns RoleAvatar properties depends on whether passed role can be found in roles.json
+  // If not, assigns default values from NullRole
   const name = props.name.toLowerCase();
   const roleClass = props.class.toLowerCase();
   const roleFound =
@@ -58,14 +37,43 @@ export default function RoleAvatar(props: RoleAvatarProps) {
   );
 }
 
+class NullRole implements RoleDTO {
+  name = "invalid";
+  class = "invalid";
+  portrait = "https://wiki.guildwars2.com/images/5/5a/Hints_Menu_Bar_icon.png";
+}
+
+// IMPORTANT! Result can also be undefined,
+// but for whatever reason TypeScript decides to ignore that.
+// Even with explicitedly provided type, it still claims the result is always NOT undefined
 function findRoleByName(name: string) {
   const roleVariants = roles.filter((role) => role.name === name);
   const role = roleVariants[0];
   return role;
 }
 
+// IMPORTANT! Result can also be undefined.
+// Same reason as findRoleByName
 function findRoleByClass(roleClass: string) {
   const roleVariants = classes.filter((role) => role.name === roleClass);
   const role = roleVariants[0];
   return role;
 }
+
+// CSS for RoleAvatar component
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    small: {
+      width: theme.spacing(3),
+      height: theme.spacing(3),
+    },
+    medium: {
+      width: theme.spacing(5),
+      height: theme.spacing(5),
+    },
+    large: {
+      width: theme.spacing(7),
+      height: theme.spacing(7),
+    },
+  })
+);

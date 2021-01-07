@@ -13,6 +13,11 @@ import { useIsAuthenticated } from "../../hooks/useIsAuthenticated";
 import { RoleDTO } from "../../services/gw2lfg-server/entities/RoleDTO";
 import { mapRaidPostFormToDto } from "../../utils/mapRaidPostFormToDto";
 
+/*
+Sets initial form values and submit handler.
+Creates a create raid post form.
+User has to be authenticated to use.
+*/
 export default function CreateRaidPost() {
   const { isAuthenticating } = useIsAuthenticated();
 

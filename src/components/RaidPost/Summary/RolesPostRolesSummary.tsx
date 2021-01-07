@@ -3,21 +3,11 @@ import RoleAvatar from "../../Role/RoleAvatar";
 import { RoleDTO } from "../../../services/gw2lfg-server/entities/RoleDTO";
 import { makeStyles, Theme, createStyles, Box } from "@material-ui/core";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: "flex",
-      "& > *": {
-        margin: theme.spacing(1),
-      },
-    },
-  })
-);
-
 export interface RaidRolesSummaryProps {
   roles: RoleDTO[];
 }
 
+// Renders avatars of given roles
 export function RaidPostRolesSummary(props: RaidRolesSummaryProps) {
   const { roles } = props;
   const classes = useStyles();
@@ -32,3 +22,15 @@ export function RaidPostRolesSummary(props: RaidRolesSummaryProps) {
     </React.Fragment>
   );
 }
+
+// CSS for RaidPostRolesSummary component
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: "flex",
+      "& > *": {
+        margin: theme.spacing(1),
+      },
+    },
+  })
+);

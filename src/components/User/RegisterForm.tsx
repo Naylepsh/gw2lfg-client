@@ -16,6 +16,7 @@ interface RegisterFormValues {
 
 export default function RegisterForm(props: RegisterFormProps) {
   const { initialValues, onSubmit } = props;
+
   return (
     <Container maxWidth="xs" component={Paper}>
       <Box my={3} pb={1}>

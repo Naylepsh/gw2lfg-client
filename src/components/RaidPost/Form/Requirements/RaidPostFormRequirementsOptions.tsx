@@ -9,6 +9,7 @@ interface RaidPostFormRequirementsOptionsProps {
   values: { [key: string]: number };
 }
 
+// Renders requirements options of an associated raid post form
 export function RaidPostFormRequirementsOptions(
   props: RaidPostFormRequirementsOptionsProps
 ) {
@@ -39,4 +40,5 @@ export function RaidPostFormRequirementsOptions(
   );
 }
 
+// Memoised RaidPostFormRequirementsOptions component, improves the performance
 export default React.memo(RaidPostFormRequirementsOptions);

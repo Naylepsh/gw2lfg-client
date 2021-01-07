@@ -7,6 +7,7 @@ interface RaidPostDetailsProps {
   raidPost: RaidPostDTO;
 }
 
+// Renders description and role of a given raid post
 export default function RaidPostDetails(props: RaidPostDetailsProps) {
   const { raidPost } = props;
 

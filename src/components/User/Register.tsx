@@ -6,6 +6,7 @@ import { RegisterUserDTO } from "../../services/gw2lfg-server/user/registerServi
 import { saveAccessToken } from "../../utils/auth/saveAccessToken";
 import RegisterForm from "./RegisterForm";
 
+// Sets up initial form values and submit handler. Creates a register form
 export function Register() {
   const router = useRouter();
   const [registerUser] = useRegisterMutation();

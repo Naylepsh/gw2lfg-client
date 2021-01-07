@@ -11,10 +11,15 @@ interface RaidPostRoleDetailsProps {
   canUserJoin: boolean;
 }
 
+// Renders full information of a given role
+// Allows sending join request for that role.
 export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
   const { role, canUserJoin, postId } = props;
+
+  // states used for send join request button
   const [isDisabled, setIsDisabled] = useState(!canUserJoin);
   const [isLoading, setIsLoading] = useState(false);
+
   const [createJoinRequest] = useCreateJoinRequestMutation();
   const sendJoinRequest = async () => {
     setIsLoading(true);

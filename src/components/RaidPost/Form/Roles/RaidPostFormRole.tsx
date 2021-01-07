@@ -11,8 +11,13 @@ interface RaidPostFormRoleProps {
   handleRoleRemoval: (roleFormId: string) => any;
 }
 
+// Renders a single role in a RaidPostForm
 export function RaidPostFormRole(props: RaidPostFormRoleProps) {
   const { onChange, handleRoleRemoval, formId } = props;
+
+  // 'any' technically doesn't belong to neither roles nor classes,
+  // but it's an useful value accepted by gw2lfg-server
+  // and RaidAvatar has its means of rendering
   const availableRoles = [{ name: "any", portrait: "#" }, ...roles];
   const availableClasses = [{ name: "any", portrait: "#" }, ...classes];
 
@@ -53,4 +58,5 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
   );
 }
 
+// Memoised RaidPostFormRole component, improves the performance
 export default React.memo(RaidPostFormRole);
