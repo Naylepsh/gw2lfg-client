@@ -4,14 +4,16 @@ import {
   GetJoinRequestsQueryParams,
 } from "../../../services/gw2lfg-server/join-requests/getJoinRequestsService";
 
-const queryKey = "getJoinRequests";
-
 export function useGetJoinRequestsQuery(
   queryParams: GetJoinRequestsQueryParams
 ) {
-  return useQuery([queryKey, queryParams], () => getJoinRequests(queryParams));
+  return useQuery([getJoinRequestsQueryKey, queryParams], () =>
+    getJoinRequests(queryParams)
+  );
 }
 
 export function invalidateGetJoinRequestsQueries() {
-  queryCache.invalidateQueries(queryKey);
+  queryCache.invalidateQueries(getJoinRequestsQueryKey);
 }
+
+const getJoinRequestsQueryKey = "getJoinRequests";

@@ -1,12 +1,13 @@
 import { useQuery, queryCache } from "react-query";
 import { getRaidPost } from "../../../services/gw2lfg-server/raid-posts/getRaidPostService";
 
-const queryKey = "getRaidPost";
-
 export function useGetRaidPostQuery(id: string) {
-  return useQuery([queryKey, id], () => getRaidPost({ id }));
+  return useQuery([getRaidPostQueryKey, id], () => getRaidPost({ id }));
 }
 
 export function invalidateGetRaidPostQueries() {
-  queryCache.invalidateQueries(queryKey);
+  // Invalidates every getRaidPost query (of all ids)
+  queryCache.invalidateQueries(getRaidPostQueryKey);
 }
+
+const getRaidPostQueryKey = "getRaidPost";
