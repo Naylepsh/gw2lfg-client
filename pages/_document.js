@@ -3,6 +3,7 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheets } from "@material-ui/core/styles";
 import theme from "../src/theme";
 
+// Template needed for proper Next.js function
 export default class MyDocument extends Document {
   render() {
     return (
