@@ -1,4 +1,3 @@
-
 export function createGw2lfgHeaders(token: string) {
-  return { "x-auth-token": token };
+  return { "gw2lfg-auth-token": token };
 }
