@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import Loading from "../Loading/Loading";
+import Loading from "../common/Loading/Loading";
 import RaidPostForm from "./Form/RaidPostForm";
 import {
   RaidPostFormValues,

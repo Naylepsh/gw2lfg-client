@@ -14,6 +14,8 @@ interface MaterialUISelectFieldProps extends FieldInputProps<string> {
   required: boolean;
 }
 
+// Select Field that's to be used together with formik
+// taken from: https://github.com/angle943/formik-material-ui/blob/master/src/components/FormikSelect/index.tsx
 export function MaterialUISelectField({
   errorString,
   label,

@@ -5,6 +5,7 @@ interface LoadingButtonProps extends ButtonProps {
   isLoading: boolean;
 }
 
+// Renders a button that displays circular loading animation if loading
 export default function LoadingButton(props: LoadingButtonProps) {
   const { isLoading, children, disabled, ...rest } = props;
   return (

@@ -6,6 +6,7 @@ interface Gw2ItemAvatarProps {
   name: string;
 }
 
+// Renders an item as a tooltip avatar
 function Gw2ItemAvatar(props: Gw2ItemAvatarProps) {
   const { name } = props;
   const item = items[name];

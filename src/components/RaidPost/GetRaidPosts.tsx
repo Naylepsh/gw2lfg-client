@@ -2,7 +2,7 @@ import { Box, Button } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import Loading from "../Loading/Loading";
+import Loading from "../common/Loading/Loading";
 import { RaidPost } from "./RaidPost";
 import { useGetRaidPostsQuery } from "../../hooks/queries/raid-posts/useGetRaidPostsQuery";
 import { RaidPostDTO } from "../../services/gw2lfg-server/entities/RaidPostDTO";

@@ -9,20 +9,11 @@ import React from "react";
 import { RaidBossDTO } from "../../services/gw2lfg-server/entities/RaidBossDTO";
 import { bosses } from "./raidBosses.json";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    cm: {
-      borderWidth: 3,
-      borderStyle: "solid",
-      borderColor: theme.palette.secondary.main,
-    },
-  })
-);
-
 interface RaidBossAvatarProps extends Omit<RaidBossDTO, "id"> {
   variant?: "square" | "circular";
 }
 
+// Renders a raid boss as an tooltip avatar
 function RaidBossAvatar(props: RaidBossAvatarProps) {
   const { name, isCm, variant } = props;
   const defaultVariant = "circular";
@@ -42,4 +33,16 @@ function RaidBossAvatar(props: RaidBossAvatarProps) {
   ) : null;
 }
 
+// CSS for RaidBossAvatar component
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    cm: {
+      borderWidth: 3,
+      borderStyle: "solid",
+      borderColor: theme.palette.secondary.main,
+    },
+  })
+);
+
+// Memoised RaidBossAvatar component, improves performance
 export default React.memo(RaidBossAvatar);

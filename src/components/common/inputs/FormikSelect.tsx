@@ -15,6 +15,9 @@ interface FormikSelectProps {
   required?: boolean;
 }
 
+// Renders a select field with a Material UI looks and Formik functionality
+// taken from: https://github.com/angle943/formik-material-ui/blob/master/src/components/FormikSelect/index.tsx
+// It was the only reliable way I found of mixing Material UI and Formik together
 export default function FormikSelect({
   name,
   items,

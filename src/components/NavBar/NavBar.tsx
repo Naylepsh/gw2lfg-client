@@ -12,20 +12,6 @@ import { Button, Link } from "@material-ui/core";
 import { useRouter } from "next/router";
 import { discardAccessToken } from "../../utils/auth/discardAccessToken";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-  })
-);
-
 export default function NavBar() {
   const classes = useStyles();
   const { isLoading: isLoading, isError, data } = useMeQuery();
@@ -47,6 +33,7 @@ export default function NavBar() {
   );
 }
 
+// Renders Login and Register buttons
 function NotLoggedInMenu() {
   return (
     <div>
@@ -60,6 +47,7 @@ function NotLoggedInMenu() {
   );
 }
 
+// Renders openable / closable menu with 'My account' and 'Logout' options
 function LoggedInMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -110,3 +98,18 @@ function LoggedInMenu() {
     </div>
   );
 }
+
+// CSS for NavBar component
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+    },
+  })
+);
