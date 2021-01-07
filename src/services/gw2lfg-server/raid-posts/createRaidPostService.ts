@@ -5,11 +5,13 @@ import { RaidPostDTO } from "../entities/RaidPostDTO";
 import { raidPostsUrl } from "./constants";
 import { SaveRaidPostDTO } from "./dtos/SaveRaidPostDTO";
 
+// Sends POST /raid-posts request to gw2lfg-server
 export async function createRaidPost(dto: SaveRaidPostDTO) {
-  // assign default values if dto is lacking following properties
+  // Assign default values if dto is lacking following properties
   dto.rolesProps = dto.rolesProps ?? [];
   dto.requirementsProps.itemsProps = dto.requirementsProps.itemsProps ?? [];
 
+  // Access token is required
   const token = getAccessToken();
   const headers = createGw2lfgHeaders(token);
 

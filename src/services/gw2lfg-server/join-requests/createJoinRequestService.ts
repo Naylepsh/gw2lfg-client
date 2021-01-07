@@ -13,6 +13,7 @@ export interface CreateJoinRequestDTO {
 export async function createJoinRequest(dto: CreateJoinRequestDTO) {
   const createJoinRequestUrl = joinRequestsUrl;
 
+  // Access token is required
   const token = getAccessToken();
   const headers = createGw2lfgHeaders(token);
 

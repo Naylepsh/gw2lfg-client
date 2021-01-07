@@ -9,6 +9,7 @@ interface UpdateRaidPostDTO extends SaveRaidPostDTO {
   id: string;
 }
 
+// sends PUT /raid-posts/:id request to gw2lfg-server
 export async function updateRaidPost({
   id,
   ...raidPostDto
@@ -18,6 +19,7 @@ export async function updateRaidPost({
   raidPostDto.requirementsProps.itemsProps =
     raidPostDto.requirementsProps.itemsProps ?? [];
 
+  // Access token is required
   const token = getAccessToken();
   const headers = createGw2lfgHeaders(token);
 

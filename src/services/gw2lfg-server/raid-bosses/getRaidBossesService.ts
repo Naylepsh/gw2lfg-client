@@ -15,6 +15,7 @@ export async function getRaidBosses(dto?: GetRaidBossesDTO) {
   const url = `${raidBossesUrl}?take=${take}`;
 
   const { data } = await httpGet<{ data: RaidBossDTO[] }>(url);
+
   return data;
 }
 

@@ -8,17 +8,21 @@ export interface GetRaidPostsDTO {
   page: number;
 }
 
-export const getRaidPostsUrl = raidPostsUrl;
-
+// sends GET /raid-posts request to gw2lfg-server
 export async function getRaidPosts(dto: GetRaidPostsDTO) {
+  // Access token is optional,
+  // but without it all raid posts's userMeetsRequirements property will be set to false
   const token = getAccessToken();
   const headers = createGw2lfgHeaders(token);
 
   const query = createPaginationQuery(dto);
+  const url = `${getRaidPostsUrl}?${query}`;
+
   const { data: raidPosts, hasMore } = await httpGet<{
     data: RaidPostDTO[];
     hasMore: boolean;
-  }>(`${getRaidPostsUrl}?${query}`, { headers });
+  }>(url, { headers });
+
   return { raidPosts, hasMore };
 }
 
@@ -31,3 +35,5 @@ function createPaginationQuery(dto: GetRaidPostsDTO) {
 
   return query;
 }
+
+export const getRaidPostsUrl = raidPostsUrl;

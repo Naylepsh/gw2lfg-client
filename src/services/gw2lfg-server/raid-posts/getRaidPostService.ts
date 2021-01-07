@@ -8,7 +8,10 @@ export interface GetRaidPostDTO {
   id: string;
 }
 
+// Sends GET /raid-posts/:id request to gw2lfg-server
 export async function getRaidPost(dto: GetRaidPostDTO) {
+  // Access token is optional,
+  // but without it raid post's userMeetsRequirements property will be set to false
   const token = getAccessToken();
   const headers = createGw2lfgHeaders(token);
 
@@ -16,6 +19,7 @@ export async function getRaidPost(dto: GetRaidPostDTO) {
     data: RaidPostDTO;
     hasMore: boolean;
   }>(getRaidPostUrl(dto.id), { headers });
+
   return data;
 }
 

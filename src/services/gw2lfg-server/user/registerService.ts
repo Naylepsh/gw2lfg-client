@@ -7,11 +7,13 @@ export interface RegisterUserDTO {
   apiKey: string;
 }
 
+// sends POST /register request to gw2lfg-server
 export async function registerUser(user: RegisterUserDTO) {
   const { data } = await httpPost<RegisterUserDTO, { data: { token: string } }>(
     registerUrl,
     user
   );
+
   return data.token;
 }
 
