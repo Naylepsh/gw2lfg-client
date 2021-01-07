@@ -9,6 +9,7 @@ export interface CreateJoinRequestDTO {
   postId: number;
 }
 
+// sends POST /join-requests request to gw2lfg-server
 export async function createJoinRequest(dto: CreateJoinRequestDTO) {
   const createJoinRequestUrl = joinRequestsUrl;
 
