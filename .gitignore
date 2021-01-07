@@ -19,6 +19,9 @@
 .DS_Store
 .env*
 
+# except .env.example
+!.env.example
+
 # debug
 npm-debug.log*
 yarn-debug.log*
