@@ -11,6 +11,7 @@ Client for gw2lfg service. Allows organisation of raid events with automated pla
 
 1. **Env Variables**
    - `example.env` contains example env config.
+   - Next.js by default loads env variables from `.env.local` file, put your desired vars there
    - Variables that are to be access in a browser have to be prefixed with `NEXT_PUBLIC` in both `.env` and in code
 
 ## HOW TO RUN LOCALLY
