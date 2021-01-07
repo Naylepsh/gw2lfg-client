@@ -6,6 +6,7 @@ import { UserFormTextField } from "./UserFormTextField";
 interface RegisterFormProps {
   onSubmit: any;
   initialValues: RegisterFormValues;
+  errors: Record<string, string>;
 }
 
 interface RegisterFormValues {
@@ -15,7 +16,7 @@ interface RegisterFormValues {
 }
 
 export default function RegisterForm(props: RegisterFormProps) {
-  const { initialValues, onSubmit } = props;
+  const { initialValues, onSubmit, errors } = props;
 
   return (
     <Container maxWidth="xs" component={Paper}>
@@ -23,6 +24,10 @@ export default function RegisterForm(props: RegisterFormProps) {
         <Formik onSubmit={onSubmit} initialValues={initialValues}>
           {(formProps) => {
             const { handleChange } = formProps;
+
+            const usernameError = errors["username"];
+            const passwordError = errors["password"];
+            const apiKeyError = errors["apiKey"];
 
             return (
               <Form>
@@ -33,6 +38,8 @@ export default function RegisterForm(props: RegisterFormProps) {
                   name="username"
                   autoComplete="username"
                   onChange={handleChange}
+                  error={!!usernameError}
+                  helperText={usernameError}
                 />
                 <UserFormTextField
                   required
@@ -42,6 +49,8 @@ export default function RegisterForm(props: RegisterFormProps) {
                   name="password"
                   autoComplete="password"
                   onChange={handleChange}
+                  error={!!passwordError}
+                  helperText={passwordError}
                 />
                 <UserFormTextField
                   required
@@ -50,6 +59,8 @@ export default function RegisterForm(props: RegisterFormProps) {
                   name="apiKey"
                   autoComplete="apiKey"
                   onChange={handleChange}
+                  error={!!apiKeyError}
+                  helperText={apiKeyError}
                 />
                 <Button
                   type="submit"

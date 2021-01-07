@@ -9,12 +9,12 @@ export interface RegisterUserDTO {
 
 // sends POST /register request to gw2lfg-server
 export async function registerUser(user: RegisterUserDTO) {
-  const { data } = await httpPost<RegisterUserDTO, { data: { token: string } }>(
-    registerUrl,
-    user
-  );
+  const { data, error } = await httpPost<
+    RegisterUserDTO,
+    { data: { token: string } }
+  >(registerUrl, user);
 
-  return data.token;
+  return { data: data?.data, error };
 }
 
 export const registerUrl = `${gw2lfgUrl}/register`;

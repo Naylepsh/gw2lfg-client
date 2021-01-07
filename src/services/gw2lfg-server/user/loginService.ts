@@ -8,12 +8,12 @@ export interface LoginUserDTO {
 
 // sends POST /login request to gw2lfg-server
 export async function loginUser(user: LoginUserDTO) {
-  const { data } = await httpPost<LoginUserDTO, { data: { token: string } }>(
-    loginUrl,
-    user
-  );
+  const { data, error } = await httpPost<
+    LoginUserDTO,
+    { data: { token: string } }
+  >(loginUrl, user);
 
-  return data.token;
+  return { data: data?.data, error };
 }
 
 export const loginUrl = `${gw2lfgUrl}/login`;

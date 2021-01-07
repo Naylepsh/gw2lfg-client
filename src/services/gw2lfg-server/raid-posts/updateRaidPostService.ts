@@ -23,13 +23,13 @@ export async function updateRaidPost({
   const token = getAccessToken();
   const headers = createGw2lfgHeaders(token);
 
-  const { data } = await httpPut<SaveRaidPostDTO, { data: RaidPostDTO }>(
+  const { data, error } = await httpPut<SaveRaidPostDTO, { data: RaidPostDTO }>(
     getRaidPostUrl(id),
     raidPostDto,
     { headers }
   );
 
-  return data;
+  return { data: data?.data, error };
 }
 
 export const getRaidPostUrl = (id: string) => {

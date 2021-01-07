@@ -6,6 +6,7 @@ import { UserFormTextField } from "./UserFormTextField";
 interface LoginFormProps {
   initialValues: LoginFormValues;
   onSubmit: any;
+  errors: Record<string, string>;
 }
 
 interface LoginFormValues {
@@ -14,7 +15,7 @@ interface LoginFormValues {
 }
 
 export default function LoginForm(props: LoginFormProps) {
-  const { initialValues, onSubmit } = props;
+  const { initialValues, onSubmit, errors } = props;
 
   return (
     <Container maxWidth="xs" component={Paper}>
@@ -22,6 +23,9 @@ export default function LoginForm(props: LoginFormProps) {
         <Formik onSubmit={onSubmit} initialValues={initialValues}>
           {(formProps) => {
             const { handleChange } = formProps;
+
+            const usernameError = errors["username"];
+            const passwordError = errors["password"];
 
             return (
               <Form>
@@ -32,6 +36,8 @@ export default function LoginForm(props: LoginFormProps) {
                   name="username"
                   autoComplete="username"
                   onChange={handleChange}
+                  error={!!usernameError}
+                  helperText={usernameError}
                 />
                 <UserFormTextField
                   required
@@ -40,6 +46,8 @@ export default function LoginForm(props: LoginFormProps) {
                   label="password"
                   name="password"
                   onChange={handleChange}
+                  error={!!passwordError}
+                  helperText={passwordError}
                 />
                 <Button
                   type="submit"

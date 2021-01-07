@@ -15,13 +15,13 @@ export async function createRaidPost(dto: SaveRaidPostDTO) {
   const token = getAccessToken();
   const headers = createGw2lfgHeaders(token);
 
-  const { data } = await httpPost<SaveRaidPostDTO, { data: RaidPostDTO }>(
+  const { data, error } = await httpPost<SaveRaidPostDTO, { data: RaidPostDTO }>(
     createRaidPostUrl,
     dto,
     { headers }
   );
 
-  return data;
+  return { data: data?.data, error }
 }
 
 export const createRaidPostUrl = raidPostsUrl;
