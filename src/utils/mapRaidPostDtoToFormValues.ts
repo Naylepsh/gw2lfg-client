@@ -1,6 +1,7 @@
 import { RaidPostFormValues } from "../components/RaidPost/Form/RaidPostFormValues";
 import { RaidPostDTO } from "../services/gw2lfg-server/entities/RaidPostDTO";
 
+// maps the dto aquired from gw2lfg-server into form values usable by raid post forms
 export function mapRaidPostDtoToFormValues(
   dto: RaidPostDTO
 ): RaidPostFormValues {

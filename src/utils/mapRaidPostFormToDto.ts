@@ -1,5 +1,6 @@
 import { RaidPostFormValues } from "../components/RaidPost/Form/RaidPostFormValues";
 
+// maps the raid post form values into raid post dto ready to be sent to gw2lfg-server
 export function mapRaidPostFormToDto(values: RaidPostFormValues) {
   const formItems = values.requirementsProps.itemsProps;
   const itemsProps = Object.keys(formItems).map((name) => ({
