@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, Container, Paper } from "@material-ui/core";
 import { Formik, Form } from "formik";
-import { UserFormTextField } from "../UserFormTextField";
+import { UserFormTextField } from "./UserFormTextField";
 
 interface RegisterFormProps {
   onSubmit: any;

@@ -1,5 +1,5 @@
-import { RoleDTO } from "../entities/RoleDTO";
-import { RequirementsPropsDTO } from "./createRaidPostService";
+import { RoleDTO } from "../../entities/RoleDTO";
+import { RequirementsPropsDTO } from "./RequirementsPropsDTO";
 
 export interface SaveRaidPostDTO {
   date: string;

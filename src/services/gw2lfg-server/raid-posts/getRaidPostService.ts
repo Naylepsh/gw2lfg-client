@@ -8,10 +8,6 @@ export interface GetRaidPostDTO {
   id: string;
 }
 
-export const getRaidPostUrl = (id: string) => {
-  return `${raidPostsUrl}/${id}`;
-};
-
 export async function getRaidPost(dto: GetRaidPostDTO) {
   const token = getAccessToken();
   const headers = createGw2lfgHeaders(token);
@@ -22,3 +18,7 @@ export async function getRaidPost(dto: GetRaidPostDTO) {
   }>(getRaidPostUrl(dto.id), { headers });
   return data;
 }
+
+export const getRaidPostUrl = (id: string) => {
+  return `${raidPostsUrl}/${id}`;
+};

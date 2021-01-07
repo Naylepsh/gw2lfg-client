@@ -3,11 +3,7 @@ import { httpPut } from "../../http/putHttpService";
 import { createGw2lfgHeaders } from "../createGw2lfgHeaders";
 import { RaidPostDTO } from "../entities/RaidPostDTO";
 import { raidPostsUrl } from "./constants";
-import { SaveRaidPostDTO } from "./SaveRaidPostDTO";
-
-export const getRaidPostUrl = (id: string) => {
-  return `${raidPostsUrl}/${id}`;
-};
+import { SaveRaidPostDTO } from "./dtos/SaveRaidPostDTO";
 
 interface UpdateRaidPostDTO extends SaveRaidPostDTO {
   id: string;
@@ -17,6 +13,7 @@ export async function updateRaidPost({
   id,
   ...raidPostDto
 }: UpdateRaidPostDTO) {
+  // assign default values if dto is lacking following properties
   raidPostDto.rolesProps = raidPostDto.rolesProps ?? [];
   raidPostDto.requirementsProps.itemsProps =
     raidPostDto.requirementsProps.itemsProps ?? [];
@@ -32,3 +29,7 @@ export async function updateRaidPost({
 
   return data;
 }
+
+export const getRaidPostUrl = (id: string) => {
+  return `${raidPostsUrl}/${id}`;
+};

@@ -17,15 +17,31 @@ export async function getJoinRequests(queryParams: GetJoinRequestsQueryParams) {
 }
 
 function toUrl({ userId, roleId, postId }: GetJoinRequestsQueryParams) {
+  const createJoinRequestUrl = joinRequestsUrl;
+  const query = createUrlQuery(userId, roleId, postId);
+
+  return `${createJoinRequestUrl}?${query}`;
+}
+
+function createUrlQuery(userId: number, roleId: number, postId: number) {
   const userQueryParam = userId ? `userId=${userId}` : undefined;
   const roleQueryParam = roleId ? `roleId=${roleId}` : undefined;
   const postQueryParam = postId ? `postId=${postId}` : undefined;
-  const queryParams = [userQueryParam, roleQueryParam, postQueryParam].filter(
-    (qp) => !!qp
+
+  const queryParams = removeUndefinedParams(
+    userQueryParam,
+    roleQueryParam,
+    postQueryParam
   );
   const query = queryParams.join("&");
 
-  const createJoinRequestUrl = joinRequestsUrl;
+  return query;
+}
 
-  return `${createJoinRequestUrl}?${query}`;
+function removeUndefinedParams(
+  userQueryParam: string,
+  roleQueryParam: string,
+  postQueryParam: string
+) {
+  return [userQueryParam, roleQueryParam, postQueryParam].filter((qp) => !!qp);
 }
