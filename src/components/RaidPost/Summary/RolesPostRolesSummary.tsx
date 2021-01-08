@@ -7,7 +7,9 @@ export interface RaidRolesSummaryProps {
   roles: RoleDTO[];
 }
 
-// Renders avatars of given roles
+/*
+Component for displaying roles part of a raid post.
+*/
 export function RaidPostRolesSummary(props: RaidRolesSummaryProps) {
   const { roles } = props;
   const classes = useStyles();

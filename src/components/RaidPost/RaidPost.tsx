@@ -8,6 +8,12 @@ interface RaidPostProps {
   raidPost: RaidPostDTO;
 }
 
+/*
+Component for displaying raid post data.
+Divided into two sections - summary and details.
+By default only summary is shown. 
+Details can be toggled by clicking anywhere on summary section.
+*/
 export function RaidPost(props: RaidPostProps) {
   const { raidPost } = props;
 

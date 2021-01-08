@@ -15,7 +15,9 @@ interface RaidPostSummaryProps {
   maxNumberOfBosses: number;
 }
 
-// Renders bosses and roles of a given summary. Displays the number of spots left.
+/*
+Component for displaying summarized raid post data, such as declared bosses and roles.
+*/
 export default function RaidPostSummary(props: RaidPostSummaryProps) {
   const { raidPost, maxNumberOfBosses } = props;
   const maxSpots = 10;
