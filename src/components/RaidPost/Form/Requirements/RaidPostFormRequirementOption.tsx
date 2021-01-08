@@ -18,7 +18,7 @@ export default function RaidPostFormRequirementOption(
 
   // Simple TextField with an avatar icon acting as its pseudo-label
   return (
-    <Box display="flex" alignItems="center">
+    <Box display="flex" alignItems="center" m={3}>
       <Gw2ItemAvatar name={name} />
       <TextField
         className={classes.textField}

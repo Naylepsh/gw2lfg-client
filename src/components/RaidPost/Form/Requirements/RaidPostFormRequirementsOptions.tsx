@@ -1,6 +1,7 @@
 import { Typography, Box } from "@material-ui/core";
 import React from "react";
 import RaidPostFormRequirementOption from "./RaidPostFormRequirementOption";
+import { items } from "../../../Gw2Item/gw2items.json";
 
 interface RaidPostFormRequirementsOptionsProps {
   requirementsId: string;
@@ -14,7 +15,8 @@ export function RaidPostFormRequirementsOptions(
   props: RaidPostFormRequirementsOptionsProps
 ) {
   const { requirementsId, itemsId, onChange, values } = props;
-  const requirements = [{ name: "Legendary Insight" }];
+
+  const requirements = getKnownItems();
 
   return (
     <Box
@@ -25,7 +27,13 @@ export function RaidPostFormRequirementsOptions(
       alignItems="center"
     >
       <Typography variant="h6">Requirements</Typography>
-      <Box display="flex" flexDirection="row" width="100%">
+      <Box
+        display="flex"
+        flexDirection="row"
+        width="100%"
+        flexWrap="wrap"
+        justifyContent="space-around"
+      >
         {requirements.map((requirement) => (
           <RaidPostFormRequirementOption
             {...requirement}
@@ -38,6 +46,12 @@ export function RaidPostFormRequirementsOptions(
       </Box>
     </Box>
   );
+}
+
+// Gets list of item names from stored gw2items.json file
+function getKnownItems() {
+  const itemNames = Object.keys(items);
+  return itemNames.map((name) => ({ name }));
 }
 
 // Memoised RaidPostFormRequirementsOptions component, improves the performance
