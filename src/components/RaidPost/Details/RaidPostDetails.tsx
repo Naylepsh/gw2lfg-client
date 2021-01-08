@@ -1,4 +1,4 @@
-import { AccordionDetails, Box, Button, Grid } from "@material-ui/core";
+import { AccordionDetails, Box, Button, Grid, Link } from "@material-ui/core";
 import React from "react";
 import { RaidPostDTO } from "../../../services/gw2lfg-server/entities/RaidPostDTO";
 import { RaidPostRolesDetails } from "./RaidPostRolesDetails";
@@ -44,6 +44,13 @@ export default function RaidPostDetails(props: RaidPostDetailsProps) {
   return (
     <AccordionDetails>
       <Grid container direction="column">
+        <Box>
+          {/* Forcing a white space before link */}
+          author:{" "}
+          <Link href={`/users/${raidPost.author.id}`} color="inherit">
+            {raidPost.author.username}
+          </Link>
+        </Box>
         <Box mb={3}>{raidPost.description}</Box>
         <RaidPostRolesDetails
           postId={raidPost.id}
