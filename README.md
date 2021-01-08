@@ -20,6 +20,8 @@ Client for gw2lfg service. Allows organisation of raid events with automated pla
 2. `npm install` - installing dependencies
 3. `yarn dev` - run the app
 
+Client will be available at `localhost:3000`
+
 ## TECHNOLOGIES USED
 
 - Typescript
