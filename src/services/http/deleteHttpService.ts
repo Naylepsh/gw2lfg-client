@@ -1,18 +1,17 @@
 import axios from "axios";
 import { HttpResponse } from "./httpResponse";
 
-export interface HttpPostOptions {
+export interface HttpDeleteOptions {
   headers: any;
 }
 
-// Wrapper around axios' POST method
-export async function httpPost<DataType, ResponseType>(
+// Wrapper around axios' Delete method
+export async function httpDelete<ResponseType>(
   url: string,
-  data: DataType,
-  config?: HttpPostOptions
+  config?: HttpDeleteOptions
 ): Promise<HttpResponse<ResponseType>> {
   try {
-    const response = await axios.post<ResponseType>(url, data, config);
+    const response = await axios.delete<ResponseType>(url, config);
     return { data: response.data };
   } catch (error) {
     return { error: error.response };

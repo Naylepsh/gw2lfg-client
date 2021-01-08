@@ -5,6 +5,7 @@ export interface HttpPutOptions {
   headers: any;
 }
 
+// Wrapper around axios' PUT method
 export async function httpPut<DataType, ResponseType>(
   url: string,
   data: DataType,

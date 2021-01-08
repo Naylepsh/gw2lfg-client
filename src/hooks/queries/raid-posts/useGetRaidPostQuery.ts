@@ -5,9 +5,9 @@ export function useGetRaidPostQuery(id: string) {
   return useQuery([getRaidPostQueryKey, id], () => getRaidPost({ id }));
 }
 
-export function invalidateGetRaidPostQueries() {
+export function invalidateGetRaidPostQueries(id: string) {
   // Invalidates every getRaidPost query (of all ids)
-  queryCache.invalidateQueries(getRaidPostQueryKey);
+  queryCache.invalidateQueries([getRaidPostQueryKey, id]);
 }
 
 const getRaidPostQueryKey = "getRaidPost";
