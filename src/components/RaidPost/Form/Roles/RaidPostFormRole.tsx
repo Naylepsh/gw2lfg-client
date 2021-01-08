@@ -9,11 +9,16 @@ interface RaidPostFormRoleProps {
   formId: string;
   onChange: any;
   handleRoleRemoval: (roleFormId: string) => any;
+  descriptionValue: string;
 }
 
-// Renders a single role in a RaidPostForm
+/* 
+Renders a single role in a RaidPostForm.
+For whatever reason Formik doesn't handle providing values for TextFields all that well,
+thus descriptionValue property is needed
+*/
 export function RaidPostFormRole(props: RaidPostFormRoleProps) {
-  const { onChange, handleRoleRemoval, formId } = props;
+  const { onChange, handleRoleRemoval, formId, descriptionValue } = props;
 
   // 'any' technically doesn't belong to neither roles nor classes,
   // but it's an useful value accepted by gw2lfg-server
@@ -47,6 +52,7 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
         <RaidPostFormDescription
           id={`${formId}.description`}
           onChange={onChange}
+          value={descriptionValue}
         />
       </Box>
       <Box display="flex" justifyContent="center" alignItems="center">

@@ -32,6 +32,7 @@ export default function RaidPostForm(props: RaidPostFormProps) {
         <Formik onSubmit={onSubmit} initialValues={initialValues}>
           {(formProps) => {
             const { handleChange, values } = formProps;
+
             return (
               <Form>
                 <RaidPostFormGeneral
@@ -39,6 +40,7 @@ export default function RaidPostForm(props: RaidPostFormProps) {
                   dateId="date"
                   dateSelected={values.date}
                   descriptionId="description"
+                  descriptionValue={values.description}
                   onChange={handleChange}
                 />
                 <RaidPostFormRaidBossesOptions

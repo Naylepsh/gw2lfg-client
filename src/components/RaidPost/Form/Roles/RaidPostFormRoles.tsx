@@ -48,6 +48,7 @@ export function RaidPostFormRoles(props: RaidPostFormRolesProps) {
             formId={`${rolesId}.${key}`}
             onChange={onChange}
             handleRoleRemoval={removeRoleFromTheList}
+            descriptionValue={_role.description}
           />
         ))}
       </Box>
