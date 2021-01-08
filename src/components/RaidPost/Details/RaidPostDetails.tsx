@@ -9,6 +9,7 @@ import { useDeleteRaidPostMutation } from "../../../hooks/mutations/raid-posts/u
 import { invalidateGetRaidPostQueries } from "../../../hooks/queries/raid-posts/useGetRaidPostQuery";
 import { invalidateGetRaidPostsQueries } from "../../../hooks/queries/raid-posts/useGetRaidPostsQuery";
 import { useRouter } from "next/router";
+import { RaidPostRequirementsDetails } from "./RaidPostRequirementDetails";
 
 interface RaidPostDetailsProps {
   raidPost: RaidPostDTO;
@@ -52,6 +53,7 @@ export default function RaidPostDetails(props: RaidPostDetailsProps) {
           </Link>
         </Box>
         <Box mb={3}>{raidPost.description}</Box>
+        <RaidPostRequirementsDetails requirements={raidPost.requirements} />
         <RaidPostRolesDetails
           postId={raidPost.id}
           roles={raidPost.roles}
