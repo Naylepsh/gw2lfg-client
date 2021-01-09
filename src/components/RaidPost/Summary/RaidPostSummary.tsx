@@ -1,5 +1,6 @@
 import {
   AccordionSummary,
+  Box,
   createStyles,
   Grid,
   makeStyles,
@@ -20,14 +21,13 @@ Component for displaying summarized raid post data, such as declared bosses and 
 */
 export default function RaidPostSummary(props: RaidPostSummaryProps) {
   const { raidPost, maxNumberOfBosses } = props;
-  const maxSpots = 10;
-  const spotsTaken = maxSpots - raidPost.roles.length;
+
   const classes = useStyles();
 
   return (
     <AccordionSummary>
       <Grid container>
-        <Grid item xs={12} md={7} container direction="row">
+        <Grid item xs={12} md={6} container direction="row">
           <RaidPostBossesSummary
             bosses={raidPost.bosses}
             max={maxNumberOfBosses}
@@ -36,18 +36,21 @@ export default function RaidPostSummary(props: RaidPostSummaryProps) {
         <Grid item xs={12} md={4} container direction="row">
           <RaidPostRolesSummary roles={raidPost.roles} />
         </Grid>
-        <Grid item xs={12} md className={classes.groupSize}>
-          {spotsTaken} / {maxSpots}
+        <Grid item xs={12} md={2} className={classes.centeredItem}>
+          <Box display="flex" flexDirection="column">
+            <Box>Server: {raidPost.server}</Box>
+            <Box>{new Date(raidPost.date).toLocaleString()}</Box>
+          </Box>
         </Grid>
       </Grid>
     </AccordionSummary>
   );
 }
 
-// CSS for RaidPostSummary component
+// CSS for RaidPostRolesDetails component
 const useStyles = makeStyles((_theme: Theme) =>
   createStyles({
-    groupSize: {
+    centeredItem: {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
