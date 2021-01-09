@@ -3,7 +3,9 @@ import { RoleDTO } from "./RoleDTO";
 import { UserDTO } from "./UserDTO";
 
 export interface JoinRequestDTO {
-  user: UserDTO
-  post: RaidPostDTO
-  role: RoleDTO
+  id: number;
+  status: string;
+  user: UserDTO;
+  post: RaidPostDTO;
+  role: RoleDTO;
 }
