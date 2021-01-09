@@ -10,6 +10,7 @@ import {
   Link,
   makeStyles,
   Theme,
+  Typography,
 } from "@material-ui/core";
 import React from "react";
 import { useGetJoinRequestsQuery } from "../../../hooks/queries/join-requests/useGetJoinRequestsQuery";
@@ -49,6 +50,9 @@ export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
 
   return (
     <Box>
+      <Box my={3} display="flex" flexDirection="row" justifyContent="center">
+        <Typography variant="h6">Roles</Typography>
+      </Box>
       {roles.map((role, key) => (
         <Accordion key={key}>
           <AccordionSummary>
@@ -62,15 +66,25 @@ export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
             <Container>
               {(roleJoinRequests[role.id] ?? []).map((request, requestKey) => (
                 <Grid key={requestKey} container direction="row">
-                  <Grid item className={classes.requestsGridItem}>
-                    <Box>
+                  <Grid
+                    item
+                    xs={12}
+                    md={6}
+                    className={classes.requestsGridItem}
+                  >
+                    <Box my={3}>
                       <Link href={`/users/${request.user.id}`} color="inherit">
                         {request.user.username}
                       </Link>{" "}
                       wants to join
                     </Box>
                   </Grid>
-                  <Grid item className={classes.requestsGridItem}>
+                  <Grid
+                    item
+                    xs={12}
+                    md={6}
+                    className={classes.requestsGridItem}
+                  >
                     <Box mx={3}>
                       <Button color="primary" variant="contained">
                         ACCEPT
