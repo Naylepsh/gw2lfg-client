@@ -60,6 +60,7 @@ export default function RaidPostDetails(props: RaidPostDetailsProps) {
           postId={raidPost.id}
           roles={raidPost.roles}
           canUserJoin={raidPost.userMeetsRequirements}
+          displayJoinRequests={isAuthor}
         />
         {/* Buttons for post edit / delete */}
         {isAuthor && (
