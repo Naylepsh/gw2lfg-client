@@ -5,8 +5,7 @@ export function useGetRaidPostQuery(id: string) {
   return useQuery([getRaidPostQueryKey, id], () => getRaidPost({ id }));
 }
 
-export function invalidateGetRaidPostQueries(id: string) {
-  // Invalidates every getRaidPost query (of all ids)
+export function invalidateGetRaidPostQuery(id: string) {
   queryCache.invalidateQueries([getRaidPostQueryKey, id]);
 }
 

@@ -2,11 +2,11 @@ import { useQuery, queryCache } from "react-query";
 import { getUserProfile } from "../../../services/gw2lfg-server/user/getProfileService";
 
 export function useGetUserProfileQuery(id: string) {
-  return useQuery(userProfileQueryKey, () => getUserProfile({ id }));
+  return useQuery([userProfileQueryKey, id], () => getUserProfile({ id }));
 }
 
-export function invalidateGetUserProfileQuery() {
-  queryCache.invalidateQueries(userProfileQueryKey);
+export function invalidateGetUserProfileQuery(id: string) {
+  queryCache.invalidateQueries([userProfileQueryKey, id]);
 }
 
-const userProfileQueryKey = "me";
+const userProfileQueryKey = "getUserProfile";

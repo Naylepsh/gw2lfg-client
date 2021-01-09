@@ -1,5 +1,10 @@
-import UserProfile from "../../src/components/User/UserProfile";
+import dynamic from "next/dynamic";
+
+const UserProfileWithoutSSR = dynamic(
+  () => import("../../src/components/User/UserProfile"),
+  { ssr: false }
+);
 
 export default function ShowUserProfile() {
-  return <UserProfile />;
+  return <UserProfileWithoutSSR />;
 }

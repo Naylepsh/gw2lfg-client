@@ -6,7 +6,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useMeQuery } from "../../../hooks/queries/users/useMeQuery";
 import { useDeleteRaidPostMutation } from "../../../hooks/mutations/raid-posts/useDeleteRaidPostMutation";
-import { invalidateGetRaidPostQueries } from "../../../hooks/queries/raid-posts/useGetRaidPostQuery";
+import { invalidateGetRaidPostQuery } from "../../../hooks/queries/raid-posts/useGetRaidPostQuery";
 import { invalidateGetRaidPostsQueries } from "../../../hooks/queries/raid-posts/useGetRaidPostsQuery";
 import { useRouter } from "next/router";
 import { RaidPostRequirementsDetails } from "./RaidPostRequirementDetails";
@@ -35,7 +35,7 @@ export default function RaidPostDetails(props: RaidPostDetailsProps) {
       console.error(error);
     } else {
       // those are seperate query results and both need to be invalidated
-      invalidateGetRaidPostQueries(raidPost.id.toString());
+      invalidateGetRaidPostQuery(raidPost.id.toString());
       invalidateGetRaidPostsQueries();
       // refresh the page
       router.reload();
