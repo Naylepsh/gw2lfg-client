@@ -4,7 +4,9 @@ import { createGw2lfgHeaders } from "../createGw2lfgHeaders";
 import { raidPostsUrl } from "./constants";
 import { DeleteRaidPostDTO } from "./dtos/DeleteRaidPostDTO";
 
-// Sends DELETE /raid-posts/:id request to gw2lfg-server
+/* 
+Sends DELETE /raid-posts/:id request to gw2lfg-server
+*/
 export async function deleteRaidPost(dto: DeleteRaidPostDTO) {
   // Access token is required
   const token = getAccessToken();

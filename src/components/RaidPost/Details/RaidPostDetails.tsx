@@ -45,6 +45,7 @@ export default function RaidPostDetails(props: RaidPostDetailsProps) {
   return (
     <AccordionDetails>
       <Grid container direction="column">
+        {/* Link to author */}
         <Box>
           {/* Forcing a white space before link */}
           author:{" "}
@@ -52,6 +53,7 @@ export default function RaidPostDetails(props: RaidPostDetailsProps) {
             {raidPost.author.username}
           </Link>
         </Box>
+        {/* description */}
         <Box mb={3}>{raidPost.description}</Box>
         <RaidPostRequirementsDetails requirements={raidPost.requirements} />
         <RaidPostRolesDetails
@@ -59,6 +61,7 @@ export default function RaidPostDetails(props: RaidPostDetailsProps) {
           roles={raidPost.roles}
           canUserJoin={raidPost.userMeetsRequirements}
         />
+        {/* Buttons for post edit / delete */}
         {isAuthor && (
           <Box display="flex" flexDirection="row" mt={2} ml="auto">
             <Box mr={2}>

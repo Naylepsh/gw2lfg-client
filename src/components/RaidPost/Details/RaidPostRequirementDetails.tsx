@@ -53,5 +53,5 @@ export function RaidPostRequirementsDetails(
   );
 }
 
-// Memoised RaidPostRequirementsDetails component, improves the performance
+// Memoised component, improves the performance
 export default React.memo(RaidPostRequirementsDetails);

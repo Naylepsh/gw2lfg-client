@@ -13,6 +13,9 @@ interface RoleAvatarProps extends RoleDTO {
   size: "small" | "medium" | "large";
 }
 
+/*
+Renders a role as a tooltip avatar
+*/
 export default function RoleAvatar(props: RoleAvatarProps) {
   const classes = useStyles();
 

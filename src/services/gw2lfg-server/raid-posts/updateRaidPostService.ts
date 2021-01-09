@@ -9,7 +9,9 @@ interface UpdateRaidPostDTO extends SaveRaidPostDTO {
   id: string;
 }
 
-// sends PUT /raid-posts/:id request to gw2lfg-server
+/* 
+Sends PUT /raid-posts/:id request to gw2lfg-server
+*/
 export async function updateRaidPost({
   id,
   ...raidPostDto

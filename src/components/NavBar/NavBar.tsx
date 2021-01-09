@@ -12,6 +12,9 @@ import { Button, Link } from "@material-ui/core";
 import { useRouter } from "next/router";
 import { discardAccessToken } from "../../utils/auth/discardAccessToken";
 
+/*
+Renders a fixed-on-top navigation bar
+*/
 export default function NavBar() {
   const classes = useStyles();
   const { isLoading: isLoading, isError, data } = useMeQuery();
@@ -33,7 +36,9 @@ export default function NavBar() {
   );
 }
 
-// Renders Login and Register buttons
+/* 
+Renders Login and Register buttons
+*/
 function NotLoggedInMenu() {
   return (
     <div>
@@ -47,7 +52,9 @@ function NotLoggedInMenu() {
   );
 }
 
-// Renders openable / closable menu with 'My account' and 'Logout' options
+/* 
+Renders toggleable menu for logged-in users with 'My account' and 'Logout' options
+*/
 function LoggedInMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -99,7 +106,9 @@ function LoggedInMenu() {
   );
 }
 
-// CSS for NavBar component
+/* 
+CSS for NavBar component
+*/
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {

@@ -12,9 +12,8 @@ import { mapRaidPostFormToDto } from "../../utils/mapRaidPostFormToDto";
 import { invalidateGetRaidPostsQueries } from "../../hooks/queries/raid-posts/useGetRaidPostsQuery";
 
 /*
-Gets the raid post of the id given by query,
-sets initial form values and submit handler.
-Creates an edit raid post form.
+Renders raid post form that allows editing of existing posts.
+Gets the raid post of the id given by query and sets initial form values and submit handler.
 User has to be authenticated to use.
 */
 export default function EditRaidPost() {

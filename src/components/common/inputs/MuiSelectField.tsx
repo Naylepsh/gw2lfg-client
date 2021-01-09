@@ -14,8 +14,10 @@ interface MaterialUISelectFieldProps extends FieldInputProps<string> {
   required: boolean;
 }
 
-// Select Field that's to be used together with formik
-// taken from: https://github.com/angle943/formik-material-ui/blob/master/src/components/FormikSelect/index.tsx
+/* 
+Select Field that's to be used together with formik.
+Taken from: https://github.com/angle943/formik-material-ui/blob/master/src/components/FormikSelect/index.tsx
+*/
 export function MaterialUISelectField({
   errorString,
   label,
@@ -37,6 +39,10 @@ export function MaterialUISelectField({
   );
 }
 
+/* 
+Memoised component - improves performance.
+Without it, using multiple selects in a single form makes the input lag a lot.
+*/
 export default React.memo(
   MaterialUISelectField,
   (prevProps, nextProps) => prevProps.value === nextProps.value

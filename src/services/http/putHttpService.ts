@@ -5,7 +5,11 @@ export interface HttpPutOptions {
   headers: any;
 }
 
-// Wrapper around axios' PUT method
+/* 
+Wrapper around axios PUT method
+On request success saves data to data field.
+On requst failure saves error to error field
+*/
 export async function httpPut<DataType, ResponseType>(
   url: string,
   data: DataType,

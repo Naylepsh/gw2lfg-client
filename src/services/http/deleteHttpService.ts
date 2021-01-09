@@ -5,7 +5,11 @@ export interface HttpDeleteOptions {
   headers: any;
 }
 
-// Wrapper around axios' Delete method
+/* 
+Wrapper around axios delete method.
+On request success saves data to data field.
+On requst failure saves error to error field
+*/
 export async function httpDelete<ResponseType>(
   url: string,
   config?: HttpDeleteOptions

@@ -13,7 +13,9 @@ interface RaidBossAvatarProps extends Omit<RaidBossDTO, "id"> {
   variant?: "square" | "circular";
 }
 
-// Renders a raid boss as an tooltip avatar
+/* 
+Renders a raid boss as an tooltip avatar
+*/
 function RaidBossAvatar(props: RaidBossAvatarProps) {
   const { name, isCm, variant } = props;
   const defaultVariant = "circular";

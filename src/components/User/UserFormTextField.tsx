@@ -3,7 +3,9 @@ import { TextField, TextFieldProps } from "@material-ui/core";
 
 export type UserFormTextFieldProps = TextFieldProps;
 
-// Wrapper around TextField that sets properties commonly used in user forms
+/* 
+Wrapper around TextField that sets properties commonly used in user forms
+*/
 export function UserFormTextField(props: UserFormTextFieldProps) {
   return (
     <FormTextField

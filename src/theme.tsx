@@ -1,5 +1,8 @@
 import { createMuiTheme } from "@material-ui/core";
 
+/*
+Css theme for Material UI to use.
+*/
 export const theme = createMuiTheme({
   palette: {
     primary: {

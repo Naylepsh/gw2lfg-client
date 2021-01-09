@@ -11,7 +11,9 @@ interface RaidPostFormRaidBossOptionProps {
   checked: boolean;
 }
 
-// Renders a singular toggleable raid boss avatar-checkbox of an associated raid post form
+/* 
+Renders a singular toggleable raid boss avatar-checkbox of an associated raid post form
+*/
 export function RaidPostFormRaidBossOption(
   props: RaidPostFormRaidBossOptionProps
 ) {
@@ -43,4 +45,5 @@ export function RaidPostFormRaidBossOption(
   );
 }
 
+// Memoised component, improves the performance
 export default React.memo(RaidPostFormRaidBossOption);

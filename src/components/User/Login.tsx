@@ -8,7 +8,9 @@ import { saveAccessToken } from "../../utils/auth/saveAccessToken";
 import { useState } from "react";
 import { mapGw2lfgServerBadRequestErrorsToErrorMap } from "../../utils/mapGw2lfgServerBadRequestErrorsToErrorMap";
 
-// Sets up initial form values and submit handler. Creates a login form
+/*
+Creates a login form with initial values and submit handler set up.
+*/
 export default function Login() {
   const router = useRouter();
   const [loginUser] = useLoginMutation();

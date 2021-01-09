@@ -3,7 +3,9 @@ interface Gw2lfgServerBadRequestErrorData {
   constraints: { [key: string]: string[] };
 }
 
-// maps complicated bad-request errors structure into simple property:message map
+/* 
+Maps complicated bad-request errors structure into simple property:message map
+*/
 export function mapGw2lfgServerBadRequestErrorsToErrorMap(
   errors: Gw2lfgServerBadRequestErrorData[]
 ) {

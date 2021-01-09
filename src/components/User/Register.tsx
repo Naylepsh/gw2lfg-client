@@ -8,7 +8,9 @@ import { saveAccessToken } from "../../utils/auth/saveAccessToken";
 import { mapGw2lfgServerBadRequestErrorsToErrorMap } from "../../utils/mapGw2lfgServerBadRequestErrorsToErrorMap";
 import RegisterForm from "./RegisterForm";
 
-// Sets up initial form values and submit handler. Creates a register form
+/*
+Creates a register form with initial values and submit handler set up.
+*/
 export function Register() {
   const router = useRouter();
   const [registerUser] = useRegisterMutation();

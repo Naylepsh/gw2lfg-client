@@ -9,7 +9,9 @@ interface RaidPostFormRequirementOptionProps {
   value: number;
 }
 
-// Renders singular requirement options of an associated raid post form
+/* 
+Renders singular requirement options of an associated raid post form
+*/
 export default function RaidPostFormRequirementOption(
   props: RaidPostFormRequirementOptionProps
 ) {

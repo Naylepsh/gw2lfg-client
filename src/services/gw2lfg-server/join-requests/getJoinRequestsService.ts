@@ -8,7 +8,9 @@ export interface GetJoinRequestsQueryParams {
   postId?: number;
 }
 
-// sends GET /join-requests request to server
+/* 
+Sends GET /join-requests request to server
+*/
 export async function getJoinRequests(queryParams: GetJoinRequestsQueryParams) {
   const { data } = await httpGet<{ data: JoinRequestDTO[] }>(
     toUrl(queryParams)

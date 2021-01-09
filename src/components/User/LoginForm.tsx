@@ -14,6 +14,9 @@ interface LoginFormValues {
   password: string;
 }
 
+/*
+Renders a login form.
+*/
 export default function LoginForm(props: LoginFormProps) {
   const { initialValues, onSubmit, errors } = props;
 

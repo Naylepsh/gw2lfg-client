@@ -11,8 +11,10 @@ interface RaidPostRoleDetailsProps {
   canUserJoin: boolean;
 }
 
-// Renders full information of a given role
-// Allows sending join request for that role.
+/* 
+Renders full information of a given role
+Displays a button allowing sending join request for that role.
+*/
 export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
   const { role, canUserJoin, postId } = props;
 

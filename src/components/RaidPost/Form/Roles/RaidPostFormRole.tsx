@@ -22,7 +22,7 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
 
   // 'any' technically doesn't belong to neither roles nor classes,
   // but it's an useful value accepted by gw2lfg-server
-  // and RaidAvatar has its means of rendering
+  // and RaidAvatar has its means of rendering it
   const availableRoles = [{ name: "any", portrait: "#" }, ...roles];
   const availableClasses = [{ name: "any", portrait: "#" }, ...classes];
 

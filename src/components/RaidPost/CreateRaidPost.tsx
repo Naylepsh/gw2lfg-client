@@ -14,8 +14,8 @@ import { RoleDTO } from "../../services/gw2lfg-server/entities/RoleDTO";
 import { mapRaidPostFormToDto } from "../../utils/mapRaidPostFormToDto";
 
 /*
+Renders raid post form that allows creation of new posts.
 Sets initial form values and submit handler.
-Creates a create raid post form.
 User has to be authenticated to use.
 */
 export default function CreateRaidPost() {

@@ -5,7 +5,9 @@ import { getAccessToken } from "../../../utils/auth/getAccessToken";
 import { createGw2lfgHeaders } from "../createGw2lfgHeaders";
 import { GetRaidPostDTO } from "./dtos/GetRaidPostDTO";
 
-// Sends GET /raid-posts/:id request to gw2lfg-server
+/* 
+Sends GET /raid-posts/:id request to gw2lfg-server
+*/
 export async function getRaidPost(dto: GetRaidPostDTO) {
   // Access token is optional,
   // but without it raid post's userMeetsRequirements property will be set to false

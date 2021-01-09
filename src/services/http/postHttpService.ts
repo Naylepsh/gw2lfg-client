@@ -5,7 +5,11 @@ export interface HttpPostOptions {
   headers: any;
 }
 
-// Wrapper around axios' POST method
+/* 
+Wrapper around axios POST method.
+On request success saves data to data field.
+On requst failure saves error to error field
+*/
 export async function httpPost<DataType, ResponseType>(
   url: string,
   data: DataType,

@@ -14,7 +14,10 @@ interface RaidPostFormProps {
   bosses: RaidBossDTO[];
 }
 
-// All the <propName>Id have to correspond to fields inside initialValues prop
+/* 
+Renders a raid post form that can be populated with values beforehand.
+All the <propName>Id have to correspond to fields inside initialValues prop
+*/
 export default function RaidPostForm(props: RaidPostFormProps) {
   const { initialValues, bosses, onSubmit } = props;
 
