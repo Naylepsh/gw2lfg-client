@@ -19,7 +19,7 @@ Renders a raid boss as an tooltip avatar
 function RaidBossAvatar(props: RaidBossAvatarProps) {
   const { name, isCm, variant } = props;
   const defaultVariant = "circular";
-  const boss = bosses.filter((boss) => boss.name == name)[0];
+  const boss = bosses.find((boss) => boss.name == name);
   const title = boss.name + (isCm ? " (CM)" : "");
 
   const classes = useStyles();

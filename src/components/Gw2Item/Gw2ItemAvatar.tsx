@@ -20,4 +20,5 @@ function Gw2ItemAvatar(props: Gw2ItemAvatarProps) {
   ) : null;
 }
 
+// Memoised component, improves performance
 export default React.memo(Gw2ItemAvatar);

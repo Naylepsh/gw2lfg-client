@@ -50,16 +50,14 @@ class NullRole implements RoleDTO {
 // but for whatever reason TypeScript decides to ignore that.
 // Even with explicitedly provided type, it still claims the result is always NOT undefined
 function findRoleByName(name: string) {
-  const roleVariants = roles.filter((role) => role.name === name);
-  const role = roleVariants[0];
+  const role = roles.find((role) => role.name === name);
   return role;
 }
 
 // IMPORTANT! Result can also be undefined.
 // Same reason as findRoleByName
 function findRoleByClass(roleClass: string) {
-  const roleVariants = classes.filter((role) => role.name === roleClass);
-  const role = roleVariants[0];
+  const role = classes.find((role) => role.name === roleClass);
   return role;
 }
 
