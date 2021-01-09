@@ -3,7 +3,7 @@ import React from "react";
 import LoginForm from "./LoginForm";
 import { useLoginMutation } from "../../hooks/mutations/users/useLoginMutation";
 import { invalidateMeQuery } from "../../hooks/queries/users/useMeQuery";
-import { LoginUserDTO } from "../../services/gw2lfg-server/user/loginService";
+import { LoginUserDTO } from "../../services/gw2lfg-server/user/dtos/LoginUserDTO";
 import { saveAccessToken } from "../../utils/auth/saveAccessToken";
 import { useState } from "react";
 import { mapGw2lfgServerBadRequestErrorsToErrorMap } from "../../utils/mapGw2lfgServerBadRequestErrorsToErrorMap";

@@ -2,10 +2,7 @@ import { getAccessToken } from "../../../utils/auth/getAccessToken";
 import { httpDelete } from "../../http/deleteHttpService";
 import { createGw2lfgHeaders } from "../createGw2lfgHeaders";
 import { raidPostsUrl } from "./constants";
-
-interface DeleteRaidPostDTO {
-  id: number;
-}
+import { DeleteRaidPostDTO } from "./dtos/DeleteRaidPostDTO";
 
 // Sends DELETE /raid-posts/:id request to gw2lfg-server
 export async function deleteRaidPost(dto: DeleteRaidPostDTO) {

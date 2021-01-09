@@ -1,11 +1,6 @@
 import { gw2lfgUrl } from "../constants";
 import { httpPost } from "../../http/postHttpService";
-
-export interface RegisterUserDTO {
-  username: string;
-  password: string;
-  apiKey: string;
-}
+import { RegisterUserDTO } from "./dtos/RegisterUserDTO";
 
 // sends POST /register request to gw2lfg-server
 export async function registerUser(user: RegisterUserDTO) {

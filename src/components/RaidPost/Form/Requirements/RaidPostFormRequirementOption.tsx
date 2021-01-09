@@ -26,7 +26,6 @@ export default function RaidPostFormRequirementOption(
         type="number"
         InputProps={{
           inputProps: {
-            max: 100,
             min: 0,
           },
         }}

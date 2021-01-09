@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useRegisterMutation } from "../../hooks/mutations/users/useRegisterMutation";
 import { invalidateMeQuery } from "../../hooks/queries/users/useMeQuery";
-import { RegisterUserDTO } from "../../services/gw2lfg-server/user/registerService";
+import { RegisterUserDTO } from "../../services/gw2lfg-server/user/dtos/RegisterUserDTO";
 import { saveAccessToken } from "../../utils/auth/saveAccessToken";
 import { mapGw2lfgServerBadRequestErrorsToErrorMap } from "../../utils/mapGw2lfgServerBadRequestErrorsToErrorMap";
 import RegisterForm from "./RegisterForm";

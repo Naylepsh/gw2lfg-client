@@ -3,10 +3,7 @@ import { raidPostsUrl } from "./constants";
 import { RaidPostDTO } from "../entities/RaidPostDTO";
 import { getAccessToken } from "../../../utils/auth/getAccessToken";
 import { createGw2lfgHeaders } from "../createGw2lfgHeaders";
-
-export interface GetRaidPostDTO {
-  id: string;
-}
+import { GetRaidPostDTO } from "./dtos/GetRaidPostDTO";
 
 // Sends GET /raid-posts/:id request to gw2lfg-server
 export async function getRaidPost(dto: GetRaidPostDTO) {
