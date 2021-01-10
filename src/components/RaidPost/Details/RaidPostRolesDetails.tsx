@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { useGetJoinRequestsQuery } from "../../../hooks/queries/join-requests/useGetJoinRequestsQuery";
+import { useMeQuery } from "../../../hooks/queries/users/useMeQuery";
 import { JoinRequestDTO } from "../../../services/gw2lfg-server/entities/joinRequestDTO";
 import { RoleDTO } from "../../../services/gw2lfg-server/entities/RoleDTO";
 import { RaidPostRoleDetails } from "./RaidPostRoleDetails";
@@ -29,6 +30,8 @@ export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
   const { isLoading, isError, data: joinRequests } = useGetJoinRequestsQuery({
     postId,
   });
+  const { isError: isMeError, data: me } = useMeQuery();
+  const gotMe = !isMeError && me;
 
   const roleJoinRequests: Record<number, JoinRequestDTO[]> = {};
   if (!isLoading && !isError) {
@@ -47,32 +50,40 @@ export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
       <Box my={3} display="flex" flexDirection="row" justifyContent="center">
         <Typography variant="h6">Roles</Typography>
       </Box>
-      {roles.map((role, key) => (
-        <Accordion key={key}>
-          <AccordionSummary>
-            <RaidPostRoleDetails
-              role={role}
-              canUserJoin={canUserJoin}
-              postId={postId}
-            />
-          </AccordionSummary>
-          <AccordionDetails>
-            <Container>
-              {displayJoinRequests ? (
-                <RaidPostRoleJoinRequests
+      {roles.map((role, key) => {
+        const thisRoleJoinRequests = roleJoinRequests[role.id] ?? [];
+        const userJoinRequest =
+          gotMe &&
+          thisRoleJoinRequests.find((request) => request.user.id === me.id);
+
+        return (
+          <Accordion key={key}>
+            <AccordionSummary>
+              <RaidPostRoleDetails
+                role={role}
+                canUserJoin={canUserJoin}
                 postId={postId}
-                  joinRequests={roleJoinRequests[role.id] ?? []}
-                />
-              ) : (
-                <span>
-                  There are {(roleJoinRequests[role.id] ?? []).length} join
-                  requests for this position
-                </span>
-              )}
-            </Container>
-          </AccordionDetails>
-        </Accordion>
-      ))}
+                roleIdToCancel={userJoinRequest?.id}
+              />
+            </AccordionSummary>
+            <AccordionDetails>
+              <Container>
+                {displayJoinRequests ? (
+                  <RaidPostRoleJoinRequests
+                    postId={postId}
+                    joinRequests={roleJoinRequests[role.id] ?? []}
+                  />
+                ) : (
+                  <span>
+                    There are {(roleJoinRequests[role.id] ?? []).length} join
+                    requests for this position
+                  </span>
+                )}
+              </Container>
+            </AccordionDetails>
+          </Accordion>
+        );
+      })}
     </Box>
   );
 }

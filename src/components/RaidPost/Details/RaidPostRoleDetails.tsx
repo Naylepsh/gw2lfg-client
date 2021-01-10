@@ -1,22 +1,17 @@
-import {
-  Box,
-  createStyles,
-  Grid,
-  makeStyles,
-  TableCell,
-  Theme,
-} from "@material-ui/core";
-import React, { useState } from "react";
+import { Box, createStyles, Grid, makeStyles, Theme } from "@material-ui/core";
+import React from "react";
 import { useCreateJoinRequestMutation } from "../../../hooks/mutations/join-requests/useCreateJoinRequestMutation";
 import { RoleDTO } from "../../../services/gw2lfg-server/entities/RoleDTO";
 import RoleAvatar from "../../Role/RoleAvatar";
 import LoadingButton from "../../common/buttons/LoadingButton";
-import { JoinRequestDTO } from "../../../services/gw2lfg-server/entities/joinRequestDTO";
+import { useDeleteJoinRequestMutation } from "../../../hooks/mutations/join-requests/useDeleteJoinRequestMutation";
+import { invalidateGetJoinRequestsQueries } from "../../../hooks/queries/join-requests/useGetJoinRequestsQuery";
 
 interface RaidPostRoleDetailsProps {
   postId: number;
   role: RoleDTO;
   canUserJoin: boolean;
+  roleIdToCancel?: number;
 }
 
 /* 
@@ -24,19 +19,10 @@ Renders full information of a given role
 Displays a button allowing sending join request for that role.
 */
 export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
-  const { role, canUserJoin, postId } = props;
-
-  // states used for send join request button
-  const [isDisabled, setIsDisabled] = useState(!canUserJoin);
-  const [isLoading, setIsLoading] = useState(false);
+  const { role, canUserJoin, roleIdToCancel, postId } = props;
 
   const [createJoinRequest] = useCreateJoinRequestMutation();
-  const sendJoinRequest = async () => {
-    setIsLoading(true);
-    await createJoinRequest({ postId, roleId: role.id });
-    setIsLoading(false);
-    setIsDisabled(true);
-  };
+  const [cancelJoinRequest] = useDeleteJoinRequestMutation();
 
   const classes = useStyles();
 
@@ -53,14 +39,31 @@ export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
       </Grid>
       <Grid item xs={12} md={2} className={classes.centeredItem}>
         <Box>
-          <LoadingButton
-            color="primary"
-            variant="contained"
-            disabled={isDisabled}
-            onClick={sendJoinRequest}
-          >
-            Join
-          </LoadingButton>
+          {roleIdToCancel ? (
+            <LoadingButton
+              color="primary"
+              variant="contained"
+              disabled={!canUserJoin}
+              onClick={async () => {
+                await cancelJoinRequest({ id: roleIdToCancel });
+                invalidateGetJoinRequestsQueries({ postId });
+              }}
+            >
+              Cancel
+            </LoadingButton>
+          ) : (
+            <LoadingButton
+              color="primary"
+              variant="contained"
+              disabled={!canUserJoin}
+              onClick={async () => {
+                await createJoinRequest({ postId, roleId: role.id });
+                invalidateGetJoinRequestsQueries({ postId });
+              }}
+            >
+              Join
+            </LoadingButton>
+          )}
         </Box>
       </Grid>
     </Grid>
