@@ -70,7 +70,8 @@ export default function UserProfile() {
                   display="flex"
                   flexDirection="row"
                   flexWrap="wrap"
-                  m={3}
+                  mx={1}
+                  my={2}
                 >
                   <Gw2ItemAvatar name={item.name} />
                   <Box fontSize={24} ml={1}>
