@@ -29,7 +29,11 @@ export default function NavBar() {
               GW2LFG
             </Link>
           </Typography>
-          {isUserLoggedIn ? <LoggedInMenu /> : <NotLoggedInMenu />}
+          {isUserLoggedIn ? (
+            <LoggedInMenu userId={data.id} />
+          ) : (
+            <NotLoggedInMenu />
+          )}
         </Toolbar>
       </AppBar>
     </div>
@@ -52,10 +56,14 @@ function NotLoggedInMenu() {
   );
 }
 
+interface LoggedInMenuProps {
+  userId: number;
+}
+
 /* 
 Renders toggleable menu for logged-in users with 'My account' and 'Logout' options
 */
-function LoggedInMenu() {
+function LoggedInMenu({ userId }: LoggedInMenuProps) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const router = useRouter();
@@ -71,6 +79,7 @@ function LoggedInMenu() {
 
   const handleClose = () => {
     setAnchorEl(null);
+    router.push(`/users/${userId}`);
   };
 
   return (
