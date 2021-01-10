@@ -10,6 +10,7 @@ Renders a button that displays circular loading animation if loading is set to t
 */
 export default function LoadingButton(props: LoadingButtonProps) {
   const { isLoading, children, disabled, ...rest } = props;
+
   return (
     <Button {...rest} disabled={disabled || isLoading}>
       {isLoading && <CircularProgress size={24} />}
