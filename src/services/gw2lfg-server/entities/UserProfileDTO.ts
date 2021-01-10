@@ -5,8 +5,4 @@ export interface UserProfileDTO {
   account: {
     name: string;
   };
-  items: {
-    name: string;
-    quantity: number;
-  }[];
 }
