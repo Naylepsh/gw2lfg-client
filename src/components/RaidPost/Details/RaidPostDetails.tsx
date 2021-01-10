@@ -1,4 +1,4 @@
-import { AccordionDetails, Box, Button, Grid, Link } from "@material-ui/core";
+import {  Box, Button, Grid, Link } from "@material-ui/core";
 import React from "react";
 import { RaidPostDTO } from "../../../services/gw2lfg-server/entities/RaidPostDTO";
 import { RaidPostRolesDetails } from "./RaidPostRolesDetails";
@@ -43,7 +43,7 @@ export default function RaidPostDetails(props: RaidPostDetailsProps) {
   };
 
   return (
-    <AccordionDetails>
+    <>
       <Grid container direction="column">
         {/* Link to author */}
         <Box>
@@ -88,6 +88,6 @@ export default function RaidPostDetails(props: RaidPostDetailsProps) {
           </Box>
         )}
       </Grid>
-    </AccordionDetails>
+    </>
   );
 }

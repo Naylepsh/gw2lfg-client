@@ -1,11 +1,4 @@
-import {
-  AccordionSummary,
-  Box,
-  createStyles,
-  Grid,
-  makeStyles,
-  Theme,
-} from "@material-ui/core";
+import { Box, createStyles, Grid, makeStyles, Theme } from "@material-ui/core";
 import React from "react";
 import { RaidPostDTO } from "../../../services/gw2lfg-server/entities/RaidPostDTO";
 import { RaidPostBossesSummary } from "./RaidPostBossesSummary";
@@ -25,25 +18,23 @@ export default function RaidPostSummary(props: RaidPostSummaryProps) {
   const classes = useStyles();
 
   return (
-    <AccordionSummary>
-      <Grid container>
-        <Grid item xs={12} md={6} container direction="row">
-          <RaidPostBossesSummary
-            bosses={raidPost.bosses}
-            max={maxNumberOfBosses}
-          />
-        </Grid>
-        <Grid item xs={12} md={4} container direction="row">
-          <RaidPostRolesSummary roles={raidPost.roles} />
-        </Grid>
-        <Grid item xs={12} md={2} className={classes.centeredItem}>
-          <Box display="flex" flexDirection="column">
-            <Box>Server: {raidPost.server}</Box>
-            <Box>{new Date(raidPost.date).toLocaleString()}</Box>
-          </Box>
-        </Grid>
+    <Grid container>
+      <Grid item xs={12} md={6} container direction="row">
+        <RaidPostBossesSummary
+          bosses={raidPost.bosses}
+          max={maxNumberOfBosses}
+        />
       </Grid>
-    </AccordionSummary>
+      <Grid item xs={12} md={4} container direction="row">
+        <RaidPostRolesSummary roles={raidPost.roles} />
+      </Grid>
+      <Grid item xs={12} md={2} className={classes.centeredItem}>
+        <Box display="flex" flexDirection="column">
+          <Box>Server: {raidPost.server}</Box>
+          <Box>{new Date(raidPost.date).toLocaleString()}</Box>
+        </Box>
+      </Grid>
+    </Grid>
   );
 }
 

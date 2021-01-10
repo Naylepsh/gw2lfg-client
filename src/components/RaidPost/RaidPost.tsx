@@ -1,4 +1,8 @@
-import { Accordion } from "@material-ui/core";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+} from "@material-ui/core";
 import React, { useState } from "react";
 import { RaidPostDTO } from "../../services/gw2lfg-server/entities/RaidPostDTO";
 import RaidPostDetails from "./Details/RaidPostDetails";
@@ -32,11 +36,15 @@ export function RaidPost(props: RaidPostProps) {
 
   return (
     <Accordion onChange={changeNumberOfBosses}>
-      <RaidPostSummary
-        raidPost={raidPost}
-        maxNumberOfBosses={numberOfBossesToDisplay}
-      />
-      <RaidPostDetails raidPost={raidPost} />
+      <AccordionSummary>
+        <RaidPostSummary
+          raidPost={raidPost}
+          maxNumberOfBosses={numberOfBossesToDisplay}
+        />
+      </AccordionSummary>
+      <AccordionDetails>
+        <RaidPostDetails raidPost={raidPost} />
+      </AccordionDetails>
     </Accordion>
   );
 }
