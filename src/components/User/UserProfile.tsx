@@ -11,6 +11,9 @@ import {
   ListItem,
   ListItemText,
   Divider,
+  createStyles,
+  makeStyles,
+  Theme,
 } from "@material-ui/core";
 import { useRouter } from "next/router";
 import React from "react";
@@ -24,6 +27,8 @@ For example, if rendering page /users/123, then will render profile of user with
 export default function UserProfile() {
   const router = useRouter();
   const { id } = router.query;
+
+  const classes = useStyles();
 
   const { isLoading, isError, data } = useGetUserProfileQuery(id as string);
 
@@ -51,18 +56,20 @@ export default function UserProfile() {
             </TableBody>
           </Table>
         </TableContainer>
-        <List>
+        <List className={classes.list}>
           <ListItem button>
             <ListItemText
-              primary={`See ${data.user.username}'s items`}
+              className={classes.itemText}
+              primary={`Browse ${data.user.username}'s items`}
               onClick={() => router.push(`/users/${id}/items`)}
             />
           </ListItem>
           <Divider />
           <ListItem button>
             <ListItemText
-              primary={`See ${data.user.username}'s items`}
-              onClick={() => console.log("hi?")}
+              className={classes.itemText}
+              primary={`Browse ${data.user.username}'s raid posts`}
+              onClick={() => router.push(`/users/${id}/raid-posts`)}
             />
           </ListItem>
         </List>
@@ -70,3 +77,16 @@ export default function UserProfile() {
     </Container>
   );
 }
+
+// CSS for UserProfile component
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    list: {
+      paddingTop: 0,
+      paddingBottom: 0,
+    },
+    itemText: {
+      fontSize: "inherit",
+    },
+  })
+);

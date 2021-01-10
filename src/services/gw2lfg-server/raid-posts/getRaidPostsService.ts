@@ -4,6 +4,7 @@ import { RaidPostDTO } from "../entities/RaidPostDTO";
 import { getAccessToken } from "../../../utils/auth/getAccessToken";
 import { createGw2lfgHeaders } from "../createGw2lfgHeaders";
 import { GetRaidPostsDTO } from "./dtos/GetRaidPostsDTO";
+import { createPaginationQuery } from "../createPaginationQuery";
 
 /* 
 Sends GET /raid-posts request to gw2lfg-server
@@ -14,7 +15,7 @@ export async function getRaidPosts(dto: GetRaidPostsDTO) {
   const token = getAccessToken();
   const headers = createGw2lfgHeaders(token);
 
-  const query = createPaginationQuery(dto);
+  const query = createPaginationQuery(dto.page);
   const url = `${getRaidPostsUrl}?${query}`;
 
   const { data: raidPosts, hasMore } = await httpGet<{
@@ -23,16 +24,6 @@ export async function getRaidPosts(dto: GetRaidPostsDTO) {
   }>(url, { headers });
 
   return { raidPosts, hasMore };
-}
-
-function createPaginationQuery(dto: GetRaidPostsDTO) {
-  const resultsPerPage = 10;
-
-  const take = resultsPerPage;
-  const skip = Math.max(0, (dto.page - 1) * resultsPerPage);
-  const query = `take=${take}&skip=${skip}`;
-
-  return query;
 }
 
 export const getRaidPostsUrl = raidPostsUrl;
