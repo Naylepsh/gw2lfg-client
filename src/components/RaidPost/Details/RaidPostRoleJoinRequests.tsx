@@ -8,6 +8,7 @@ import {
   Theme,
 } from "@material-ui/core";
 import React from "react";
+import { useAcceptJoinRequestMutation } from "../../../hooks/mutations/join-requests/useAcceptJoinRequestMutation";
 import { JoinRequestDTO } from "../../../services/gw2lfg-server/entities/joinRequestDTO";
 
 interface RaidPostRoleJoinRequestsProps {
@@ -16,6 +17,14 @@ interface RaidPostRoleJoinRequestsProps {
 
 export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
   const { joinRequests } = props;
+
+  const [acceptJoinRequest] = useAcceptJoinRequestMutation();
+
+  // sort join requests by status
+  joinRequests.sort((request, _) => (request.status === "ACCEPTED" ? 1 : 0));
+  const hasAcceptedRequest = joinRequests.find(
+    (request) => request.status === "ACCEPTED"
+  );
 
   const classes = useStyles();
 
@@ -30,14 +39,21 @@ export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
                   {request.user.username}
                 </Link>{" "}
                 wants to join
+                <span> status: {request.status}</span>
               </Box>
             </Grid>
             <Grid item xs={12} md={6} className={classes.requestsGridItem}>
-              <Box mx={3}>
-                <Button color="primary" variant="contained">
-                  ACCEPT
-                </Button>
-              </Box>
+              {!hasAcceptedRequest && (
+                <Box mx={3}>
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    onClick={() => acceptJoinRequest({ id: request.id })}
+                  >
+                    ACCEPT
+                  </Button>
+                </Box>
+              )}
               <Box>
                 <Button color="primary" variant="contained">
                   DECLINE
