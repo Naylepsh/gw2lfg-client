@@ -60,6 +60,7 @@ export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
             <Container>
               {displayJoinRequests ? (
                 <RaidPostRoleJoinRequests
+                postId={postId}
                   joinRequests={roleJoinRequests[role.id] ?? []}
                 />
               ) : (

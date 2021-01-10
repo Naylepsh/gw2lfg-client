@@ -12,8 +12,10 @@ export function useGetJoinRequestsQuery(
   );
 }
 
-export function invalidateGetJoinRequestsQueries() {
-  queryCache.invalidateQueries(getJoinRequestsQueryKey);
+export function invalidateGetJoinRequestsQueries(
+  queryParams: GetJoinRequestsQueryParams
+) {
+  queryCache.invalidateQueries([getJoinRequestsQueryKey, queryParams]);
 }
 
 const getJoinRequestsQueryKey = "getJoinRequests";

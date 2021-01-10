@@ -58,7 +58,6 @@ export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
             variant="contained"
             disabled={isDisabled}
             onClick={sendJoinRequest}
-            isLoading={isLoading}
           >
             Join
           </LoadingButton>

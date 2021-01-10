@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   createStyles,
   Grid,
   Link,
@@ -10,10 +9,12 @@ import {
 import React, { useState } from "react";
 import { useAcceptJoinRequestMutation } from "../../../hooks/mutations/join-requests/useAcceptJoinRequestMutation";
 import { useDeleteJoinRequestMutation } from "../../../hooks/mutations/join-requests/useDeleteJoinRequestMutation";
+import { invalidateGetJoinRequestsQueries } from "../../../hooks/queries/join-requests/useGetJoinRequestsQuery";
 import { JoinRequestDTO } from "../../../services/gw2lfg-server/entities/joinRequestDTO";
 import LoadingButton from "../../common/buttons/LoadingButton";
 
 interface RaidPostRoleJoinRequestsProps {
+  postId: number;
   joinRequests: JoinRequestDTO[];
 }
 
@@ -22,7 +23,7 @@ Renders join requests of a given role.
 Handles accepting and rejecting of requests.
 */
 export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
-  const { joinRequests } = props;
+  const { joinRequests, postId } = props;
 
   const [acceptJoinRequest] = useAcceptJoinRequestMutation();
   const [deleteJoinRequest] = useDeleteJoinRequestMutation();
@@ -33,15 +34,13 @@ export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
   const acceptedRequest = joinRequests.find(
     (request) => request.status === "ACCEPTED"
   );
-  const [hasAcceptedRequest, setHasAcceptedRequest] = useState(
-    !!acceptedRequest
-  );
+  const hasAcceptedRequest = !!acceptedRequest;
 
   // logic for clicking on ACCEPT button
   const handleAccept = async (requestId: number) => {
     try {
       await acceptJoinRequest({ id: requestId });
-      setHasAcceptedRequest(true);
+      invalidateGetJoinRequestsQueries({ postId });
     } catch (error) {
       console.log(error);
     }
@@ -51,6 +50,7 @@ export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
   const handleDecline = async (requestId: number) => {
     try {
       await deleteJoinRequest({ id: requestId });
+      invalidateGetJoinRequestsQueries({ postId });
     } catch (error) {
       console.log(error);
     }
@@ -68,30 +68,30 @@ export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
                 <Link href={`/users/${request.user.id}`} color="inherit">
                   {request.user.username}
                 </Link>{" "}
-                wants to join
-                <span> status: {request.status}</span>
+                wants to join.
+                <span> Status: {request.status}</span>
               </Box>
             </Grid>
             <Grid item xs={12} md={6} className={classes.requestsGridItem}>
               {!hasAcceptedRequest && (
                 <Box mx={3}>
-                  <Button
+                  <LoadingButton
                     color="primary"
                     variant="contained"
                     onClick={() => handleAccept(request.id)}
                   >
                     ACCEPT
-                  </Button>
+                  </LoadingButton>
                 </Box>
               )}
               <Box>
-                <Button
+                <LoadingButton
                   color="primary"
                   variant="contained"
                   onClick={() => handleDecline(request.id)}
                 >
                   DECLINE
-                </Button>
+                </LoadingButton>
               </Box>
             </Grid>
           </Grid>
