@@ -1,4 +1,4 @@
-import { Box, Button } from "@material-ui/core";
+import { Box, Button, Grid } from "@material-ui/core";
 import React from "react";
 import RaidPostFormDescription from "../General/RaidPostFormDescription";
 import { roles, classes } from "../../../Role/roles.json";
@@ -27,40 +27,48 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
   const availableClasses = [{ name: "any", portrait: "#" }, ...classes];
 
   return (
-    <Box display="flex" flexDirection="row" padding={3}>
-      <Box minWidth={120} mr={3}>
-        <FormikSelect
-          name={`${formId}.name`}
-          items={availableRoles.map((role) => ({
-            label: role.name,
-            value: role.name,
-          }))}
-          label="Name"
-        />
-      </Box>
-      <Box minWidth={120} mr={3}>
-        <FormikSelect
-          name={`${formId}.class`}
-          items={availableClasses.map((cl) => ({
-            label: cl.name,
-            value: cl.name,
-          }))}
-          label="Class"
-        />
-      </Box>
-      <Box width={1}>
-        <RaidPostFormDescription
-          id={`${formId}.description`}
-          onChange={onChange}
-          value={descriptionValue}
-        />
-      </Box>
-      <Box display="flex" justifyContent="center" alignItems="center">
-        <Button onClick={() => handleRoleRemoval(formId)}>
-          <ClearIcon />
-        </Button>
-      </Box>
-    </Box>
+    <Grid container>
+      <Grid item xs={6} md={2}>
+        <Box mr={3} p={3}>
+          <FormikSelect
+            name={`${formId}.name`}
+            items={availableRoles.map((role) => ({
+              label: role.name,
+              value: role.name,
+            }))}
+            label="Name"
+          />
+        </Box>
+      </Grid>
+      <Grid item xs={6} md={2}>
+        <Box mr={3} p={3}>
+          <FormikSelect
+            name={`${formId}.class`}
+            items={availableClasses.map((cl) => ({
+              label: cl.name,
+              value: cl.name,
+            }))}
+            label="Class"
+          />
+        </Box>
+      </Grid>
+      <Grid item xs={12} md={7}>
+        <Box p={3}>
+          <RaidPostFormDescription
+            id={`${formId}.description`}
+            onChange={onChange}
+            value={descriptionValue}
+          />
+        </Box>
+      </Grid>
+      <Grid item xs={12} md={1}>
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <Button onClick={() => handleRoleRemoval(formId)}>
+            <ClearIcon />
+          </Button>
+        </Box>
+      </Grid>
+    </Grid>
   );
 }
 
