@@ -5,6 +5,6 @@ const UserProfileWithoutSSR = dynamic(
   { ssr: false }
 );
 
-export default function ShowUserProfile() {
+export default function UserProfilePage() {
   return <UserProfileWithoutSSR />;
 }

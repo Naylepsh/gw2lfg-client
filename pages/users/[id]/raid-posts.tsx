@@ -5,6 +5,6 @@ const UserRaidPostsWithoutSSR = dynamic(
   { ssr: false }
 );
 
-export default function ShowUserItems() {
+export default function UserRaidPostsPage() {
   return <UserRaidPostsWithoutSSR />;
 }

@@ -5,6 +5,6 @@ const UserItemsWithoutSSR = dynamic(
   { ssr: false }
 );
 
-export default function ShowUserItems() {
+export default function UserItemsPage() {
   return <UserItemsWithoutSSR />;
 }
