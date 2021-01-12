@@ -19,10 +19,10 @@ export async function createJoinRequest(dto: CreateJoinRequestDTO) {
   const token = getAccessToken();
   const headers = createGw2lfgHeaders(token);
 
-  const { data } = await httpPost<
+  const { data, error } = await httpPost<
     CreateJoinRequestDTO,
     { data: JoinRequestDTO }
   >(createJoinRequestUrl, dto, { headers });
 
-  return data;
+  return { data, error };
 }

@@ -1,5 +1,5 @@
 import { Box, createStyles, Grid, makeStyles, Theme } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import { useCreateJoinRequestMutation } from "../../../hooks/mutations/join-requests/useCreateJoinRequestMutation";
 import { RoleDTO } from "../../../services/gw2lfg-server/entities/RoleDTO";
 import RoleAvatar from "../../Role/RoleAvatar";
@@ -10,7 +10,6 @@ import { invalidateGetJoinRequestsQueries } from "../../../hooks/queries/join-re
 interface RaidPostRoleDetailsProps {
   postId: number;
   role: RoleDTO;
-  canUserJoin: boolean;
   roleIdToCancel?: number;
 }
 
@@ -19,7 +18,9 @@ Renders full information of a given role
 Displays a button allowing sending join request for that role.
 */
 export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
-  const { role, canUserJoin, roleIdToCancel, postId } = props;
+  const { role, roleIdToCancel, postId } = props;
+  const [canClickOnJoin, setCanClickOnJoin] = useState(true);
+  const [joinButtonText, setJoinButtonText] = useState("JOIN");
 
   const [createJoinRequest] = useCreateJoinRequestMutation();
   const [cancelJoinRequest] = useDeleteJoinRequestMutation();
@@ -43,25 +44,32 @@ export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
             <LoadingButton
               color="primary"
               variant="contained"
-              disabled={!canUserJoin}
               onClick={async () => {
                 await cancelJoinRequest({ id: roleIdToCancel });
                 invalidateGetJoinRequestsQueries({ postId });
               }}
             >
-              Cancel
+              CANCEL
             </LoadingButton>
           ) : (
             <LoadingButton
               color="primary"
               variant="contained"
-              disabled={!canUserJoin}
+              disabled={!canClickOnJoin}
               onClick={async () => {
-                await createJoinRequest({ postId, roleId: role.id });
-                invalidateGetJoinRequestsQueries({ postId });
+                const { error } = await createJoinRequest({
+                  postId,
+                  roleId: role.id,
+                });
+                if (error) {
+                  setCanClickOnJoin(false);
+                  setJoinButtonText("REQUIREMENTS UNSATISFIED");
+                } else {
+                  invalidateGetJoinRequestsQueries({ postId });
+                }
               }}
             >
-              Join
+              {joinButtonText}
             </LoadingButton>
           )}
         </Box>

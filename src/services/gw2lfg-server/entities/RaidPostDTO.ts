@@ -13,6 +13,5 @@ export interface RaidPostDTO {
   requirements: {
     items: ItemRequirementDTO[];
   };
-  userMeetsRequirements: boolean;
   roles: RoleDTO[];
 }

@@ -61,7 +61,6 @@ export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
             <AccordionSummary>
               <RaidPostRoleDetails
                 role={role}
-                canUserJoin={canUserJoin}
                 postId={postId}
                 roleIdToCancel={userJoinRequest?.id}
               />

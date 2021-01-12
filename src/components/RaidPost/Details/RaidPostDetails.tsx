@@ -1,4 +1,4 @@
-import {  Box, Button, Grid, Link } from "@material-ui/core";
+import { Box, Button, Grid, Link } from "@material-ui/core";
 import React from "react";
 import { RaidPostDTO } from "../../../services/gw2lfg-server/entities/RaidPostDTO";
 import { RaidPostRolesDetails } from "./RaidPostRolesDetails";
@@ -59,7 +59,7 @@ export default function RaidPostDetails(props: RaidPostDetailsProps) {
         <RaidPostRolesDetails
           postId={raidPost.id}
           roles={raidPost.roles}
-          canUserJoin={raidPost.userMeetsRequirements}
+          canUserJoin={!!me}
           displayJoinRequests={isAuthor}
         />
         {/* Buttons for post edit / delete */}
