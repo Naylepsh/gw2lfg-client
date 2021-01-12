@@ -72,6 +72,14 @@ export default function UserProfile() {
               onClick={() => router.push(`/users/${id}/raid-posts`)}
             />
           </ListItem>
+          <Divider />
+          <ListItem button>
+            <ListItemText
+              className={classes.itemText}
+              primary={`Browse ${data.user.username}'s raid clear`}
+              onClick={() => router.push(`/users/${id}/raid-clear`)}
+            />
+          </ListItem>
         </List>
       </Box>
     </Container>
@@ -86,7 +94,9 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingBottom: 0,
     },
     itemText: {
-      fontSize: "inherit",
+      "& span, & svg": {
+        fontSize: "inherit",
+      },
     },
   })
 );
