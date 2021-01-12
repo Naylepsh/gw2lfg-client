@@ -2,16 +2,16 @@
   "bosses": [
     { "name": "Vale Guardian", "portrait": "https://wiki.guildwars2.com/images/f/fb/Mini_Vale_Guardian.png" },
     { "name": "Spirit Woods", "portrait": "https://wiki.guildwars2.com/images/thumb/9/97/Spirit_Vale_loading_screen.jpg/320px-Spirit_Vale_loading_screen.jpg" },
-    { "name": "Gorseval the Multifarious", "portrait": "https://wiki.guildwars2.com/images/d/d1/Mini_Gorseval_the_Multifarious.png" },
-    { "name": "Sabetha the Saboteur", "portrait": "https://wiki.guildwars2.com/images/5/54/Mini_Sabetha.png" },
+    { "name": "Gorseval", "portrait": "https://wiki.guildwars2.com/images/d/d1/Mini_Gorseval_the_Multifarious.png" },
+    { "name": "Sabetha", "portrait": "https://wiki.guildwars2.com/images/5/54/Mini_Sabetha.png" },
     { "name": "Slothasor", "portrait": "https://wiki.guildwars2.com/images/1/12/Mini_Slothasor.png" },
-    { "name": "Prison Camp", "portrait": "https://wiki.guildwars2.com/images/8/82/Mini_Berg.png" },
-    { "name": "Matthias Gabrel", "portrait": "https://wiki.guildwars2.com/images/5/5d/Mini_Matthias_Abomination.png" },
-    { "name": "Siege the Stronghold", "portrait": "https://wiki.guildwars2.com/images/b/b5/Mini_McLeod_the_Silent.png" },
+    { "name": "Bandit Trio", "portrait": "https://wiki.guildwars2.com/images/8/82/Mini_Berg.png" },
+    { "name": "Matthias", "portrait": "https://wiki.guildwars2.com/images/5/5d/Mini_Matthias_Abomination.png" },
+    { "name": "Escort", "portrait": "https://wiki.guildwars2.com/images/b/b5/Mini_McLeod_the_Silent.png" },
     { "name": "Keep Construct", "portrait": "https://wiki.guildwars2.com/images/e/ea/Mini_Keep_Construct.png" },
     { "name": "Twisted Castle", "portrait": "https://wiki.guildwars2.com/images/a/ad/Bloodstone-Infused_Ectoplasm.png"},
     { "name": "Xera", "portrait": "https://wiki.guildwars2.com/images/4/4b/Mini_Xera.png" },
-    { "name": "Cairn the Indomitable", "portrait": "https://wiki.guildwars2.com/images/b/b8/Mini_Cairn_the_Indomitable.png"},
+    { "name": "Cairn", "portrait": "https://wiki.guildwars2.com/images/b/b8/Mini_Cairn_the_Indomitable.png"},
     { "name": "Mursaat Overseer", "portrait": "https://wiki.guildwars2.com/images/c/c8/Mini_Mursaat_Overseer.png" },
     { "name": "Samarog", "portrait": "https://wiki.guildwars2.com/images/f/f0/Mini_Samarog.png" },
     { "name": "Deimos", "portrait": "https://wiki.guildwars2.com/images/e/e0/Mini_Ragged_White_Mantle_Figurehead.png" },
@@ -22,8 +22,8 @@
     { "name": "Conjured Amalgamate", "portrait": "https://wiki.guildwars2.com/images/3/39/Gold_Conjured_Amalgamate_Trophy.png" },
     { "name": "Twin Largos", "portrait": "https://wiki.guildwars2.com/images/e/e6/Mini_Nikare.png" },
     { "name": "Qadim", "portrait": "https://wiki.guildwars2.com/images/f/f2/Mini_Qadim.png" },
-    { "name": "Cardinal Sabir", "portrait": "https://wiki.guildwars2.com/images/f/fc/Mini_Air_Djinn.png" },
-    { "name": "Cardinal Adina", "portrait": "https://wiki.guildwars2.com/images/a/a0/Mini_Earth_Djinn.png" },
+    { "name": "Sabir", "portrait": "https://wiki.guildwars2.com/images/f/fc/Mini_Air_Djinn.png" },
+    { "name": "Adina", "portrait": "https://wiki.guildwars2.com/images/a/a0/Mini_Earth_Djinn.png" },
     { "name": "Qadim the Peerless", "portrait": "https://wiki.guildwars2.com/images/8/8b/Mini_Qadim_the_Peerless.png" }
   ]
 }

@@ -28,7 +28,7 @@ export default function CreateRaidPost() {
   const handleFormSubmit = async (values: RaidPostFormValues, {}) => {
     try {
       const raidPost = mapRaidPostFormToDto(values);
-      const res = await createPost(raidPost);
+      await createPost(raidPost);
       invalidateGetRaidPostsQueries();
       router.push("/raid-posts");
     } catch (err) {
