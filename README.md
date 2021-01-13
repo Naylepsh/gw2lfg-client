@@ -19,7 +19,12 @@ Client for gw2lfg service. Allows organisation of raid events with automated pla
 
 1. Follow `SETUP` section first and install `PREREQUISITIES`
 2. `npm install` - installing dependencies
-3. `yarn dev` - run the app
+3. Running the app:
+   - Development environment (requires `.env.development` and/or `.env.local`):
+     - `npm run dev` - run the app
+   - Production environment (requires `.env.production` and/or `.env.local`):
+     - `npm run build` - build the app
+     - `npm run start` - run the app
 
 Client will be available at `localhost:3000`
 
