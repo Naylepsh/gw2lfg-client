@@ -17,7 +17,6 @@ import { RaidPostRoleJoinRequests } from "./RaidPostRoleJoinRequests";
 interface RaidPostRolesDetailsProps {
   postId: number;
   roles: RoleDTO[];
-  canUserJoin: boolean;
   displayJoinRequests: boolean;
 }
 
@@ -25,7 +24,7 @@ interface RaidPostRolesDetailsProps {
 Renders detailed information on given raid post's roles and join requests.
 */
 export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
-  const { roles, canUserJoin, postId, displayJoinRequests } = props;
+  const { roles, postId, displayJoinRequests } = props;
 
   const { isLoading, isError, data: joinRequests } = useGetJoinRequestsQuery({
     postId,
@@ -63,6 +62,8 @@ export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
                 role={role}
                 postId={postId}
                 roleIdToCancel={userJoinRequest?.id}
+                hasUserBeenAccepted={userJoinRequest?.status === "ACCEPTED"}
+                canUserClickOnJoin={!!me}
               />
             </AccordionSummary>
             <AccordionDetails>

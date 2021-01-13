@@ -10,6 +10,8 @@ import { invalidateGetJoinRequestsQueries } from "../../../hooks/queries/join-re
 interface RaidPostRoleDetailsProps {
   postId: number;
   role: RoleDTO;
+  canUserClickOnJoin: boolean;
+  hasUserBeenAccepted: boolean;
   roleIdToCancel?: number;
 }
 
@@ -18,9 +20,16 @@ Renders full information of a given role
 Displays a button allowing sending join request for that role.
 */
 export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
-  const { role, roleIdToCancel, postId } = props;
-  const [canClickOnJoin, setCanClickOnJoin] = useState(true);
+  const {
+    role,
+    roleIdToCancel,
+    canUserClickOnJoin,
+    hasUserBeenAccepted,
+    postId,
+  } = props;
+  const [canClickOnJoin, setCanClickOnJoin] = useState(canUserClickOnJoin);
   const [joinButtonText, setJoinButtonText] = useState("JOIN");
+  const cancelButtonText = hasUserBeenAccepted ? "LEAVE" : "CANCEL";
 
   const [createJoinRequest] = useCreateJoinRequestMutation();
   const [cancelJoinRequest] = useDeleteJoinRequestMutation();
@@ -49,7 +58,7 @@ export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
                 invalidateGetJoinRequestsQueries({ postId });
               }}
             >
-              CANCEL
+              {cancelButtonText}
             </LoadingButton>
           ) : (
             <LoadingButton
