@@ -5,6 +5,9 @@ import {
   Link,
   makeStyles,
   Theme,
+  List,
+  ListItem,
+  Divider,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useAcceptJoinRequestMutation } from "../../../hooks/mutations/join-requests/useAcceptJoinRequestMutation";
@@ -59,55 +62,72 @@ export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
   const classes = useStyles();
 
   return (
-    <>
+    <List>
+      <Divider />
       {joinRequests.length > 0 ? (
-        joinRequests.map((request, requestKey) => {
+        joinRequests.map((request, index) => {
           const { status, user } = request;
           const hasRequestBeenAccepted = status === "ACCEPTED";
           const description = hasRequestBeenAccepted
             ? "'s request has been accepted"
-            : "wants to join";
+            : " wants to join";
           const declineButtonText = hasRequestBeenAccepted ? "KICK" : "DECLINE";
 
           return (
-            <Grid key={requestKey} container direction="row">
-              <Grid item xs={12} md={6} className={classes.requestsGridItem}>
-                <Box my={3}>
-                  <Link href={`/users/${request.user.id}`} color="inherit">
-                    {user.username}
-                  </Link>
-                  {description}
-                </Box>
-              </Grid>
-              <Grid item xs={12} md={6} className={classes.requestsGridItem}>
-                {!hasAcceptedRequest && (
-                  <Box mx={3}>
-                    <LoadingButton
-                      color="primary"
-                      variant="contained"
-                      onClick={() => handleAccept(request.id)}
-                    >
-                      ACCEPT
-                    </LoadingButton>
-                  </Box>
-                )}
-                <Box>
-                  <LoadingButton
-                    color="primary"
-                    variant="contained"
-                    onClick={() => handleDecline(request.id)}
+            <>
+              <ListItem divider={index !== joinRequests.length - 1}>
+                <Grid key={index} container direction="row">
+                  <Grid
+                    item
+                    xs={12}
+                    md={6}
+                    className={classes.requestsGridItem}
                   >
-                    {declineButtonText}
-                  </LoadingButton>
-                </Box>
-              </Grid>
-            </Grid>
+                    <Box my={3}>
+                      <Link href={`/users/${request.user.id}`} color="inherit">
+                        {user.username}
+                      </Link>
+                      {description}
+                    </Box>
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    md={6}
+                    className={classes.requestsGridItem}
+                  >
+                    {!hasAcceptedRequest && (
+                      <Box mx={3}>
+                        <LoadingButton
+                          color="primary"
+                          variant="contained"
+                          onClick={() => handleAccept(request.id)}
+                        >
+                          ACCEPT
+                        </LoadingButton>
+                      </Box>
+                    )}
+                    <Box>
+                      <LoadingButton
+                        color="primary"
+                        variant="contained"
+                        onClick={() => handleDecline(request.id)}
+                      >
+                        {declineButtonText}
+                      </LoadingButton>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </ListItem>
+            </>
           );
         })
       ) : (
-        <span>No join requests for this position</span>
+        <ListItem>
+          <span>No join requests for this position</span>
+        </ListItem>
       )}
-    </>
+    </List>
   );
 }
 
