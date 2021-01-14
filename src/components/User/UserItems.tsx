@@ -32,7 +32,7 @@ export default function UserItems() {
   return (
     <Container component={Paper} maxWidth="md">
       <Box my={3} py={3}>
-        <Box mb={1} display="flex" justifyContent="center" alignItems="center">
+        <Box mb={3} display="flex" justifyContent="center" alignItems="center">
           <Typography variant="h6">
             {profile.user.username}'s items in possession
           </Typography>
