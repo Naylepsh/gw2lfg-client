@@ -74,56 +74,44 @@ export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
           const declineButtonText = hasRequestBeenAccepted ? "KICK" : "DECLINE";
 
           return (
-            <>
-              <ListItem divider={index !== joinRequests.length - 1}>
-                <Grid key={index} container direction="row">
-                  <Grid
-                    item
-                    xs={12}
-                    md={6}
-                    className={classes.requestsGridItem}
-                  >
-                    <Box my={3}>
-                      <Link href={`/users/${request.user.id}`} color="inherit">
-                        {user.username}
-                      </Link>
-                      {description}
-                    </Box>
-                  </Grid>
-                  <Grid
-                    item
-                    xs={12}
-                    md={6}
-                    className={classes.requestsGridItem}
-                  >
-                    {!hasAcceptedRequest && (
-                      <Box mx={3}>
-                        <LoadingButton
-                          color="primary"
-                          variant="contained"
-                          onClick={() => handleAccept(request.id)}
-                        >
-                          ACCEPT
-                        </LoadingButton>
-                      </Box>
-                    )}
-                    <Box>
+            <ListItem key={index} divider={index !== joinRequests.length - 1}>
+              <Grid container direction="row">
+                <Grid item xs={12} md={6} className={classes.requestsGridItem}>
+                  <Box my={3}>
+                    <Link href={`/users/${request.user.id}`} color="inherit">
+                      {user.username}
+                    </Link>
+                    {description}
+                  </Box>
+                </Grid>
+                <Grid item xs={12} md={6} className={classes.requestsGridItem}>
+                  {!hasAcceptedRequest && (
+                    <Box mx={3}>
                       <LoadingButton
                         color="primary"
                         variant="contained"
-                        onClick={() => handleDecline(request.id)}
+                        onClick={() => handleAccept(request.id)}
                       >
-                        {declineButtonText}
+                        ACCEPT
                       </LoadingButton>
                     </Box>
-                  </Grid>
+                  )}
+                  <Box>
+                    <LoadingButton
+                      color="primary"
+                      variant="contained"
+                      onClick={() => handleDecline(request.id)}
+                    >
+                      {declineButtonText}
+                    </LoadingButton>
+                  </Box>
                 </Grid>
-              </ListItem>
-            </>
+              </Grid>
+            </ListItem>
           );
         })
       ) : (
-        <ListItem>
+        <ListItem key={0}>
           <span>No join requests for this position</span>
         </ListItem>
       )}
