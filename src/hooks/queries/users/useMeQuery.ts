@@ -1,5 +1,5 @@
 import { useQuery, queryCache } from "react-query";
-import { getMe } from "../../../services/gw2lfg-server/user/meService";
+import getMe from "../../../services/gw2lfg-server/user/meService";
 
 export function useMeQuery() {
   return useQuery(meQueryKey, () => getMe(), { retry: 1 });

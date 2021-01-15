@@ -1,14 +1,22 @@
-import { httpGet } from "../../http/getHttpService";
 import { usersUrl } from "./getProfileService";
-import { GetuserRaidClearStatusDTO } from "./dtos/GetuserRaidClearStatusDTO";
+import { GetUserRaidClearStatusDTO } from "./dtos/GetuserRaidClearStatusDTO";
+import { HttpGet } from "../../http/get/httpGetType";
+import { axiosHttpGetAdapter } from "../../http/get/axiosHttpGetAdapter";
 
 /* 
 Sends GET /users/:id/raid-clear request to gw2lfg-server
 */
-export async function getUserRaidClearStatus(dto: GetuserRaidClearStatusDTO) {
-  const { data } = await httpGet<{ data: string[] }>(
-    `${usersUrl}/${dto.id}/raid-clear`
-  );
+export function getUserRaidClearStatus(httpGet: HttpGet) {
+  return async function (dto: GetUserRaidClearStatusDTO) {
+    const { data } = await httpGet<{ data: string[] }>(
+      `${usersUrl}/${dto.id}/raid-clear`
+    );
 
-  return data;
+    return data;
+  };
 }
+
+/*
+Function with axios adapter injected.
+*/
+export default getUserRaidClearStatus(axiosHttpGetAdapter);

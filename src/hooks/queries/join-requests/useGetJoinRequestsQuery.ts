@@ -1,6 +1,5 @@
 import { useQuery, queryCache } from "react-query";
-import {
-  getJoinRequests,
+import getJoinRequests, {
   GetJoinRequestsQueryParams,
 } from "../../../services/gw2lfg-server/join-requests/getJoinRequestsService";
 

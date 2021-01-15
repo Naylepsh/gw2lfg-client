@@ -1,16 +1,16 @@
 import axios from "axios";
-import { HttpResponse } from "./httpResponse";
-
-export interface HttpPutOptions {
-  headers: any;
-}
+import { HttpResponse } from "../httpResponse";
+import { HttpPut, HttpPutOptions } from "./httpPutType";
 
 /* 
 Wrapper around axios PUT method
 On request success saves data to data field.
 On requst failure saves error to error field
 */
-export async function httpPut<DataType, ResponseType>(
+export const axiosHttpPutAdapter: HttpPut = async function <
+  DataType,
+  ResponseType
+>(
   url: string,
   data: DataType,
   config?: HttpPutOptions
@@ -21,4 +21,4 @@ export async function httpPut<DataType, ResponseType>(
   } catch (error) {
     return { error: error.response };
   }
-}
+};

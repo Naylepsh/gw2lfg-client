@@ -1,16 +1,13 @@
 import axios from "axios";
-import { HttpResponse } from "./httpResponse";
-
-export interface HttpDeleteOptions {
-  headers: any;
-}
+import { HttpResponse } from "../httpResponse";
+import { HttpDeleteOptions, HttpDelete } from "./httpDeleteType";
 
 /* 
-Wrapper around axios delete method.
+Adapter around axios delete method.
 On request success saves data to data field.
-On requst failure saves error to error field
+On requst failure saves error to error field.
 */
-export async function httpDelete<ResponseType>(
+export const axiosHttpDeleteAdapter: HttpDelete = async function <ResponseType>(
   url: string,
   config?: HttpDeleteOptions
 ): Promise<HttpResponse<ResponseType>> {
@@ -20,4 +17,4 @@ export async function httpDelete<ResponseType>(
   } catch (error) {
     return { error: error.response };
   }
-}
+};

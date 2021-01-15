@@ -1,5 +1,6 @@
 import { getAccessToken } from "../../../utils/auth/getAccessToken";
-import { httpPut } from "../../http/putHttpService";
+import { axiosHttpPutAdapter } from "../../http/put/axiosHttpPutAdapter";
+import { HttpPut } from "../../http/put/httpPutType";
 import { createGw2lfgHeaders } from "../createGw2lfgHeaders";
 import { RaidPostDTO } from "../entities/RaidPostDTO";
 import { raidPostsUrl } from "./constants";
@@ -12,27 +13,30 @@ interface UpdateRaidPostDTO extends SaveRaidPostDTO {
 /* 
 Sends PUT /raid-posts/:id request to gw2lfg-server
 */
-export async function updateRaidPost({
-  id,
-  ...raidPostDto
-}: UpdateRaidPostDTO) {
-  // assign default values if dto is lacking following properties
-  raidPostDto.rolesProps = raidPostDto.rolesProps ?? [];
-  raidPostDto.requirementsProps.itemsProps =
-    raidPostDto.requirementsProps.itemsProps ?? [];
+export function updateRaidPost(httpPut: HttpPut) {
+  return async function ({ id, ...raidPostDto }: UpdateRaidPostDTO) {
+    // assign default values if dto is lacking following properties
+    raidPostDto.rolesProps = raidPostDto.rolesProps ?? [];
+    raidPostDto.requirementsProps.itemsProps =
+      raidPostDto.requirementsProps.itemsProps ?? [];
 
-  // Access token is required
-  const token = getAccessToken();
-  const headers = createGw2lfgHeaders(token);
+    // Access token is required
+    const token = getAccessToken();
+    const headers = createGw2lfgHeaders(token);
 
-  const { data, error } = await httpPut<SaveRaidPostDTO, { data: RaidPostDTO }>(
-    getRaidPostUrl(id),
-    raidPostDto,
-    { headers }
-  );
+    const { data, error } = await httpPut<
+      SaveRaidPostDTO,
+      { data: RaidPostDTO }
+    >(getRaidPostUrl(id), raidPostDto, { headers });
 
-  return { data: data?.data, error };
+    return { data: data?.data, error };
+  };
 }
+
+/*
+Function with axios adapter injected.
+*/
+export default updateRaidPost(axiosHttpPutAdapter);
 
 export const getRaidPostUrl = (id: string) => {
   return `${raidPostsUrl}/${id}`;

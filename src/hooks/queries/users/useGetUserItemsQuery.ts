@@ -1,5 +1,5 @@
 import { useQuery, queryCache } from "react-query";
-import { getUserItems } from "../../../services/gw2lfg-server/user/getUserItemsService";
+import getUserItems from "../../../services/gw2lfg-server/user/getUserItemsService";
 
 export function useGetUserItemsQuery(id: string) {
   return useQuery([userItemsQueryKey, id], () => getUserItems({ id }));

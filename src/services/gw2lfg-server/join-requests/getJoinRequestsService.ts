@@ -1,4 +1,5 @@
-import { httpGet } from "../../http/getHttpService";
+import { axiosHttpGetAdapter } from "../../http/get/axiosHttpGetAdapter";
+import { HttpGet } from "../../http/get/httpGetType";
 import { JoinRequestDTO } from "../entities/joinRequestDTO";
 import { joinRequestsUrl } from "./constants";
 
@@ -11,12 +12,14 @@ export interface GetJoinRequestsQueryParams {
 /* 
 Sends GET /join-requests request to server
 */
-export async function getJoinRequests(queryParams: GetJoinRequestsQueryParams) {
-  const { data } = await httpGet<{ data: JoinRequestDTO[] }>(
-    toUrl(queryParams)
-  );
+export function getJoinRequests(httpGet: HttpGet) {
+  return async function (queryParams: GetJoinRequestsQueryParams) {
+    const { data } = await httpGet<{ data: JoinRequestDTO[] }>(
+      toUrl(queryParams)
+    );
 
-  return data;
+    return data;
+  };
 }
 
 function toUrl({ userId, roleId, postId }: GetJoinRequestsQueryParams) {
@@ -48,3 +51,8 @@ function removeUndefinedParams(
 ) {
   return [userQueryParam, roleQueryParam, postQueryParam].filter((qp) => !!qp);
 }
+
+/*
+Function with axios adapter injected.
+*/
+export default getJoinRequests(axiosHttpGetAdapter);

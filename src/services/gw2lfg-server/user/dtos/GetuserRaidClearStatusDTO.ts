@@ -1,4 +1,3 @@
-
-export interface GetuserRaidClearStatusDTO {
+export interface GetUserRaidClearStatusDTO {
   id: string;
 }
