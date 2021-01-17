@@ -2,5 +2,5 @@
 Creates headers used by gw2lfg-server
 */
 export function createGw2lfgHeaders(token: string) {
-  return { "gw2lfg-auth-token": token };
+  return { Authorization: `Bearer ${token}` };
 }
