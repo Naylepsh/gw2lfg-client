@@ -91,9 +91,7 @@ export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
                         item
                         xs={12}
                         sm={6}
-                        container
-                        justify="center"
-                        alignItems="center"
+                        className={classes.requestsGridItem}
                       >
                         <Box my={1}>
                           <LoadingButton
@@ -110,9 +108,7 @@ export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
                       item
                       xs={12}
                       sm={6}
-                      container
-                      justify="center"
-                      alignItems="center"
+                      className={classes.requestsGridItem}
                     >
                       <Box my={1}>
                         <LoadingButton
