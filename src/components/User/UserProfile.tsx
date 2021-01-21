@@ -42,6 +42,12 @@ export default function UserProfile() {
           <Table aria-label="user profile">
             <TableBody>
               <TableRow>
+                <TableCell>ID:</TableCell>
+                <TableCell align="right">
+                  <Box fontWeight="bold">{data.user.id}</Box>
+                </TableCell>
+              </TableRow>
+              <TableRow>
                 <TableCell>Username:</TableCell>
                 <TableCell align="right">
                   <Box fontWeight="bold">{data.user.username}</Box>
