@@ -28,7 +28,7 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
 
   return (
     <Grid container>
-      <Grid item xs={6} md={2}>
+      <Grid item xs={12} sm={6} md={2}>
         <Box mr={3} p={3}>
           <FormikSelect
             name={`${formId}.name`}
@@ -40,7 +40,7 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
           />
         </Box>
       </Grid>
-      <Grid item xs={6} md={2}>
+      <Grid item xs={12} sm={6} md={2}>
         <Box mr={3} p={3}>
           <FormikSelect
             name={`${formId}.class`}
