@@ -26,6 +26,7 @@ export default function MuiDateTimePicker(props: MuiDateTimePickerProps) {
         onChange={onChange}
         label={label}
         required
+        fullWidth
       />
     </MuiPickersUtilsProvider>
   );

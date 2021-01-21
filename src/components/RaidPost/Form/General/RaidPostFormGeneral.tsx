@@ -1,4 +1,4 @@
-import { Typography, Box } from "@material-ui/core";
+import { Typography, Box, Grid } from "@material-ui/core";
 import React from "react";
 import MuiDateTimePicker from "../../../common/inputs/MuiDateTimePicker";
 import FormikSelect from "../../../common/inputs/FormikSelect";
@@ -44,8 +44,8 @@ export default function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
       alignItems="center"
     >
       <Typography variant="h6">General</Typography>
-      <Box display="flex" flexDirection="row" width="100%">
-        <Box ml={3} mr={5} minWidth={120}>
+      <Grid container justify="space-between">
+        <Grid item xs={12} sm={2}>
           <FormikSelect
             name={serverId}
             items={servers}
@@ -58,13 +58,15 @@ export default function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
             value={dateSelected}
             onChange={handleDateChange}
           />
-        </Box>
-        <RaidPostFormDescription
-          id={descriptionId}
-          onChange={onChange}
-          value={descriptionValue}
-        />
-      </Box>
+        </Grid>
+        <Grid item xs={12} sm={8}>
+          <RaidPostFormDescription
+            id={descriptionId}
+            onChange={onChange}
+            value={descriptionValue}
+          />
+        </Grid>
+      </Grid>
     </Box>
   );
 }
