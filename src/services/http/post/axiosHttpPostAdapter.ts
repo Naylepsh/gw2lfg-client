@@ -16,7 +16,7 @@ export const axiosHttpPostAdapter: HttpPost = async function <
   config?: HttpPostOptions
 ): Promise<HttpResponse<ResponseType>> {
   try {
-    const response = await axios.put<ResponseType>(url, data, config);
+    const response = await axios.post<ResponseType>(url, data, config);
     return { data: response.data };
   } catch (error) {
     return { error: error.response };
