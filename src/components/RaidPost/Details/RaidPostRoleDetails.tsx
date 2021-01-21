@@ -38,16 +38,16 @@ export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
 
   return (
     <Grid container>
-      <Grid item xs={12} md={2} className={classes.centeredItem}>
+      <Grid item xs={12} sm={2} className={classes.centeredItem}>
         <Box className={classes.centeredItem} flexDirection="column">
           <RoleAvatar {...role} size={"medium"} />
           <Box textAlign="center">{role.name}</Box>
         </Box>
       </Grid>
-      <Grid item xs={12} md={8} className={classes.centeredItem}>
+      <Grid item xs={12} sm={8} className={classes.centeredItem}>
         {role.description}
       </Grid>
-      <Grid item xs={12} md={2} className={classes.centeredItem}>
+      <Grid item xs={12} sm={2} className={classes.centeredItem}>
         <Box>
           {roleIdToCancel ? (
             <LoadingButton

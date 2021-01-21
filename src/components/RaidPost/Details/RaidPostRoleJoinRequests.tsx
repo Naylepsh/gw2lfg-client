@@ -76,7 +76,7 @@ export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
           return (
             <ListItem key={index} divider={index !== joinRequests.length - 1}>
               <Grid container direction="row">
-                <Grid item xs={12} md={6} className={classes.requestsGridItem}>
+                <Grid item xs={12} md={9} className={classes.requestsGridItem}>
                   <Box my={3}>
                     <Link href={`/users/${request.user.id}`} color="inherit">
                       {user.username}
@@ -84,27 +84,47 @@ export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
                     {description}
                   </Box>
                 </Grid>
-                <Grid item xs={12} md={6} className={classes.requestsGridItem}>
-                  {!hasAcceptedRequest && (
-                    <Box mx={3}>
-                      <LoadingButton
-                        color="primary"
-                        variant="contained"
-                        onClick={() => handleAccept(request.id)}
+                <Grid item xs={12} md={3} className={classes.requestsGridItem}>
+                  <Grid container justify="space-between">
+                    {!hasAcceptedRequest && (
+                      <Grid
+                        item
+                        xs={12}
+                        sm={6}
+                        container
+                        justify="center"
+                        alignItems="center"
                       >
-                        ACCEPT
-                      </LoadingButton>
-                    </Box>
-                  )}
-                  <Box>
-                    <LoadingButton
-                      color="primary"
-                      variant="contained"
-                      onClick={() => handleDecline(request.id)}
+                        <Box my={1}>
+                          <LoadingButton
+                            color="primary"
+                            variant="contained"
+                            onClick={() => handleAccept(request.id)}
+                          >
+                            ACCEPT
+                          </LoadingButton>
+                        </Box>
+                      </Grid>
+                    )}
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      container
+                      justify="center"
+                      alignItems="center"
                     >
-                      {declineButtonText}
-                    </LoadingButton>
-                  </Box>
+                      <Box my={1}>
+                        <LoadingButton
+                          color="primary"
+                          variant="contained"
+                          onClick={() => handleDecline(request.id)}
+                        >
+                          {declineButtonText}
+                        </LoadingButton>
+                      </Box>
+                    </Grid>
+                  </Grid>
                 </Grid>
               </Grid>
             </ListItem>
