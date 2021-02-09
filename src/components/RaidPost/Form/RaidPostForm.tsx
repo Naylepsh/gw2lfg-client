@@ -12,6 +12,7 @@ interface RaidPostFormProps {
   onSubmit: any;
   initialValues: RaidPostFormValues;
   bosses: RaidBossDTO[];
+  title: string
 }
 
 /* 
@@ -19,7 +20,7 @@ Renders a raid post form that can be populated with values beforehand.
 All the <propName>Id have to correspond to fields inside initialValues prop
 */
 export default function RaidPostForm(props: RaidPostFormProps) {
-  const { initialValues, bosses, onSubmit } = props;
+  const { initialValues,title, bosses, onSubmit } = props;
 
   return (
     <Container component={Paper}>
@@ -31,7 +32,7 @@ export default function RaidPostForm(props: RaidPostFormProps) {
         alignItems="center"
         flexDirection="column"
       >
-        <Typography variant="h4">Create Raid Post</Typography>
+        <Typography variant="h4">{title}</Typography>
         <Formik onSubmit={onSubmit} initialValues={initialValues}>
           {(formProps) => {
             const { handleChange, values } = formProps;

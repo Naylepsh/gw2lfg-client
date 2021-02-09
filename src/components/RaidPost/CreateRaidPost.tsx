@@ -54,6 +54,7 @@ export default function CreateRaidPost() {
       onSubmit={handleFormSubmit}
       initialValues={initialValues}
       bosses={bosses}
+      title="Create Post Form"
     />
   );
 }

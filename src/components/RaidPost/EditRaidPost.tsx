@@ -57,6 +57,7 @@ export default function EditRaidPost() {
       onSubmit={handleFormSubmit}
       initialValues={initialValues}
       bosses={bosses}
+      title="Edit Post Form"
     />
   );
 }
