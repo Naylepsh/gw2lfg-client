@@ -52,6 +52,7 @@ export default function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
             label="Date"
             value={dateSelected}
             onChange={onChange}
+            required
           />
         </Grid>
         <Grid item xs={12} sm={8}>

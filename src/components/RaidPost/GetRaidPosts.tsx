@@ -19,6 +19,7 @@ import { Form, Formik } from "formik";
 import FormikSelect from "../common/inputs/FormikSelect";
 import { GetPostsQueryParams } from "../../services/gw2lfg-server/raid-posts/dtos/GetRaidPostsDTO";
 import MuiDateTimePicker from "../common/inputs/MuiDateTimePicker";
+import { roles, classes } from "../Role/roles.json";
 
 const ANY = "Any";
 
@@ -40,7 +41,6 @@ export default function GetRaidPosts() {
     data,
     isPreviousData,
   } = useGetRaidPostsQuery(formParamsToQueryParams(queryFormParams), page);
-  console.log(formParamsToQueryParams(queryFormParams).minDate);
 
   if (isLoading) {
     return <Loading size="large" />;
@@ -126,6 +126,15 @@ function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
     { label: "NA", value: "NA" },
   ];
 
+  const selectableRoleNames = [...roles, { name: ANY }].map(({ name }) => ({
+    label: name,
+    value: name,
+  }));
+  const selectableRoleClasses = [...classes, { name: ANY }].map(({ name }) => ({
+    label: name,
+    value: name,
+  }));
+
   return (
     <Accordion>
       <AccordionSummary>
@@ -142,19 +151,20 @@ function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
         <Formik onSubmit={onSubmit} initialValues={initialValues}>
           {(formProps) => {
             const { handleChange, values } = formProps;
+            const gridItemProps = { xs: 12, sm: 5, md: 2, item: true } as const;
 
             return (
               <Box width={1}>
                 <Form>
                   <Grid container justify="space-around">
-                    <Grid item xs={12} sm={2}>
+                    <Grid {...gridItemProps}>
                       <FormikSelect
                         name="server"
                         items={servers}
                         label="Server"
                       />
                     </Grid>
-                    <Grid item xs={12} sm={2}>
+                    <Grid {...gridItemProps}>
                       <MuiDateTimePicker
                         id="minDate"
                         label="Date"
@@ -162,12 +172,27 @@ function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
                         onChange={handleChange}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={2}>
+                    <Grid {...gridItemProps}>
                       <TextField
                         label="Author's Name"
                         id="authorName"
+                        fullWidth
                         onChange={handleChange}
                         value={values.authorName}
+                      />
+                    </Grid>
+                    <Grid {...gridItemProps}>
+                      <FormikSelect
+                        name="roleName"
+                        items={selectableRoleNames}
+                        label="Role's Name"
+                      />
+                    </Grid>
+                    <Grid {...gridItemProps}>
+                      <FormikSelect
+                        name="roleClass"
+                        items={selectableRoleClasses}
+                        label="Role's Class"
                       />
                     </Grid>
                   </Grid>

@@ -7,13 +7,14 @@ interface MuiDateTimePickerProps {
   label: string;
   value: string;
   onChange: any;
+  required?: boolean;
 }
 
 /* 
 Renders a date picker with past dates disabled
 */
 export default function MuiDateTimePicker(props: MuiDateTimePickerProps) {
-  const { id, label, value, onChange } = props;
+  const { id, label, value, onChange, required } = props;
 
   // onChange on DateTimePicker passes date instead of an event,
   // thus this weird wrapper to make it consistent with other form inputs
@@ -32,8 +33,8 @@ export default function MuiDateTimePicker(props: MuiDateTimePickerProps) {
         disablePast
         onChange={handleChange}
         label={label}
-        required
         fullWidth
+        required={required}
       />
     </MuiPickersUtilsProvider>
   );
