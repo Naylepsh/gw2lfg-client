@@ -5,5 +5,6 @@ export interface GetRaidPostsDTO {
 
 export interface GetPostsQueryParams {
   server?: string;
-  authorName?: string
+  authorName?: string;
+  minDate?: string;
 }

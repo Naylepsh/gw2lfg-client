@@ -30,11 +30,6 @@ export default function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
     { label: "NA", value: "NA" },
   ];
 
-  // onChange on DateTimePicker passes date instead of an event,
-  // but Formik requires an event as an argument, thus this weird wrapper
-  const handleDateChange = (value: Date) =>
-    onChange({ target: { value, id: dateId } });
-
   return (
     <Box
       my={3}
@@ -56,7 +51,7 @@ export default function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
             id={dateId}
             label="Date"
             value={dateSelected}
-            onChange={handleDateChange}
+            onChange={onChange}
           />
         </Grid>
         <Grid item xs={12} sm={8}>

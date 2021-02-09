@@ -18,6 +18,7 @@ import { RaidPostDTO } from "../../services/gw2lfg-server/entities/RaidPostDTO";
 import { Form, Formik } from "formik";
 import FormikSelect from "../common/inputs/FormikSelect";
 import { GetPostsQueryParams } from "../../services/gw2lfg-server/raid-posts/dtos/GetRaidPostsDTO";
+import MuiDateTimePicker from "../common/inputs/MuiDateTimePicker";
 
 const ANY = "Any";
 
@@ -39,6 +40,7 @@ export default function GetRaidPosts() {
     data,
     isPreviousData,
   } = useGetRaidPostsQuery(formParamsToQueryParams(queryFormParams), page);
+  console.log(formParamsToQueryParams(queryFormParams).minDate);
 
   if (isLoading) {
     return <Loading size="large" />;
@@ -151,13 +153,14 @@ function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
                         items={servers}
                         label="Server"
                       />
-
-                      {/* <MuiDateTimePicker
-            id='minDate'
-            label="Date"
-            value={dateSelected}
-            onChange={handleDateChange}
-          /> */}
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                      <MuiDateTimePicker
+                        id="minDate"
+                        label="Date"
+                        value={values.minDate}
+                        onChange={handleChange}
+                      />
                     </Grid>
                     <Grid item xs={12} sm={2}>
                       <TextField

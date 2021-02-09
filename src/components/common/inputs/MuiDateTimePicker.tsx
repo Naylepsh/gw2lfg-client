@@ -15,6 +15,13 @@ Renders a date picker with past dates disabled
 export default function MuiDateTimePicker(props: MuiDateTimePickerProps) {
   const { id, label, value, onChange } = props;
 
+  // onChange on DateTimePicker passes date instead of an event,
+  // thus this weird wrapper to make it consistent with other form inputs
+  const handleChange = (value: Date) => {
+    const isoString = value.toISOString();
+    onChange({ target: { value: isoString, id } });
+  };
+
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <DateTimePicker
@@ -23,7 +30,7 @@ export default function MuiDateTimePicker(props: MuiDateTimePickerProps) {
         ampm={false}
         value={value !== "" ? value : null}
         disablePast
-        onChange={onChange}
+        onChange={handleChange}
         label={label}
         required
         fullWidth
