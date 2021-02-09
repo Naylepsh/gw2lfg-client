@@ -5,6 +5,7 @@ import {
   Box,
   Button,
   Grid,
+  TextField,
   Typography,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
@@ -30,7 +31,6 @@ export default function GetRaidPosts() {
   const [queryFormParams, setQueryFormParams] = useState({
     server: ANY,
   } as GetPostsQueryParams);
-  // console.log(formParamsToQueryParams(queryFormParams));
   const [prevRaidPosts, setPrevRaidPosts] = useState([] as RaidPostDTO[]);
   const {
     isLoading,
@@ -144,13 +144,14 @@ function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
             return (
               <Box width={1}>
                 <Form>
-                  <Grid container justify="space-between">
+                  <Grid container justify="space-around">
                     <Grid item xs={12} sm={2}>
                       <FormikSelect
                         name="server"
                         items={servers}
                         label="Server"
                       />
+
                       {/* <MuiDateTimePicker
             id='minDate'
             label="Date"
@@ -158,15 +159,25 @@ function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
             onChange={handleDateChange}
           /> */}
                     </Grid>
+                    <Grid item xs={12} sm={2}>
+                      <TextField
+                        label="Author's Name"
+                        id="authorName"
+                        onChange={handleChange}
+                        value={values.authorName}
+                      />
+                    </Grid>
                   </Grid>
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                  >
-                    Filter
-                  </Button>
+                  <Box mt={1}>
+                    <Button
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      color="primary"
+                    >
+                      Filter
+                    </Button>
+                  </Box>
                 </Form>
               </Box>
             );
