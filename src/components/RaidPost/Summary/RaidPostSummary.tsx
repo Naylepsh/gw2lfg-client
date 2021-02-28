@@ -9,9 +9,9 @@ interface RaidPostSummaryProps {
   maxNumberOfBosses: number;
 }
 
-/*
-Component for displaying summarized raid post data, such as declared bosses and roles.
-*/
+/**
+ * Component for displaying summarized raid post data, such as declared bosses and roles.
+ */
 export default function RaidPostSummary(props: RaidPostSummaryProps) {
   const { raidPost, maxNumberOfBosses } = props;
 
@@ -38,7 +38,9 @@ export default function RaidPostSummary(props: RaidPostSummaryProps) {
   );
 }
 
-// CSS for RaidPostRolesDetails component
+/**
+ * CSS for RaidPostRolesDetails component
+ */
 const useStyles = makeStyles((_theme: Theme) =>
   createStyles({
     centeredItem: {

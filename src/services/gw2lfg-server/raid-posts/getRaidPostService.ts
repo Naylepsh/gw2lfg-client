@@ -6,9 +6,9 @@ import { GetRaidPostDTO } from "./dtos/GetRaidPostDTO";
 import { HttpGet } from "../../http/get/httpGetType";
 import { axiosHttpGetAdapter } from "../../http/get/axiosHttpGetAdapter";
 
-/* 
-Sends GET /raid-posts/:id request to gw2lfg-server
-*/
+/**
+ * Sends GET /raid-posts/:id request to gw2lfg-server
+ */
 export function getRaidPost(httpGet: HttpGet) {
   return async function (dto: GetRaidPostDTO) {
     // Access token is optional,
@@ -25,10 +25,10 @@ export function getRaidPost(httpGet: HttpGet) {
   };
 }
 
-/*
-Function with axios adapter injected.
-*/
-export default getRaidPost(axiosHttpGetAdapter)
+/**
+ * Function with axios adapter injected.
+ */
+export default getRaidPost(axiosHttpGetAdapter);
 
 export const getRaidPostUrl = (id: string) => {
   return `${raidPostsUrl}/${id}`;

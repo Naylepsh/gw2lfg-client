@@ -10,9 +10,9 @@ interface UpdateRaidPostDTO extends SaveRaidPostDTO {
   id: string;
 }
 
-/* 
-Sends PUT /raid-posts/:id request to gw2lfg-server
-*/
+/**
+ * Sends PUT /raid-posts/:id request to gw2lfg-server
+ */
 export function updateRaidPost(httpPut: HttpPut) {
   return async function ({ id, ...raidPostDto }: UpdateRaidPostDTO) {
     // assign default values if dto is lacking following properties
@@ -33,9 +33,9 @@ export function updateRaidPost(httpPut: HttpPut) {
   };
 }
 
-/*
-Function with axios adapter injected.
-*/
+/**
+ * Function with axios adapter injected.
+ */
 export default updateRaidPost(axiosHttpPutAdapter);
 
 export const getRaidPostUrl = (id: string) => {

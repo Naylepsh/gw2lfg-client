@@ -53,9 +53,9 @@ function mapToQueryValue(value: any) {
   return value;
 }
 
-/*
-Function with axios adapter injected.
-*/
+/**
+ * Function with axios adapter injected.
+ */
 export default getRaidPosts(axiosHttpGetAdapter);
 
 export const getRaidPostsUrl = raidPostsUrl;

@@ -9,9 +9,9 @@ export interface AcceptJoinRequestDTO {
   id: number;
 }
 
-/* 
-Sends PUT /join-requests/:id request to gw2lfg-server with status set to 'ACCEPTED'
-*/
+/**
+ * Sends PUT /join-requests/:id request to gw2lfg-server with status set to 'ACCEPTED'
+ */
 export function acceptJoinRequest(httpPut: HttpPut) {
   return async function (dto: AcceptJoinRequestDTO) {
     const acceptJoinRequestUrl = `${joinRequestsUrl}/${dto.id}`;
@@ -29,7 +29,7 @@ export function acceptJoinRequest(httpPut: HttpPut) {
   };
 }
 
-/*
-Function with axios adapter injected.
-*/
+/**
+ * Function with axios adapter injected.
+ */
 export default acceptJoinRequest(axiosHttpPutAdapter);

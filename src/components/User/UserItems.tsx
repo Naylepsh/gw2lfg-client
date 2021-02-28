@@ -6,9 +6,9 @@ import { useGetUserProfileQuery } from "../../hooks/queries/users/useGetUserProf
 import Loading from "../common/Loading/Loading";
 import Gw2ItemAvatar from "../Gw2Item/Gw2ItemAvatar";
 
-/*
-Renders items of a user with id given by the route query.
-*/
+/**
+ * Renders items of a user with id given by the route query.
+ */
 export default function UserItems() {
   const router = useRouter();
   const { id } = router.query;

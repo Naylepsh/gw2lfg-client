@@ -1,6 +1,6 @@
-/*
-Creates take, skip pagination query out of page
-*/
+/**
+ * Creates take, skip pagination query out of page
+ */
 export function createPaginationQuery(page: number) {
   const resultsPerPage = 10;
 

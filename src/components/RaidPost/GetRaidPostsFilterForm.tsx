@@ -19,22 +19,6 @@ import RaidPostFormRaidBossesOptions from "./Form/RaidBosses/RaidPostFormRaidBos
 
 export const ANY = "Any";
 
-const servers = [
-  { label: "Any", value: ANY },
-  { label: "EU", value: "EU" },
-  { label: "NA", value: "NA" },
-];
-
-const selectableRoleNames = [...roles, { name: ANY }].map(({ name }) => ({
-  label: name,
-  value: name,
-}));
-
-const selectableRoleClasses = [...classes, { name: ANY }].map(({ name }) => ({
-  label: name,
-  value: name,
-}));
-
 interface GetRaidPostsFilterFormProps {
   onSubmit: any;
   initialValues: GetPostsQueryParams;
@@ -43,6 +27,22 @@ interface GetRaidPostsFilterFormProps {
 
 export function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
   const { initialValues, onSubmit, bosses } = props;
+
+  const servers = [
+    { label: "Any", value: ANY },
+    { label: "EU", value: "EU" },
+    { label: "NA", value: "NA" },
+  ];
+
+  const selectableRoleNames = [...roles, { name: ANY }].map(({ name }) => ({
+    label: name,
+    value: name,
+  }));
+
+  const selectableRoleClasses = [...classes, { name: ANY }].map(({ name }) => ({
+    label: name,
+    value: name,
+  }));
 
   return (
     <Accordion>

@@ -13,9 +13,9 @@ interface RoleAvatarProps extends RoleDTO {
   size: "small" | "medium" | "large";
 }
 
-/*
-Renders a role as a tooltip avatar
-*/
+/**
+ * Renders a role as a tooltip avatar
+ */
 export default function RoleAvatar(props: RoleAvatarProps) {
   const classes = useStyles();
 
@@ -46,22 +46,28 @@ class NullRole implements RoleDTO {
   portrait = "https://wiki.guildwars2.com/images/5/5a/Hints_Menu_Bar_icon.png";
 }
 
-// IMPORTANT! Result can also be undefined,
-// but for whatever reason TypeScript decides to ignore that.
-// Even with explicitedly provided type, it still claims the result is always NOT undefined
+/**
+ * IMPORTANT! Result can also be undefined,
+ * but for whatever reason TypeScript decides to ignore that.
+ *  Even with explicitedly provided type, it still claims the result is always NOT undefined
+ */
 function findRoleByName(name: string) {
   const role = roles.find((role) => role.name === name);
   return role;
 }
 
-// IMPORTANT! Result can also be undefined.
-// Same reason as findRoleByName
+/**
+ * IMPORTANT! Result can also be undefined.
+ * Same reason as findRoleByName
+ */
 function findRoleByClass(roleClass: string) {
   const role = classes.find((role) => role.name === roleClass);
   return role;
 }
 
-// CSS for RoleAvatar component
+/**
+ * CSS for RoleAvatar component
+ */
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     small: {

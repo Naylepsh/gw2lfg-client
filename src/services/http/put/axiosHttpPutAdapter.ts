@@ -2,11 +2,11 @@ import axios from "axios";
 import { HttpResponse } from "../httpResponse";
 import { HttpPut, HttpPutOptions } from "./httpPutType";
 
-/* 
-Wrapper around axios PUT method
-On request success saves data to data field.
-On requst failure saves error to error field
-*/
+/**
+ * Wrapper around axios PUT method
+ * On request success saves data to data field.
+ * On requst failure saves error to error field
+ */
 export const axiosHttpPutAdapter: HttpPut = async function <
   DataType,
   ResponseType

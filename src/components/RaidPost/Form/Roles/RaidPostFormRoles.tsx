@@ -10,11 +10,11 @@ interface RaidPostFormRolesProps {
   onChange: any;
 }
 
-/* 
-Renders a dynamic list of roles in a raid post form.
-Allows creation of up to 10 roles.
-Roles can be freely added and removed.
-*/
+/**
+ * Renders a dynamic list of roles in a raid post form.
+ * Allows creation of up to 10 roles.
+ * Roles can be freely added and removed.
+ */
 export function RaidPostFormRoles(props: RaidPostFormRolesProps) {
   const maxNumberOfRoles = 10;
   const { roles, rolesId, onChange } = props;

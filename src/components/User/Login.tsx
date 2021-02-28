@@ -6,11 +6,11 @@ import { invalidateMeQuery } from "../../hooks/queries/users/useMeQuery";
 import { LoginUserDTO } from "../../services/gw2lfg-server/user/dtos/LoginUserDTO";
 import { saveAccessToken } from "../../utils/auth/saveAccessToken";
 import { useState } from "react";
-import { mapGw2lfgServer400ErrorsToErrorMap } from "../../utils/mapGw2lfgServerBadRequestErrorsToErrorMap";
+import { mapGw2lfgServer400ErrorsToErrorMap } from "../../utils/mapGw2lfgServer400ErrorsToErrorMap";
 
-/*
-Creates a login form with initial values and submit handler set up.
-*/
+/**
+ * Creates a login form with initial values and submit handler set up.
+ */
 export default function Login() {
   const router = useRouter();
   const [loginUser] = useLoginMutation();
@@ -23,7 +23,6 @@ export default function Login() {
       invalidateMeQuery();
       router.push("/raid-posts");
     } else if (error) {
-      // Gw2lfg bad requests have specific(?) structure that lets them easly get converted into detailed error messages
       if (error.status === 400 && error.data.errors) {
         setErrors(mapGw2lfgServer400ErrorsToErrorMap(error.data.errors));
       }

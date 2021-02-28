@@ -9,9 +9,9 @@ export interface GetJoinRequestsQueryParams {
   postId?: number;
 }
 
-/* 
-Sends GET /join-requests request to server
-*/
+/**
+ * Sends GET /join-requests request to server
+ */
 export function getJoinRequests(httpGet: HttpGet) {
   return async function (queryParams: GetJoinRequestsQueryParams) {
     const { data } = await httpGet<{ data: JoinRequestDTO[] }>(
@@ -52,7 +52,7 @@ function removeUndefinedParams(
   return [userQueryParam, roleQueryParam, postQueryParam].filter((qp) => !!qp);
 }
 
-/*
-Function with axios adapter injected.
-*/
+/**
+ * Function with axios adapter injected.
+ */
 export default getJoinRequests(axiosHttpGetAdapter);

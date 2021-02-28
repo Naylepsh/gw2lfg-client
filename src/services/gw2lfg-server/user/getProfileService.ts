@@ -4,9 +4,9 @@ import { gw2lfgUrl } from "../constants";
 import { UserProfileDTO } from "../entities/UserProfileDTO";
 import { GetUserProfileDTO } from "./dtos/GetUserProfileDTO";
 
-/* 
-Sends GET /users/:id request to gw2lfg-server
-*/
+/**
+ * Sends GET /users/:id request to gw2lfg-server
+ */
 export function getUserProfile(httpGet: HttpGet) {
   return async function (dto: GetUserProfileDTO) {
     const { data } = await httpGet<{ data: UserProfileDTO }>(
@@ -17,9 +17,9 @@ export function getUserProfile(httpGet: HttpGet) {
   };
 }
 
-/*
-Function with axios adapter injected.
-*/
+/**
+ * Function with axios adapter injected.
+ */
 export default getUserProfile(axiosHttpGetAdapter);
 
 export const usersUrl = `${gw2lfgUrl}/users`;

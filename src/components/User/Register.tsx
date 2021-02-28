@@ -5,7 +5,7 @@ import { useRegisterMutation } from "../../hooks/mutations/users/useRegisterMuta
 import { invalidateMeQuery } from "../../hooks/queries/users/useMeQuery";
 import { RegisterUserDTO } from "../../services/gw2lfg-server/user/dtos/RegisterUserDTO";
 import { saveAccessToken } from "../../utils/auth/saveAccessToken";
-import { mapGw2lfgServer400ErrorsToErrorMap } from "../../utils/mapGw2lfgServerBadRequestErrorsToErrorMap";
+import { mapGw2lfgServer400ErrorsToErrorMap } from "../../utils/mapGw2lfgServer400ErrorsToErrorMap";
 import RegisterForm from "./RegisterForm";
 
 /**

@@ -10,9 +10,9 @@ export interface CreateJoinRequestDTO {
   postId: number;
 }
 
-/* 
-Sends POST /join-requests request to gw2lfg-server
-*/
+/**
+ * Sends POST /join-requests request to gw2lfg-server
+ */
 export function createJoinRequest(httpPost: HttpPost) {
   return async function (dto: CreateJoinRequestDTO) {
     const createJoinRequestUrl = joinRequestsUrl;
@@ -30,7 +30,7 @@ export function createJoinRequest(httpPost: HttpPost) {
   };
 }
 
-/*
-Function with axios adapter injected.
-*/
+/**
+ * Function with axios adapter injected.
+ */
 export default createJoinRequest(axiosHttpPostAdapter);

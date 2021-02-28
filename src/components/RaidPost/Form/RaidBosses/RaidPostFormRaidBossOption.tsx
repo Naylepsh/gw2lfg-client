@@ -11,17 +11,19 @@ interface RaidPostFormRaidBossOptionProps {
   checked: boolean;
 }
 
-/* 
-Renders a singular toggleable raid boss avatar-checkbox of an associated raid post form
-*/
+/**
+ * Renders a singular toggleable raid boss avatar-checkbox of an associated raid post form
+ */
 export function RaidPostFormRaidBossOption(
   props: RaidPostFormRaidBossOptionProps
 ) {
   const { onChange, boss, name, checked } = props;
 
-  // Checkbox for obviously toggleable option
-  // Avatar for an icon
-  // Badge for displaying a checkmark on the icon if checkbox is checked
+  /**
+   * Checkbox for obviously toggleable option
+   * Avatar for an icon
+   * Badge for displaying a checkmark on the icon if checkbox is checked
+   */
   return (
     <Checkbox
       checked={checked}

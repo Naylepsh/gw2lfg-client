@@ -9,17 +9,18 @@ interface RaidPostBossesSummaryProps {
   max: number;
 }
 
-/*
-Component for displaying raid bosses part of raid post.
-Renders raid bosses as a group of avatars
-*/
+/**
+ * Component for displaying raid bosses part of raid post.
+ * Renders raid bosses as a group of avatars
+ */
 export function RaidPostBossesSummary(props: RaidPostBossesSummaryProps) {
   const { bosses, max } = props;
 
-  // max in an AvatarGroup component changes how many avatars will be displayed.
-  // Everything after max will be reduced into singular numeric avatar,
-  // where its value is the number of avatars past max.
-  // Material UI requires max to be at least 2
+  /** max in an AvatarGroup component changes how many avatars will be displayed.
+   * Everything after max will be reduced into singular numeric avatar,
+   * where its value is the number of avatars past max.
+   * Material UI requires max to be at least 2
+   */
   const defaultMax = 2;
   const _max = Math.max(max, defaultMax);
 
@@ -36,7 +37,9 @@ export function RaidPostBossesSummary(props: RaidPostBossesSummaryProps) {
   );
 }
 
-// CSS for RaidPostBossesSummary component
+/**
+ * CSS for RaidPostBossesSummary component
+ */
 const useStyles = makeStyles(() =>
   createStyles({
     bossesGroup: {

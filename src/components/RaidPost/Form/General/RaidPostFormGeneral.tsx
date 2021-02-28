@@ -13,9 +13,9 @@ interface RaidPostFormGeneralProps {
   onChange: any;
 }
 
-/* 
-Renders 'simple', more general properties of raid post form.
-*/
+/**
+ * Renders 'simple', more general properties of raid post form.
+ */
 export default function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
   const {
     serverId,

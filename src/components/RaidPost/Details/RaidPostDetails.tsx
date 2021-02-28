@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Link } from "@material-ui/core";
 import React from "react";
 import { RaidPostDTO } from "../../../services/gw2lfg-server/entities/RaidPostDTO";
-import { RaidPostRolesDetails } from "./RaidPostRolesDetails";
+import { RaidPostRolesDetails } from "./Roles/RaidPostRolesDetails";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useMeQuery } from "../../../hooks/queries/users/useMeQuery";

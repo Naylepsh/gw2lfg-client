@@ -8,9 +8,9 @@ export interface DeleteJoinRequestDTO {
   id: number;
 }
 
-/* 
-Sends DELETE /join-requests/:id request to gw2lfg-server
-*/
+/**
+ * Sends DELETE /join-requests/:id request to gw2lfg-server
+ */
 export function deleteJoinRequest(httpDelete: HttpDelete) {
   return async function (dto: DeleteJoinRequestDTO) {
     const deleteJoinRequestUrl = `${joinRequestsUrl}/${dto.id}`;
@@ -25,7 +25,7 @@ export function deleteJoinRequest(httpDelete: HttpDelete) {
   };
 }
 
-/*
-Function with axios adapter injected.
-*/
+/**
+ * Function with axios adapter injected.
+ */
 export default deleteJoinRequest(axiosHttpDeleteAdapter);

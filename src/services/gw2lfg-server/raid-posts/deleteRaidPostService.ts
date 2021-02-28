@@ -5,9 +5,9 @@ import { createGw2lfgHeaders } from "../createGw2lfgHeaders";
 import { raidPostsUrl } from "./constants";
 import { DeleteRaidPostDTO } from "./dtos/DeleteRaidPostDTO";
 
-/* 
-Sends DELETE /raid-posts/:id request to gw2lfg-server
-*/
+/**
+ * Sends DELETE /raid-posts/:id request to gw2lfg-server
+ */
 export function deleteRaidPost(httpDelete: HttpDelete) {
   return async function (dto: DeleteRaidPostDTO) {
     // Access token is required
@@ -23,9 +23,9 @@ export function deleteRaidPost(httpDelete: HttpDelete) {
   };
 }
 
-/*
-Function with axios adapter injected.
-*/
+/**
+ * Function with axios adapter injected.
+ */
 export default deleteRaidPost(axiosHttpDeleteAdapter);
 
 export const createRaidPostUrl = raidPostsUrl;

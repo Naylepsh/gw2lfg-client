@@ -15,9 +15,9 @@ interface RegisterFormValues {
   apiKey: string;
 }
 
-/*
-Renders a register form.
-*/
+/**
+ * Renders a register form.
+ */
 export default function RegisterForm(props: RegisterFormProps) {
   const { initialValues, onSubmit, errors } = props;
 

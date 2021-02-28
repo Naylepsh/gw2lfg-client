@@ -7,9 +7,9 @@ export interface RaidRolesSummaryProps {
   roles: RoleDTO[];
 }
 
-/*
-Component for displaying roles part of a raid post.
-*/
+/**
+ * Component for displaying roles part of a raid post.
+ */
 export function RaidPostRolesSummary(props: RaidRolesSummaryProps) {
   const { roles } = props;
   const classes = useStyles();
@@ -25,7 +25,9 @@ export function RaidPostRolesSummary(props: RaidRolesSummaryProps) {
   );
 }
 
-// CSS for RaidPostRolesSummary component
+/**
+ * CSS for RaidPostRolesSummary component
+ */
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {

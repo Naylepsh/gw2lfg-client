@@ -11,11 +11,11 @@ import { useUpdateRaidPostMutation } from "../../hooks/mutations/raid-posts/useU
 import { mapRaidPostFormToDto } from "../../utils/mapRaidPostFormToDto";
 import { invalidateGetRaidPostsQueries } from "../../hooks/queries/raid-posts/useGetRaidPostsQuery";
 
-/*
-Renders raid post form that allows editing of existing posts.
-Gets the raid post of the id given by query and sets initial form values and submit handler.
-User has to be authenticated to use.
-*/
+/**
+ * Renders raid post form that allows editing of existing posts.
+ * Gets the raid post of the id given by query and sets initial form values and submit handler.
+ * User has to be authenticated to use.
+ */
 export default function EditRaidPost() {
   const router = useRouter();
   const { id } = router.query;

@@ -3,9 +3,9 @@ import { RegisterUserDTO } from "./dtos/RegisterUserDTO";
 import { HttpPost } from "../../http/post/httpPostType";
 import { axiosHttpPostAdapter } from "../../http/post/axiosHttpPostAdapter";
 
-/* 
-Sends POST /register request to gw2lfg-server
-*/
+/**
+ * Sends POST /register request to gw2lfg-server
+ */
 export function registerUser(httpPost: HttpPost) {
   return async function (dto: RegisterUserDTO) {
     const { data, error } = await httpPost<
@@ -17,9 +17,9 @@ export function registerUser(httpPost: HttpPost) {
   };
 }
 
-/*
-Function with axios adapter injected.
-*/
-export default registerUser(axiosHttpPostAdapter)
+/**
+ * Function with axios adapter injected.
+ */
+export default registerUser(axiosHttpPostAdapter);
 
 export const registerUrl = `${gw2lfgUrl}/register`;

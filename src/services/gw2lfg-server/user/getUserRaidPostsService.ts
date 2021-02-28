@@ -7,13 +7,15 @@ import { GetUserRaidPostsDTO } from "./dtos/GetUserRaidPostsDTO";
 import { HttpGet } from "../../http/get/httpGetType";
 import { axiosHttpGetAdapter } from "../../http/get/axiosHttpGetAdapter";
 
-/* 
-Sends GET /users/:id/raid-posts request to gw2lfg-server.
-*/
+/**
+ * Sends GET /users/:id/raid-posts request to gw2lfg-server.
+ */
 export function getUserRaidPosts(httpGet: HttpGet) {
   return async function (dto: GetUserRaidPostsDTO) {
-    // Access token is optional,
-    // but without it raid post's userMeetsRequirements property will be set to false
+    /**
+     * Access token is optional,
+     * but without it raid post's userMeetsRequirements property will be set to false
+     */
     const token = getAccessToken();
     const headers = createGw2lfgHeaders(token);
 
@@ -28,7 +30,7 @@ export function getUserRaidPosts(httpGet: HttpGet) {
   };
 }
 
-/*
-Function with axios adapter injected.
-*/
-export default getUserRaidPosts(axiosHttpGetAdapter)
+/**
+ * Function with axios adapter injected.
+ */
+export default getUserRaidPosts(axiosHttpGetAdapter);

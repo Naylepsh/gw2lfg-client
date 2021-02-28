@@ -9,22 +9,22 @@ import {
   ListItem,
   Divider,
 } from "@material-ui/core";
-import React, { useState } from "react";
-import { useAcceptJoinRequestMutation } from "../../../hooks/mutations/join-requests/useAcceptJoinRequestMutation";
-import { useDeleteJoinRequestMutation } from "../../../hooks/mutations/join-requests/useDeleteJoinRequestMutation";
-import { invalidateGetJoinRequestsQueries } from "../../../hooks/queries/join-requests/useGetJoinRequestsQuery";
-import { JoinRequestDTO } from "../../../services/gw2lfg-server/entities/joinRequestDTO";
-import LoadingButton from "../../common/buttons/LoadingButton";
+import React from "react";
+import { useAcceptJoinRequestMutation } from "../../../../hooks/mutations/join-requests/useAcceptJoinRequestMutation";
+import { useDeleteJoinRequestMutation } from "../../../../hooks/mutations/join-requests/useDeleteJoinRequestMutation";
+import { invalidateGetJoinRequestsQueries } from "../../../../hooks/queries/join-requests/useGetJoinRequestsQuery";
+import { JoinRequestDTO } from "../../../../services/gw2lfg-server/entities/joinRequestDTO";
+import LoadingButton from "../../../common/buttons/LoadingButton";
 
 interface RaidPostRoleJoinRequestsProps {
   postId: number;
   joinRequests: JoinRequestDTO[];
 }
 
-/*
-Renders join requests of a given role.
-Handles accepting and rejecting of requests.
-*/
+/**
+ * Renders join requests of a given role.
+ * Handles accepting and rejecting of requests.
+ */
 export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
   const { joinRequests, postId } = props;
 

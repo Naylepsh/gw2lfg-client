@@ -20,10 +20,10 @@ import React from "react";
 import { useGetUserProfileQuery } from "../../hooks/queries/users/useGetUserProfileQuery";
 import Loading from "../common/Loading/Loading";
 
-/*
-Renders profile of a user with id given by the route query,
-For example, if rendering page /users/123, then will render profile of user with id 123
-*/
+/**
+ * Renders profile of a user with id given by the route query,
+ * For example, if rendering page /users/123, then will render profile of user with id 123
+ */
 export default function UserProfile() {
   const router = useRouter();
   const { id } = router.query;
@@ -92,7 +92,9 @@ export default function UserProfile() {
   );
 }
 
-// CSS for UserProfile component
+/**
+ * CSS for UserProfile component
+ */
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     list: {

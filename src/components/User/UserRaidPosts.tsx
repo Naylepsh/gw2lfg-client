@@ -7,10 +7,10 @@ import { RaidPost } from "../RaidPost/RaidPost";
 import { useGetUserRaidPostsQuery } from "../../hooks/queries/users/useGetUserRaidPostsQuery";
 import { useGetUserProfileQuery } from "../../hooks/queries/users/useGetUserProfileQuery";
 
-/* 
-Paginated User Raid Posts component.
-Gets posts of a user from gw2lfg-server and displays them.
-*/
+/**
+ * Paginated User Raid Posts component.
+ * Gets posts of a user from gw2lfg-server and displays them.
+ */
 export default function UserRaidPosts() {
   const router = useRouter();
   const { id } = router.query;

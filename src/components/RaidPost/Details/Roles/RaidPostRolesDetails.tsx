@@ -7,10 +7,10 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
-import { useGetJoinRequestsQuery } from "../../../hooks/queries/join-requests/useGetJoinRequestsQuery";
-import { useMeQuery } from "../../../hooks/queries/users/useMeQuery";
-import { JoinRequestDTO } from "../../../services/gw2lfg-server/entities/joinRequestDTO";
-import { RoleDTO } from "../../../services/gw2lfg-server/entities/RoleDTO";
+import { useGetJoinRequestsQuery } from "../../../../hooks/queries/join-requests/useGetJoinRequestsQuery";
+import { useMeQuery } from "../../../../hooks/queries/users/useMeQuery";
+import { JoinRequestDTO } from "../../../../services/gw2lfg-server/entities/joinRequestDTO";
+import { RoleDTO } from "../../../../services/gw2lfg-server/entities/RoleDTO";
 import { RaidPostRoleDetails } from "./RaidPostRoleDetails";
 import { RaidPostRoleJoinRequests } from "./RaidPostRoleJoinRequests";
 
@@ -20,9 +20,9 @@ interface RaidPostRolesDetailsProps {
   displayJoinRequests: boolean;
 }
 
-/* 
-Renders detailed information on given raid post's roles and join requests.
-*/
+/**
+ * Renders detailed information on given raid post's roles and join requests.
+ */
 export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
   const { roles, postId, displayJoinRequests } = props;
 

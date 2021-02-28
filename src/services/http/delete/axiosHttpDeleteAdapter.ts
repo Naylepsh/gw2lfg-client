@@ -2,11 +2,11 @@ import axios from "axios";
 import { HttpResponse } from "../httpResponse";
 import { HttpDeleteOptions, HttpDelete } from "./httpDeleteType";
 
-/* 
-Adapter around axios delete method.
-On request success saves data to data field.
-On requst failure saves error to error field.
-*/
+/**
+ * Adapter around axios delete method.
+ * On request success saves data to data field.
+ * On requst failure saves error to error field.
+ */
 export const axiosHttpDeleteAdapter: HttpDelete = async function <ResponseType>(
   url: string,
   config?: HttpDeleteOptions

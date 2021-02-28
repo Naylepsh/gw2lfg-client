@@ -6,9 +6,9 @@ import { RaidPostDTO } from "../entities/RaidPostDTO";
 import { raidPostsUrl } from "./constants";
 import { SaveRaidPostDTO } from "./dtos/SaveRaidPostDTO";
 
-/* 
-Sends POST /raid-posts request to gw2lfg-server
-*/
+/**
+ * Sends POST /raid-posts request to gw2lfg-server
+ */
 export function createRaidPost(httpPost: HttpPost) {
   return async function (dto: SaveRaidPostDTO) {
     // Assign default values if dto is lacking following properties
@@ -28,9 +28,9 @@ export function createRaidPost(httpPost: HttpPost) {
   };
 }
 
-/*
-Function with axios adapter injected.
-*/
+/**
+ * Function with axios adapter injected.
+ */
 export default createRaidPost(axiosHttpPostAdapter);
 
 export const createRaidPostUrl = raidPostsUrl;

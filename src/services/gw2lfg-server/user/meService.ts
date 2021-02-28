@@ -5,9 +5,9 @@ import { createGw2lfgHeaders } from "../createGw2lfgHeaders";
 import { HttpGet } from "../../http/get/httpGetType";
 import { axiosHttpGetAdapter } from "../../http/get/axiosHttpGetAdapter";
 
-/* 
-Sends GET /me request to gw2lfg-server
-*/
+/**
+ * Sends GET /me request to gw2lfg-server
+ */
 export function getMe(httpGet: HttpGet) {
   return async function () {
     // Access token is required
@@ -20,9 +20,9 @@ export function getMe(httpGet: HttpGet) {
   };
 }
 
-/*
-Function with axios adapter injected.
-*/
+/**
+ * Function with axios adapter injected.
+ */
 export default getMe(axiosHttpGetAdapter);
 
 export const meUrl = `${gw2lfgUrl}/me`;

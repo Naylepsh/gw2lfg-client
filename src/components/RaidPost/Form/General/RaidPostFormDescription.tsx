@@ -3,9 +3,9 @@ import React from "react";
 
 type RaidPostFormDescriptionProps = TextFieldProps;
 
-/* 
-Renders a textarea with its value attached to an associated raid post form
-*/
+/**
+ * Renders a textarea with its value attached to an associated raid post form
+ */
 export default function RaidPostFormDescription(
   props: RaidPostFormDescriptionProps
 ) {
