@@ -9,11 +9,10 @@ import { RaidPostDTO } from "../../services/gw2lfg-server/entities/RaidPostDTO";
 import { GetPostsQueryParams } from "../../services/gw2lfg-server/raid-posts/dtos/GetRaidPostsDTO";
 import { ANY, GetRaidPostsFilterForm } from "./GetRaidPostsFilterForm";
 
-
-/* 
-Paginated Raid Posts component.
-Gets posts from gw2lfg-server and displays them.
-*/
+/**
+ * Paginated Raid Posts component.
+ * Gets posts from gw2lfg-server and displays them.
+ */
 export default function GetRaidPosts() {
   const router = useRouter();
   const [page, setPage] = useState(1);
@@ -21,6 +20,7 @@ export default function GetRaidPosts() {
     server: ANY,
     roleName: ANY,
     roleClass: ANY,
+    bossesIds: [],
   } as GetPostsQueryParams);
   const [prevRaidPosts, setPrevRaidPosts] = useState([] as RaidPostDTO[]);
   const {
@@ -93,7 +93,11 @@ function formParamsToQueryParams(filterParams: GetPostsQueryParams) {
   const queryParams = { ...filterParams };
 
   for (const param in queryParams) {
-    if (queryParams[param] === ANY) {
+    const queryValue = queryParams[param];
+    const isAnyValue = queryValue === ANY;
+    const isEmptyArray = Array.isArray(queryValue) && queryValue.length === 0;
+
+    if (isAnyValue || isEmptyArray) {
       delete queryParams[param];
     }
   }

@@ -7,9 +7,9 @@ import { createPaginationQuery } from "../createPaginationQuery";
 import { HttpGet } from "../../http/get/httpGetType";
 import { axiosHttpGetAdapter } from "../../http/get/axiosHttpGetAdapter";
 
-/* 
-Sends GET /raid-posts request to gw2lfg-server
-*/
+/**
+ * Sends GET /raid-posts request to gw2lfg-server
+ */
 export function getRaidPosts(httpGet: HttpGet) {
   return async function (dto: GetRaidPostsDTO) {
     // Access token is optional,
@@ -38,10 +38,19 @@ function createQuery(dto: GetRaidPostsDTO) {
 function createParamQuery(params: GetPostsQueryParams) {
   const query = [];
   for (const param in params) {
-    query.push(`${param}=${params[param]}`);
+    const value = mapToQueryValue(params[param]);
+    query.push(`${param}=${value}`);
   }
 
   return query.join("&");
+}
+
+function mapToQueryValue(value: any) {
+  if (Array.isArray(value)) {
+    value = value.join(",");
+  }
+
+  return value;
 }
 
 /*
