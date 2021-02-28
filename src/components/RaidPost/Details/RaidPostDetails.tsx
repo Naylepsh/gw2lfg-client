@@ -15,10 +15,10 @@ interface RaidPostDetailsProps {
   raidPost: RaidPostDTO;
 }
 
-/* 
-Renders description and role of a given raid post.
-Displays edit / delete buttons if user is authorized to access those routes.
-*/
+/**
+ * Renders description and role of a given raid post.
+ * Displays edit / delete buttons if user is authorized to access those routes.
+ */
 export default function RaidPostDetails(props: RaidPostDetailsProps) {
   const { raidPost } = props;
 
@@ -53,7 +53,6 @@ export default function RaidPostDetails(props: RaidPostDetailsProps) {
             {raidPost.author.username}
           </Link>
         </Box>
-        {/* description */}
         <Box mb={3}>{raidPost.description}</Box>
         <RaidPostRequirementsDetails requirements={raidPost.requirements} />
         <RaidPostRolesDetails

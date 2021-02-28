@@ -6,9 +6,9 @@ interface LoadingProps {
   size?: "small" | "medium" | "large";
 }
 
-/* 
-Renders a whole-page sized circular loading animation
-*/
+/**
+ * Renders a whole-page sized circular loading animation
+ */
 export default function Loading(props: LoadingProps) {
   const progressSize = { small: 40, medium: 60, large: 100 };
   const defaultSize = "medium";

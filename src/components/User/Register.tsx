@@ -5,13 +5,13 @@ import { useRegisterMutation } from "../../hooks/mutations/users/useRegisterMuta
 import { invalidateMeQuery } from "../../hooks/queries/users/useMeQuery";
 import { RegisterUserDTO } from "../../services/gw2lfg-server/user/dtos/RegisterUserDTO";
 import { saveAccessToken } from "../../utils/auth/saveAccessToken";
-import { mapGw2lfgServerBadRequestErrorsToErrorMap } from "../../utils/mapGw2lfgServerBadRequestErrorsToErrorMap";
+import { mapGw2lfgServer400ErrorsToErrorMap } from "../../utils/mapGw2lfgServerBadRequestErrorsToErrorMap";
 import RegisterForm from "./RegisterForm";
 
-/*
-Creates a register form with initial values and submit handler set up.
-*/
-export function Register() {
+/**
+ * Creates a register form with initial values and submit handler set up.
+ */
+export default function Register() {
   const router = useRouter();
   const [registerUser] = useRegisterMutation();
   const [errors, setErrors] = useState({} as Record<string, string>);
@@ -23,12 +23,11 @@ export function Register() {
       invalidateMeQuery();
       router.push("/raid-posts");
     } else if (error) {
-      // Gw2lfg bad requests have specific(?) structure that lets them easly get converted into detailed error messages
       if (error.status === 400 && error.data.errors) {
-        setErrors(mapGw2lfgServerBadRequestErrorsToErrorMap(error.data.errors));
+        setErrors(mapGw2lfgServer400ErrorsToErrorMap(error.data.errors));
       }
       // If a user with the same username is already in the database, we let the user know to change their username
-      else if (error.status === 422) {
+      else if (error.status === 409) {
         const message = "Username taken";
         setErrors({ username: message });
       }

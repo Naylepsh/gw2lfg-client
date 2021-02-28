@@ -10,9 +10,9 @@ interface MuiDateTimePickerProps {
   required?: boolean;
 }
 
-/* 
-Renders a date picker with past dates disabled
-*/
+/**
+ * Renders a date picker with past dates disabled
+ */
 export default function MuiDateTimePicker(props: MuiDateTimePickerProps) {
   const { id, label, value, onChange, required } = props;
 

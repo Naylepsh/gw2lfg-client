@@ -6,7 +6,7 @@ interface Gw2lfgServerBadRequestErrorData {
 /* 
 Maps complicated bad-request errors structure into simple property:message map
 */
-export function mapGw2lfgServerBadRequestErrorsToErrorMap(
+export function mapGw2lfgServer400ErrorsToErrorMap(
   errors: Gw2lfgServerBadRequestErrorData[]
 ) {
   const errorMap: Record<string, string> = {};

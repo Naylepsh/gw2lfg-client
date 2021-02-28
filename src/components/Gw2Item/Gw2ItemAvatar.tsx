@@ -6,9 +6,9 @@ interface Gw2ItemAvatarProps {
   name: string;
 }
 
-/* 
-Renders an item as a tooltip avatar
-*/
+/**
+ * Renders an item as a tooltip avatar
+ */
 function Gw2ItemAvatar(props: Gw2ItemAvatarProps) {
   const { name } = props;
   const item = items[name];
@@ -20,5 +20,5 @@ function Gw2ItemAvatar(props: Gw2ItemAvatarProps) {
   ) : null;
 }
 
-// Memoised component, improves performance
+// Memoised component for performance improvement.
 export default React.memo(Gw2ItemAvatar);

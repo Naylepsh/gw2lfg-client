@@ -9,9 +9,9 @@ interface RaidPostRequirementsDetailsProps {
   };
 }
 
-/* 
-Renders item requirements in a list of (<ItemAvatar> x <quantity>) components
-*/
+/**
+ * Renders item requirements in a list of (<ItemAvatar> x <quantity>) components
+ */ 
 export function RaidPostRequirementsDetails(
   props: RaidPostRequirementsDetailsProps
 ) {

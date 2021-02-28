@@ -3,9 +3,9 @@ import React, { useState } from "react";
 
 interface LoadingButtonProps extends ButtonProps {}
 
-/* 
-Renders a button that displays circular loading animation if loading is set to true
-*/
+/**
+ * Renders a button that displays circular loading animation if loading is set to true
+ */
 export default function LoadingButton(props: LoadingButtonProps) {
   const { children, disabled, onClick, ...rest } = props;
   const [isLoading, setIsLoading] = useState(false);

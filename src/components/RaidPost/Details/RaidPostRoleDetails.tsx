@@ -15,10 +15,10 @@ interface RaidPostRoleDetailsProps {
   roleIdToCancel?: number;
 }
 
-/* 
-Renders full information of a given role
-Displays a button allowing sending join request for that role.
-*/
+/**
+ * Renders full information of a given role
+ * Displays a button allowing sending join request for that role.
+ */
 export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
   const {
     role,
@@ -87,7 +87,9 @@ export function RaidPostRoleDetails(props: RaidPostRoleDetailsProps) {
   );
 }
 
-// CSS for RaidPostRolesDetails component
+/**
+ * CSS for RaidPostRolesDetails component
+ */
 const useStyles = makeStyles((_theme: Theme) =>
   createStyles({
     centeredItem: {
