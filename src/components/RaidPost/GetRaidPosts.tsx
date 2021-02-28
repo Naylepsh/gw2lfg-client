@@ -1,4 +1,4 @@
-import { Box, Button } from "@material-ui/core";
+import { Box, Button, Container, Paper, Typography } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -8,6 +8,7 @@ import { useGetRaidPostsQuery } from "../../hooks/queries/raid-posts/useGetRaidP
 import { RaidPostDTO } from "../../services/gw2lfg-server/entities/RaidPostDTO";
 import { GetPostsQueryParams } from "../../services/gw2lfg-server/raid-posts/dtos/GetRaidPostsDTO";
 import { ANY, GetRaidPostsFilterForm } from "./GetRaidPostsFilterForm";
+import { useGetRaidBossesQuery } from "../../hooks/queries/raid-bosses/useGetRaidBossesQuery";
 
 /**
  * Paginated Raid Posts component.
@@ -24,19 +25,25 @@ export default function GetRaidPosts() {
   } as GetPostsQueryParams);
   const [prevRaidPosts, setPrevRaidPosts] = useState([] as RaidPostDTO[]);
   const {
-    isLoading,
-    isError,
-    error,
+    isLoading: isLoadingPosts,
+    isError: encouteredPostsError,
+    error: postsError,
     data,
     isPreviousData,
   } = useGetRaidPostsQuery(formParamsToQueryParams(queryFormParams), page);
+  const {
+    isLoading: isLoadingBosses,
+    isError: encouteredBossesError,
+    error: bossesError,
+    data: bosses,
+  } = useGetRaidBossesQuery();
 
-  if (isLoading) {
+  if (isLoadingPosts || isLoadingBosses) {
     return <Loading size="large" />;
   }
 
-  if (isError) {
-    console.log({ error });
+  if (encouteredPostsError || encouteredBossesError) {
+    console.log(postsError || bossesError);
     return <div>Error occured ...</div>;
   }
 
@@ -70,11 +77,20 @@ export default function GetRaidPosts() {
         <GetRaidPostsFilterForm
           onSubmit={setQueryFormParams}
           initialValues={queryFormParams}
+          bosses={bosses}
         />
       </Box>
-      {currentRaidPosts.map((raidPost) => (
-        <RaidPost raidPost={raidPost} key={raidPost.id} />
-      ))}
+      {currentRaidPosts.length > 0 ? (
+        currentRaidPosts.map((raidPost) => (
+          <RaidPost raidPost={raidPost} key={raidPost.id} />
+        ))
+      ) : (
+        <Container component={Paper}>
+          <Box p={3} display="flex" justifyContent="center" alignItems="center">
+            <Typography variant="h5">No posts of were found ╥﹏╥</Typography>
+          </Box>
+        </Container>
+      )}
       {data?.hasMore && (
         <Button
           variant="contained"

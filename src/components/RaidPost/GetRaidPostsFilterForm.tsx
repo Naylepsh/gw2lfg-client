@@ -14,6 +14,8 @@ import FormikSelect from "../common/inputs/FormikSelect";
 import { GetPostsQueryParams } from "../../services/gw2lfg-server/raid-posts/dtos/GetRaidPostsDTO";
 import MuiDateTimePicker from "../common/inputs/MuiDateTimePicker";
 import { roles, classes } from "../Role/roles.json";
+import { RaidBossDTO } from "../../services/gw2lfg-server/entities/RaidBossDTO";
+import RaidPostFormRaidBossesOptions from "./Form/RaidBosses/RaidPostFormRaidBossesOptions";
 
 export const ANY = "Any";
 
@@ -36,10 +38,11 @@ const selectableRoleClasses = [...classes, { name: ANY }].map(({ name }) => ({
 interface GetRaidPostsFilterFormProps {
   onSubmit: any;
   initialValues: GetPostsQueryParams;
+  bosses: RaidBossDTO[];
 }
 
 export function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
-  const { initialValues, onSubmit } = props;
+  const { initialValues, onSubmit, bosses } = props;
 
   return (
     <Accordion>
@@ -99,6 +102,14 @@ export function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
                         name="roleClass"
                         items={selectableRoleClasses}
                         label="Role's Class"
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <RaidPostFormRaidBossesOptions
+                        bosses={bosses}
+                        onChange={handleChange}
+                        name="bossesIds"
+                        selectedBosses={values.bossesIds}
                       />
                     </Grid>
                   </Grid>
