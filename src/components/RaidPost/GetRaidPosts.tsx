@@ -94,7 +94,7 @@ export default function GetRaidPosts() {
       {data?.hasMore && (
         <Button
           variant="contained"
-          color="secondary"
+          color="primary"
           fullWidth
           onClick={loadMore}
         >
