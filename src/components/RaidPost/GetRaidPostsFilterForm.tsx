@@ -5,6 +5,7 @@ import {
   Box,
   Button,
   Grid,
+  makeStyles,
   TextField,
   Typography,
 } from "@material-ui/core";
@@ -16,6 +17,7 @@ import MuiDateTimePicker from "../common/inputs/MuiDateTimePicker";
 import { roles, classes } from "../Role/roles.json";
 import { RaidBossDTO } from "../../services/gw2lfg-server/entities/RaidBossDTO";
 import RaidPostFormRaidBossesOptions from "./Form/RaidBosses/RaidPostFormRaidBossesOptions";
+import { createStyles } from "@material-ui/core";
 
 export const ANY = "Any";
 
@@ -27,6 +29,8 @@ interface GetRaidPostsFilterFormProps {
 
 export function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
   const { initialValues, onSubmit, bosses } = props;
+
+  const cssClasses = useStyles();
 
   const servers = [
     { label: "Any", value: ANY },
@@ -60,7 +64,13 @@ export function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
         <Formik onSubmit={onSubmit} initialValues={initialValues}>
           {(formProps) => {
             const { handleChange, values } = formProps;
-            const gridItemProps = { xs: 12, sm: 5, md: 2, item: true } as const;
+            const gridItemProps = {
+              xs: 12,
+              sm: 5,
+              md: 2,
+              item: true,
+              className: cssClasses.gridItem,
+            } as const;
 
             return (
               <Box width={1}>
@@ -132,3 +142,14 @@ export function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
     </Accordion>
   );
 }
+
+/**
+ * CSS for GetRaidPostFilterForm component
+ */
+const useStyles = makeStyles(() =>
+  createStyles({
+    gridItem: {
+      margin: "5px 0",
+    },
+  })
+);
