@@ -19,13 +19,13 @@ export default function RaidPostSummary(props: RaidPostSummaryProps) {
 
   return (
     <Grid container>
-      <Grid item xs={12} md={6} container direction="row">
+      <Grid item xs={12} md={4} container direction="row">
         <RaidPostBossesSummary
           bosses={raidPost.bosses}
           max={maxNumberOfBosses}
         />
       </Grid>
-      <Grid item xs={12} md={4} container direction="row">
+      <Grid item xs={12} md={6} container direction="row">
         <RaidPostRolesSummary roles={raidPost.roles} />
       </Grid>
       <Grid item xs={12} md={2} className={classes.centeredItem}>
