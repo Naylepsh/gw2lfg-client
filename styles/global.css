@@ -8,6 +8,10 @@ body {
   font-size: 18px;
 }
 
+body {
+  background: url("/background.jpg") no-repeat center center fixed;
+}
+
 * {
   box-sizing: border-box;
 }

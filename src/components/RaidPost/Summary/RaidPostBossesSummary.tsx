@@ -16,7 +16,8 @@ interface RaidPostBossesSummaryProps {
 export function RaidPostBossesSummary(props: RaidPostBossesSummaryProps) {
   const { bosses, max } = props;
 
-  /** max in an AvatarGroup component changes how many avatars will be displayed.
+  /**
+   * max in an AvatarGroup component changes how many avatars will be displayed.
    * Everything after max will be reduced into singular numeric avatar,
    * where its value is the number of avatars past max.
    * Material UI requires max to be at least 2
@@ -28,7 +29,11 @@ export function RaidPostBossesSummary(props: RaidPostBossesSummaryProps) {
 
   return (
     <React.Fragment>
-      <AvatarGroup max={_max} className={styles.bossesGroup}>
+      <AvatarGroup
+        max={_max}
+        classes={{ avatar: styles.avatar }}
+        className={styles.bossesGroup}
+      >
         {bosses.map((boss, key) => (
           <RaidBossAvatar key={key} {...boss} />
         ))}
@@ -44,6 +49,9 @@ const useStyles = makeStyles(() =>
   createStyles({
     bossesGroup: {
       flexWrap: "wrap",
+    },
+    avatar: {
+      backgroundColor: "#decdb9",
     },
   })
 );

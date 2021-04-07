@@ -6,6 +6,7 @@ import { Container } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import NavBar from "../src/components/NavBar/NavBar";
 import theme from "../src/theme";
+import "../styles/global.css";
 
 // Template needed for proper Next.js function
 export default function MyApp(props) {
