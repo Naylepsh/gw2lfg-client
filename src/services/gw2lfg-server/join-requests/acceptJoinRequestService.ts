@@ -1,5 +1,5 @@
 import { getAccessToken } from "../../../utils/auth/getAccessToken";
-import { axiosHttpPostAdapter as axiosHttpPutAdapter } from "../../http/post/axiosHttpPostAdapter";
+import { axiosHttpPutAdapter } from "../../http/put/axiosHttpPutAdapter";
 import { HttpPut } from "../../http/put/httpPutType";
 import { createGw2lfgHeaders } from "../createGw2lfgHeaders";
 import { JoinRequestDTO } from "../entities/joinRequestDTO";
