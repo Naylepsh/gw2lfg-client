@@ -3,18 +3,18 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { useMeQuery } from "../../hooks/queries/users/useMeQuery";
 import { Link } from "@material-ui/core";
 import { NotLoggedInMenu } from "./Menu/NotLoggedInMenu";
 import { LoggedInMenu } from "./Menu/LoggedInMenu";
+import { useUser } from "../../hooks/useUser";
 
 /**
  * Renders a fixed-to-top navigation bar
  */
 export default function NavBar() {
   const classes = useStyles();
-  const { isLoading: isLoading, isError, data } = useMeQuery();
-  const isUserLoggedIn = (!isLoading || !isError) && data;
+  const { isLoading, user } = useUser();
+  const isUserLoggedIn = !isLoading && user;
 
   return (
     <div className={classes.root}>
@@ -26,7 +26,7 @@ export default function NavBar() {
             </Link>
           </Typography>
           {isUserLoggedIn ? (
-            <LoggedInMenu userId={data.id} />
+            <LoggedInMenu userId={user.id} />
           ) : (
             <NotLoggedInMenu />
           )}

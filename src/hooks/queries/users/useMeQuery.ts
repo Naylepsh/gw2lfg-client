@@ -6,7 +6,7 @@ export function useMeQuery() {
 }
 
 export function invalidateMeQuery() {
-  queryCache.invalidateQueries(meQueryKey);
+  return queryCache.invalidateQueries(meQueryKey);
 }
 
 const meQueryKey = "me";
