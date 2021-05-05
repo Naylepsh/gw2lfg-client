@@ -17,9 +17,12 @@ export function mapRaidPostDtoToFormValues(
   return {
     server: dto.server,
     date: dto.date,
-    description: dto.description,
+    description: dto.description ?? "",
     selectedBosses: dto.bosses.map((boss) => boss.id.toString()),
     requirementsProps,
-    rolesProps: dto.roles,
+    rolesProps: dto.roles.map(({ description, ...role }) => ({
+      description: description ?? "",
+      ...role,
+    })),
   };
 }
