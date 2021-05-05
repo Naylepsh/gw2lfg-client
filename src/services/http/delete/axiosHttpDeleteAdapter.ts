@@ -1,6 +1,7 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { HttpResponse } from "../httpResponse";
 import { HttpDeleteOptions, HttpDelete } from "./httpDeleteType";
+import { handleRequestError } from "../handleRequestError";
 
 /**
  * Adapter around axios delete method.
@@ -15,6 +16,7 @@ export const axiosHttpDeleteAdapter: HttpDelete = async function <ResponseType>(
     const response = await axios.delete<ResponseType>(url, config);
     return { data: response.data };
   } catch (error) {
+    handleRequestError(error.response as AxiosResponse);
     return { error: error.response };
   }
 };

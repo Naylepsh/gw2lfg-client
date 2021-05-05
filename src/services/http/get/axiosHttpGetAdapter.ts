@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import { handleRequestError } from "../handleRequestError";
 import { HttpGet, HttpGetOptions } from "./httpGetType";
 
 /**
@@ -8,6 +9,11 @@ export const axiosHttpGetAdapter: HttpGet = async function <ResponseType>(
   url: string,
   config?: HttpGetOptions
 ): Promise<ResponseType> {
-  const response = await axios.get<ResponseType>(url, config);
-  return response.data;
+  try {
+    const response = await axios.get<ResponseType>(url, config);
+    return response.data;
+  } catch (error) {
+    handleRequestError(error.response as AxiosResponse);
+    throw error;
+  }
 };

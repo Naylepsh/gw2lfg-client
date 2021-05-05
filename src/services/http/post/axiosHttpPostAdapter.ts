@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import { handleRequestError } from "../handleRequestError";
 import { HttpResponse } from "../httpResponse";
 import { HttpPost, HttpPostOptions } from "./httpPostType";
 
@@ -19,6 +20,7 @@ export const axiosHttpPostAdapter: HttpPost = async function <
     const response = await axios.post<ResponseType>(url, data, config);
     return { data: response.data };
   } catch (error) {
+    handleRequestError(error.response as AxiosResponse);
     return { error: error.response };
   }
 };

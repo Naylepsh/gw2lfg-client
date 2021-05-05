@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import { handleRequestError } from "../handleRequestError";
 import { HttpResponse } from "../httpResponse";
 import { HttpPut, HttpPutOptions } from "./httpPutType";
 
@@ -19,6 +20,7 @@ export const axiosHttpPutAdapter: HttpPut = async function <
     const response = await axios.put<ResponseType>(url, data, config);
     return { data: response.data };
   } catch (error) {
+    handleRequestError(error.response as AxiosResponse);
     return { error: error.response };
   }
 };
