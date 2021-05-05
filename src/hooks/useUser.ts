@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { UserDTO } from "../services/gw2lfg-server/entities/UserDTO";
 import { getAccessToken } from "../utils/auth/getAccessToken";
 import { invalidateMeQuery, useMeQuery } from "./queries/users/useMeQuery";
 
