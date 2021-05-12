@@ -16,7 +16,7 @@ import { GetPostsQueryParams } from "../../../services/gw2lfg-server/raid-posts/
 import MuiDateTimePicker from "../../common/inputs/MuiDateTimePicker";
 import rolesInfo from "../../Role/roles.json";
 import { RaidBossDTO } from "../../../services/gw2lfg-server/entities/RaidBossDTO";
-import RaidPostFormRaidBossesOptions from "../Form/RaidBosses/RaidPostFormRaidBossesOptions";
+import RaidPostFormRaidBossesOptions from "../../RaidBoss/RaidBossesOptions";
 import { createStyles } from "@material-ui/core";
 import { ShowPostOption } from "./ShowPostOption";
 

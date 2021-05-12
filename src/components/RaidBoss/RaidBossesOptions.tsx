@@ -1,9 +1,9 @@
 import { Typography, Box } from "@material-ui/core";
 import React from "react";
-import { RaidBossDTO } from "../../../../services/gw2lfg-server/entities/RaidBossDTO";
-import RaidPostFormRaidBossOption from "./RaidPostFormRaidBossOption";
+import { RaidBossDTO } from "../../services/gw2lfg-server/entities/RaidBossDTO";
+import RaidBossOption from "./RaidBossOption";
 
-interface RaidPostFormRaidBossesOptionsProps {
+interface RaidBossesOptionsProps {
   bosses: RaidBossDTO[];
   onChange: any;
   name: string;
@@ -11,11 +11,9 @@ interface RaidPostFormRaidBossesOptionsProps {
 }
 
 /**
- * Renders a singular toggleable raid boss avatar-checkbox of an associated raid post form
+ * Renders a singular toggleable raid boss avatar-checkbox of an associated form
  */
-export function RaidPostFormRaidBossesOptions(
-  props: RaidPostFormRaidBossesOptionsProps
-) {
+export function RaidBossesOptions(props: RaidBossesOptionsProps) {
   const { onChange, name, selectedBosses, bosses } = props;
 
   return (
@@ -29,7 +27,7 @@ export function RaidPostFormRaidBossesOptions(
       <Typography variant="h6">Raid Bosses</Typography>
       <Box display="flex" flexDirection="row" flexWrap="wrap">
         {bosses.map((boss) => (
-          <RaidPostFormRaidBossOption
+          <RaidBossOption
             boss={boss}
             onChange={onChange}
             key={boss.id}
@@ -43,4 +41,4 @@ export function RaidPostFormRaidBossesOptions(
 }
 
 // Memoised component, improves the performance
-export default React.memo(RaidPostFormRaidBossesOptions);
+export default React.memo(RaidBossesOptions);

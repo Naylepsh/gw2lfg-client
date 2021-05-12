@@ -1,10 +1,10 @@
 import { Checkbox, Badge } from "@material-ui/core";
 import React from "react";
 import CheckIcon from "@material-ui/icons/Check";
-import { RaidBossDTO } from "../../../../services/gw2lfg-server/entities/RaidBossDTO";
-import RaidBossAvatar from "../../../RaidBoss/RaidBossAvatar";
+import { RaidBossDTO } from "../../services/gw2lfg-server/entities/RaidBossDTO";
+import RaidBossAvatar from "./RaidBossAvatar";
 
-interface RaidPostFormRaidBossOptionProps {
+interface RaidBossOptionProps {
   boss: RaidBossDTO;
   onChange: any;
   name: string;
@@ -12,11 +12,9 @@ interface RaidPostFormRaidBossOptionProps {
 }
 
 /**
- * Renders a singular toggleable raid boss avatar-checkbox of an associated raid post form
+ * Renders a singular toggleable raid boss avatar-checkbox of an associated form
  */
-export function RaidPostFormRaidBossOption(
-  props: RaidPostFormRaidBossOptionProps
-) {
+export function RaidBossOption(props: RaidBossOptionProps) {
   const { onChange, boss, name, checked } = props;
 
   /**
@@ -48,4 +46,4 @@ export function RaidPostFormRaidBossOption(
 }
 
 // Memoised component, improves the performance
-export default React.memo(RaidPostFormRaidBossOption);
+export default React.memo(RaidBossOption);

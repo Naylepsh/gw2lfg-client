@@ -3,7 +3,7 @@ import { Form, Formik } from "formik";
 import React from "react";
 import { RaidBossDTO } from "../../../services/gw2lfg-server/entities/RaidBossDTO";
 import RaidPostFormGeneral from "./General/RaidPostFormGeneral";
-import RaidPostFormRaidBossesOptions from "./RaidBosses/RaidPostFormRaidBossesOptions";
+import RaidPostFormRaidBossesOptions from "../../RaidBoss/RaidBossesOptions";
 import { RaidPostFormValues } from "./RaidPostFormValues";
 import RaidPostFormRequirementsOptions from "./Requirements/RaidPostFormRequirementsOptions";
 import RaidPostFormRoles from "./Roles/RaidPostFormRoles";
