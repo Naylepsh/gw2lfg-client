@@ -1,7 +1,7 @@
 import { Box, Button, Grid } from "@material-ui/core";
 import React from "react";
 import RaidPostFormDescription from "../General/RaidPostFormDescription";
-import { roles, classes } from "../../../Role/roles.json";
+import rolesInfo from "../../../Role/roles.json";
 import FormikSelect from "../../../common/inputs/FormikSelect";
 import ClearIcon from "@material-ui/icons/Clear";
 
@@ -25,8 +25,11 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
    * but it's an useful value accepted by gw2lfg-server
    * and RaidAvatar has its means of rendering it
    */
-  const availableRoles = [{ name: "any", portrait: "#" }, ...roles];
-  const availableClasses = [{ name: "any", portrait: "#" }, ...classes];
+  const availableRoles = [{ name: "any", portrait: "#" }, ...rolesInfo.roles];
+  const availableClasses = [
+    { name: "any", portrait: "#" },
+    ...rolesInfo.classes,
+  ];
 
   return (
     <Grid container>

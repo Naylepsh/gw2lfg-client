@@ -1,6 +1,6 @@
 import { Box, Typography } from "@material-ui/core";
 import React from "react";
-import { items } from "../../../Gw2Item/gw2items.json";
+import gw2itemsInfo from "../../../Gw2Item/gw2items.json";
 import RaidPostFormRequirementOption from "./RaidPostFormRequirementOption";
 
 interface RaidPostFormRequirementsOptionsProps {
@@ -54,7 +54,7 @@ export function RaidPostFormRequirementsOptions(
  * Gets list of item names from stored gw2items.json file
  */
 export function getKnownItems() {
-  const itemNames = Object.keys(items);
+  const itemNames = Object.keys(gw2itemsInfo.items);
   return itemNames.map((name) => ({ name }));
 }
 

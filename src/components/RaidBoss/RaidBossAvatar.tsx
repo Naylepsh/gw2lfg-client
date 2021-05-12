@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { RaidBossDTO } from "../../services/gw2lfg-server/entities/RaidBossDTO";
-import { bosses } from "./raidBosses.json";
+import raidBossesInfo from "./raidBosses.json";
 
 interface RaidBossAvatarProps extends Omit<RaidBossDTO, "id"> {
   variant?: "square" | "circular";
@@ -19,7 +19,7 @@ interface RaidBossAvatarProps extends Omit<RaidBossDTO, "id"> {
 function RaidBossAvatar(props: RaidBossAvatarProps) {
   const { name, isCm, variant } = props;
   const defaultVariant = "circular";
-  const boss = bosses.find((boss) => boss.name == name);
+  const boss = raidBossesInfo.bosses.find((boss) => boss.name == name);
   const title = boss.name + (isCm ? " (CM)" : "");
   const classes = useStyles();
 

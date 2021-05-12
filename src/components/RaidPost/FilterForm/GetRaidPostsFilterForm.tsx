@@ -14,7 +14,7 @@ import { Form, Formik } from "formik";
 import FormikSelect from "../../common/inputs/FormikSelect";
 import { GetPostsQueryParams } from "../../../services/gw2lfg-server/raid-posts/dtos/GetRaidPostsDTO";
 import MuiDateTimePicker from "../../common/inputs/MuiDateTimePicker";
-import { roles, classes } from "../../Role/roles.json";
+import rolesInfo from "../../Role/roles.json";
 import { RaidBossDTO } from "../../../services/gw2lfg-server/entities/RaidBossDTO";
 import RaidPostFormRaidBossesOptions from "../Form/RaidBosses/RaidPostFormRaidBossesOptions";
 import { createStyles } from "@material-ui/core";
@@ -42,15 +42,19 @@ export function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
     { label: "NA", value: "NA" },
   ];
 
-  const selectableRoleNames = [...roles, { name: ANY }].map(({ name }) => ({
-    label: name,
-    value: name,
-  }));
+  const selectableRoleNames = [...rolesInfo.roles, { name: ANY }].map(
+    ({ name }) => ({
+      label: name,
+      value: name,
+    })
+  );
 
-  const selectableRoleClasses = [...classes, { name: ANY }].map(({ name }) => ({
-    label: name,
-    value: name,
-  }));
+  const selectableRoleClasses = [...rolesInfo.classes, { name: ANY }].map(
+    ({ name }) => ({
+      label: name,
+      value: name,
+    })
+  );
 
   return (
     <Accordion>

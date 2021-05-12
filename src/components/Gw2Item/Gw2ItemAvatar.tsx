@@ -1,6 +1,6 @@
 import { Avatar, Tooltip } from "@material-ui/core";
 import React from "react";
-import { items } from "./gw2items.json";
+import gw2itemsInfo from "./gw2items.json";
 
 interface Gw2ItemAvatarProps {
   name: string;
@@ -11,7 +11,7 @@ interface Gw2ItemAvatarProps {
  */
 function Gw2ItemAvatar(props: Gw2ItemAvatarProps) {
   const { name } = props;
-  const item = items[name];
+  const item = gw2itemsInfo.items[name];
 
   return item ? (
     <Tooltip title={name}>

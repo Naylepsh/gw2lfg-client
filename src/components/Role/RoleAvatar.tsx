@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { RoleDTO } from "../../services/gw2lfg-server/entities/RoleDTO";
-import { classes, roles } from "./roles.json";
+import rolesInfo from "./roles.json";
 
 interface RoleAvatarProps extends RoleDTO {
   size: "small" | "medium" | "large";
@@ -52,7 +52,7 @@ class NullRole implements RoleDTO {
  *  Even with explicitedly provided type, it still claims the result is always NOT undefined
  */
 function findRoleByName(name: string) {
-  const role = roles.find((role) => role.name === name);
+  const role = rolesInfo.roles.find((role) => role.name === name);
   return role;
 }
 
@@ -61,7 +61,7 @@ function findRoleByName(name: string) {
  * Same reason as findRoleByName
  */
 function findRoleByClass(roleClass: string) {
-  const role = classes.find((role) => role.name === roleClass);
+  const role = rolesInfo.classes.find((role) => role.name === roleClass);
   return role;
 }
 
