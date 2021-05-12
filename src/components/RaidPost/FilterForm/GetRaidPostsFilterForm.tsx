@@ -28,6 +28,7 @@ interface GetRaidPostsFilterFormProps {
   onSubmit: any;
   initialValues: GetPostsQueryParams & { showOption: ShowOption };
   bosses: RaidBossDTO[];
+  hideShowOption?: boolean;
 }
 
 export function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
@@ -125,9 +126,11 @@ export function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
                         selectedBosses={values.bossesIds}
                       />
                     </Grid>
-                    <Grid item xs={12} className={cssClasses.gridItem}>
-                      <ShowPostOption />
-                    </Grid>
+                    {!(props.hideShowOption ?? false) && (
+                      <Grid item xs={12} className={cssClasses.gridItem}>
+                        <ShowPostOption />
+                      </Grid>
+                    )}
                   </Grid>
                   <Box mt={1}>
                     <Button

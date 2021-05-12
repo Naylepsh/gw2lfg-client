@@ -93,6 +93,7 @@ export default function GetRaidPosts() {
           onSubmit={setQueryFormParams}
           initialValues={queryFormParams}
           bosses={bosses}
+          hideShowOption={!user}
         />
       </Box>
       {currentRaidPosts.length > 0 ? (
