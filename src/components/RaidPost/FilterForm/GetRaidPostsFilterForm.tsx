@@ -11,19 +11,22 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { Form, Formik } from "formik";
-import FormikSelect from "../common/inputs/FormikSelect";
-import { GetPostsQueryParams } from "../../services/gw2lfg-server/raid-posts/dtos/GetRaidPostsDTO";
-import MuiDateTimePicker from "../common/inputs/MuiDateTimePicker";
-import { roles, classes } from "../Role/roles.json";
-import { RaidBossDTO } from "../../services/gw2lfg-server/entities/RaidBossDTO";
-import RaidPostFormRaidBossesOptions from "./Form/RaidBosses/RaidPostFormRaidBossesOptions";
+import FormikSelect from "../../common/inputs/FormikSelect";
+import { GetPostsQueryParams } from "../../../services/gw2lfg-server/raid-posts/dtos/GetRaidPostsDTO";
+import MuiDateTimePicker from "../../common/inputs/MuiDateTimePicker";
+import { roles, classes } from "../../Role/roles.json";
+import { RaidBossDTO } from "../../../services/gw2lfg-server/entities/RaidBossDTO";
+import RaidPostFormRaidBossesOptions from "../Form/RaidBosses/RaidPostFormRaidBossesOptions";
 import { createStyles } from "@material-ui/core";
+import { ShowPostOption } from "./ShowPostOption";
 
 export const ANY = "Any";
 
+export type ShowOption = "all" | "applied" | "accepted";
+
 interface GetRaidPostsFilterFormProps {
   onSubmit: any;
-  initialValues: GetPostsQueryParams;
+  initialValues: GetPostsQueryParams & { showOption: ShowOption };
   bosses: RaidBossDTO[];
 }
 
@@ -121,6 +124,9 @@ export function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
                         name="bossesIds"
                         selectedBosses={values.bossesIds}
                       />
+                    </Grid>
+                    <Grid item xs={12} className={cssClasses.gridItem}>
+                      <ShowPostOption />
                     </Grid>
                   </Grid>
                   <Box mt={1}>

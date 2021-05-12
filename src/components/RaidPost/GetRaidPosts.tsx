@@ -7,7 +7,7 @@ import { RaidPost } from "./RaidPost";
 import { useGetRaidPostsQuery } from "../../hooks/queries/raid-posts/useGetRaidPostsQuery";
 import { RaidPostDTO } from "../../services/gw2lfg-server/entities/RaidPostDTO";
 import { GetPostsQueryParams } from "../../services/gw2lfg-server/raid-posts/dtos/GetRaidPostsDTO";
-import { ANY, GetRaidPostsFilterForm } from "./GetRaidPostsFilterForm";
+import { ANY, GetRaidPostsFilterForm } from "./FilterForm/GetRaidPostsFilterForm";
 import { useGetRaidBossesQuery } from "../../hooks/queries/raid-bosses/useGetRaidBossesQuery";
 
 /**
@@ -17,12 +17,12 @@ import { useGetRaidBossesQuery } from "../../hooks/queries/raid-bosses/useGetRai
 export default function GetRaidPosts() {
   const router = useRouter();
   const [page, setPage] = useState(1);
-  const [queryFormParams, setQueryFormParams] = useState({
+  const [queryFormParams, setQueryFormParams] = useState<GetPostsQueryParams>({
     server: ANY,
     roleName: ANY,
     roleClass: ANY,
     bossesIds: [],
-  } as GetPostsQueryParams);
+  });
   const [prevRaidPosts, setPrevRaidPosts] = useState([] as RaidPostDTO[]);
   const {
     isLoading: isLoadingPosts,
@@ -76,7 +76,7 @@ export default function GetRaidPosts() {
       <Box mb={1}>
         <GetRaidPostsFilterForm
           onSubmit={setQueryFormParams}
-          initialValues={queryFormParams}
+          initialValues={{ ...queryFormParams, showOption: "all" }}
           bosses={bosses}
         />
       </Box>
