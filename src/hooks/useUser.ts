@@ -15,7 +15,7 @@ export function useUser() {
     getUser();
   }, [token]);
 
-  const { isLoading, isError, data } = useMeQuery();
+  const { isLoading, isError, error, data } = useMeQuery();
 
-  return { user: data, isLoading, isError };
+  return { user: data, isLoading, isError, error };
 }

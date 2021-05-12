@@ -7,8 +7,17 @@ import { RaidPost } from "./RaidPost";
 import { useGetRaidPostsQuery } from "../../hooks/queries/raid-posts/useGetRaidPostsQuery";
 import { RaidPostDTO } from "../../services/gw2lfg-server/entities/RaidPostDTO";
 import { GetPostsQueryParams } from "../../services/gw2lfg-server/raid-posts/dtos/GetRaidPostsDTO";
-import { ANY, GetRaidPostsFilterForm } from "./FilterForm/GetRaidPostsFilterForm";
+import {
+  ANY,
+  GetRaidPostsFilterForm,
+  ShowOption,
+} from "./FilterForm/GetRaidPostsFilterForm";
 import { useGetRaidBossesQuery } from "../../hooks/queries/raid-bosses/useGetRaidBossesQuery";
+import { useUser } from "../../hooks/useUser";
+
+interface QueryFormParams extends GetPostsQueryParams {
+  showOption: ShowOption;
+}
 
 /**
  * Paginated Raid Posts component.
@@ -17,20 +26,26 @@ import { useGetRaidBossesQuery } from "../../hooks/queries/raid-bosses/useGetRai
 export default function GetRaidPosts() {
   const router = useRouter();
   const [page, setPage] = useState(1);
-  const [queryFormParams, setQueryFormParams] = useState<GetPostsQueryParams>({
+  const [queryFormParams, setQueryFormParams] = useState<QueryFormParams>({
     server: ANY,
     roleName: ANY,
     roleClass: ANY,
     bossesIds: [],
+    showOption: "all",
   });
   const [prevRaidPosts, setPrevRaidPosts] = useState([] as RaidPostDTO[]);
+
+  const { user } = useUser();
   const {
     isLoading: isLoadingPosts,
     isError: encouteredPostsError,
     error: postsError,
     data,
     isPreviousData,
-  } = useGetRaidPostsQuery(formParamsToQueryParams(queryFormParams), page);
+  } = useGetRaidPostsQuery(
+    formParamsToQueryParams(queryFormParams, user && user.id),
+    page
+  );
   const {
     isLoading: isLoadingBosses,
     isError: encouteredBossesError,
@@ -76,7 +91,7 @@ export default function GetRaidPosts() {
       <Box mb={1}>
         <GetRaidPostsFilterForm
           onSubmit={setQueryFormParams}
-          initialValues={{ ...queryFormParams, showOption: "all" }}
+          initialValues={queryFormParams}
           bosses={bosses}
         />
       </Box>
@@ -105,8 +120,24 @@ export default function GetRaidPosts() {
   );
 }
 
-function formParamsToQueryParams(filterParams: GetPostsQueryParams) {
+function formParamsToQueryParams(
+  filterParams: QueryFormParams,
+  userId?: number
+) {
   const queryParams = { ...filterParams };
+
+  if (userId) {
+    if (
+      queryParams.showOption === "applied" ||
+      queryParams.showOption === "accepted"
+    ) {
+      queryParams.joinRequestAuthorId = userId.toString();
+    }
+    if (queryParams.showOption === "accepted") {
+      queryParams.joinRequestStatus = "ACCEPTED";
+    }
+  }
+  delete queryParams.showOption;
 
   for (const param in queryParams) {
     const queryValue = queryParams[param];

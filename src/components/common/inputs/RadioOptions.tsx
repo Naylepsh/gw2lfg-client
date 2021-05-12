@@ -19,8 +19,13 @@ export function RadioOptions<T>(props: RadioOptionsProps<T>) {
     <FormControl component="fieldset">
       {props.title || <FormLabel component="legend">{props.title}</FormLabel>}
       <Field component={RadioGroup} name={props.name}>
-        {props.options.map(({ value, label }) => (
-          <FormControlLabel value={value} control={<Radio />} label={label} />
+        {props.options.map(({ value, label }, i) => (
+          <FormControlLabel
+            key={i}
+            value={value}
+            control={<Radio />}
+            label={label}
+          />
         ))}
       </Field>
     </FormControl>

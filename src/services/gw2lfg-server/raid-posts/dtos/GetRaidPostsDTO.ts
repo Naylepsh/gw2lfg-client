@@ -10,4 +10,6 @@ export interface GetPostsQueryParams {
   roleName?: string;
   roleClass?: string;
   bossesIds?: string[];
+  joinRequestStatus?: string;
+  joinRequestAuthorId?: string;
 }
