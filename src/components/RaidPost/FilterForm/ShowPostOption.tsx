@@ -1,6 +1,6 @@
 import React from "react";
 import { ShowOption } from "./GetRaidPostsFilterForm";
-import { RadioOptions } from "../../common/inputs/RadioOptions";
+import { RadioInput } from "../../common/inputs/RadioInput";
 
 export function ShowPostOption() {
   const radioParams: { value: ShowOption; label: string }[] = [
@@ -10,6 +10,6 @@ export function ShowPostOption() {
   ];
 
   return (
-    <RadioOptions options={radioParams} name="showOption" title="Show Posts" />
+    <RadioInput items={radioParams} name="showOption" title="Show Posts" />
   );
 }

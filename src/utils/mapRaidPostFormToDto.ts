@@ -5,10 +5,12 @@ import { RaidPostFormValues } from "../components/RaidPost/Form/RaidPostFormValu
  */
 export function mapRaidPostFormToDto(values: RaidPostFormValues) {
   const formItems = values.requirementsProps.itemsProps;
-  const itemsProps = Object.keys(formItems).map((name) => ({
-    name,
-    quantity: formItems[name],
-  }));
+  const itemsProps = Object.keys(formItems)
+    .map((name) => ({
+      name,
+      quantity: formItems[name],
+    }))
+    .filter((item) => item.quantity > 0);
   const bossesIds = values.selectedBosses.map((id) => parseInt(id));
   const raidPost = {
     ...values,

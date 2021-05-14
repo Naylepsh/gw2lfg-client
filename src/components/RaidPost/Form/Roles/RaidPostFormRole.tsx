@@ -1,15 +1,15 @@
 import { Box, Button, Grid } from "@material-ui/core";
 import React from "react";
-import RaidPostFormDescription from "../General/RaidPostFormDescription";
+import { RaidPostFormDescription } from "../General/RaidPostFormDescription";
 import rolesInfo from "../../../Role/roles.json";
-import FormikSelect from "../../../common/inputs/FormikSelect";
+import SelectInput from "../../../common/inputs/SelectInput";
 import ClearIcon from "@material-ui/icons/Clear";
+import { RoleDTO } from "../../../../services/gw2lfg-server/entities/RoleDTO";
 
 interface RaidPostFormRoleProps {
   formId: string;
-  onChange: any;
   handleRoleRemoval: (roleFormId: string) => any;
-  descriptionValue: string;
+  role: RoleDTO;
 }
 
 /**
@@ -18,7 +18,7 @@ interface RaidPostFormRoleProps {
  * thus descriptionValue property is needed
  */
 export function RaidPostFormRole(props: RaidPostFormRoleProps) {
-  const { onChange, handleRoleRemoval, formId, descriptionValue } = props;
+  const { handleRoleRemoval, formId } = props;
 
   /**
    * 'any' technically doesn't belong to neither roles nor classes,
@@ -35,7 +35,7 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
     <Grid container>
       <Grid item xs={12} sm={6} md={2}>
         <Box mr={3} p={3}>
-          <FormikSelect
+          <SelectInput
             name={`${formId}.name`}
             items={availableRoles.map((role) => ({
               label: role.name,
@@ -47,7 +47,7 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
       </Grid>
       <Grid item xs={12} sm={6} md={2}>
         <Box mr={3} p={3}>
-          <FormikSelect
+          <SelectInput
             name={`${formId}.class`}
             items={availableClasses.map((cl) => ({
               label: cl.name,
@@ -59,11 +59,7 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
       </Grid>
       <Grid item xs={12} md={7}>
         <Box p={3}>
-          <RaidPostFormDescription
-            id={`${formId}.description`}
-            onChange={onChange}
-            value={descriptionValue}
-          />
+          <RaidPostFormDescription name={`${formId}.description`} />
         </Box>
       </Grid>
       <Grid item xs={12} md={1}>
@@ -78,4 +74,10 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
 }
 
 // Memoised RaidPostFormRole component, improves the performance
-export default React.memo(RaidPostFormRole);
+export default React.memo(RaidPostFormRole, (prevProps, nextProps) => {
+  return (
+    prevProps.role.class === nextProps.role.class &&
+    prevProps.role.name === nextProps.role.name &&
+    prevProps.role.description === nextProps.role.description
+  );
+});
