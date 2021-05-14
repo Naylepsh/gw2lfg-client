@@ -60,7 +60,7 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
       <Grid item xs={12} md={7}>
         <Box p={3}>
           <RaidPostFormDescription
-            id={`${formId}.description`}
+            name={`${formId}.description`}
             onChange={onChange}
             value={descriptionValue}
           />

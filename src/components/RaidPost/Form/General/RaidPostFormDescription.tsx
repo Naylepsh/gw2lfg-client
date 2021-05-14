@@ -1,15 +1,20 @@
-import { TextField, TextFieldProps } from "@material-ui/core";
+import { Field } from "formik";
+import { TextField, TextFieldProps } from "formik-material-ui";
 import React from "react";
 
-type RaidPostFormDescriptionProps = TextFieldProps;
+interface RaidPostFormDescriptionProps {
+  name: string;
+}
 
 /**
  * Renders a textarea with its value attached to an associated raid post form
  */
-export default function RaidPostFormDescription(
-  props: RaidPostFormDescriptionProps
-) {
-  return (
-    <TextField label="Description" multiline rows={4} fullWidth {...props} />
-  );
+export default function RaidPostFormDescription({
+  name,
+}: RaidPostFormDescriptionProps) {
+  return <Field component={MyTextField} label="Description" name={name} />;
+}
+
+function MyTextField(props: TextFieldProps) {
+  return <TextField {...props} multiline rows={4} fullWidth />;
 }

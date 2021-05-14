@@ -9,7 +9,6 @@ interface RaidPostFormGeneralProps {
   dateId: string;
   dateSelected: string;
   descriptionId: string;
-  descriptionValue: string;
   onChange: any;
 }
 
@@ -17,14 +16,7 @@ interface RaidPostFormGeneralProps {
  * Renders 'simple', more general properties of raid post form.
  */
 export default function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
-  const {
-    serverId,
-    dateId,
-    dateSelected,
-    descriptionId,
-    descriptionValue,
-    onChange,
-  } = props;
+  const { serverId, dateId, dateSelected, descriptionId, onChange } = props;
   const servers = [
     { label: "EU", value: "EU" },
     { label: "NA", value: "NA" },
@@ -56,11 +48,7 @@ export default function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
           />
         </Grid>
         <Grid item xs={12} sm={8}>
-          <RaidPostFormDescription
-            id={descriptionId}
-            onChange={onChange}
-            value={descriptionValue}
-          />
+          <RaidPostFormDescription name={descriptionId} />
         </Grid>
       </Grid>
     </Box>

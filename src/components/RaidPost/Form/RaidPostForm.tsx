@@ -44,7 +44,6 @@ export default function RaidPostForm(props: RaidPostFormProps) {
                   dateId="date"
                   dateSelected={values.date}
                   descriptionId="description"
-                  descriptionValue={values.description}
                   onChange={handleChange}
                 />
                 <RaidPostFormRaidBossesOptions
