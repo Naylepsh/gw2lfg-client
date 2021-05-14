@@ -5,7 +5,9 @@ import { RaidBossDTO } from "../../../services/gw2lfg-server/entities/RaidBossDT
 import RaidPostFormGeneral from "./General/RaidPostFormGeneral";
 import RaidPostFormRaidBossesOptions from "../../RaidBoss/RaidBossesOptions";
 import { RaidPostFormValues } from "./RaidPostFormValues";
-import RaidPostFormRequirementsOptions from "./Requirements/RaidPostFormRequirementsOptions";
+import RaidPostFormRequirementsOptions, {
+  getKnownItems,
+} from "./Requirements/RaidPostFormRequirementsOptions";
 import RaidPostFormRoles from "./Roles/RaidPostFormRoles";
 
 interface RaidPostFormProps {
@@ -21,6 +23,16 @@ interface RaidPostFormProps {
  */
 export default function RaidPostForm(props: RaidPostFormProps) {
   const { initialValues, title, bosses, onSubmit } = props;
+
+  const items = getKnownItems();
+  const initialItemNames = Object.keys(
+    initialValues.requirementsProps.itemsProps
+  );
+  for (const item of items) {
+    if (!initialItemNames.includes(item.name)) {
+      initialValues.requirementsProps.itemsProps[item.name] = 0;
+    }
+  }
 
   return (
     <Container component={Paper}>

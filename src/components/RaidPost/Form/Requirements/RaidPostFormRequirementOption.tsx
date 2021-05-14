@@ -40,7 +40,6 @@ function RequirementTextField(props: TextFieldProps) {
       className={classes.textField}
       type="number"
       inputProps={{ min: 0 }}
-      defaultValue={0}
     />
   );
 }
