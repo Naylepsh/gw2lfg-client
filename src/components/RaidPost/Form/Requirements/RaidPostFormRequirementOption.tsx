@@ -21,7 +21,12 @@ export default function RaidPostFormRequirementOption(
   return (
     <Box display="flex" alignItems="center" m={3}>
       <Gw2ItemAvatar name={name} />
-      <Field component={RequirementTextField} label="" id={id} name={id} />
+      <Field
+        component={MemoisedRequirementTextField}
+        label=""
+        id={id}
+        name={id}
+      />
     </Box>
   );
 }
@@ -39,6 +44,11 @@ function RequirementTextField(props: TextFieldProps) {
     />
   );
 }
+
+const MemoisedRequirementTextField = React.memo(
+  RequirementTextField,
+  (prevProps, nextProps) => prevProps.field.value === nextProps.field.value
+);
 
 /**
  * CSS for RaidPostFormRequirementOption component
