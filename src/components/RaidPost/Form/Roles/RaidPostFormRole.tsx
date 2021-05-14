@@ -7,9 +7,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 
 interface RaidPostFormRoleProps {
   formId: string;
-  onChange: any;
   handleRoleRemoval: (roleFormId: string) => any;
-  descriptionValue: string;
 }
 
 /**

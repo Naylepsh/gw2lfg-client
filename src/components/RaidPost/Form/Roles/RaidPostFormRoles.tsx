@@ -42,13 +42,11 @@ export function RaidPostFormRoles(props: RaidPostFormRolesProps) {
     >
       <Typography variant="h6">Roles</Typography>
       <Box component={Paper} width={1}>
-        {roles.map((_role, key) => (
+        {roles.map((_, key) => (
           <RaidPostFormRole
             key={key}
             formId={`${rolesId}.${key}`}
-            onChange={onChange}
             handleRoleRemoval={removeRoleFromTheList}
-            descriptionValue={_role.description}
           />
         ))}
       </Box>
