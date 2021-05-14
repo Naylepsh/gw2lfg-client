@@ -6,8 +6,6 @@ import RaidPostFormRequirementOption from "./RaidPostFormRequirementOption";
 interface RaidPostFormRequirementsOptionsProps {
   requirementsId: string;
   itemsId: string;
-  onChange: any;
-  values: { [key: string]: number };
 }
 
 /**
@@ -16,7 +14,7 @@ interface RaidPostFormRequirementsOptionsProps {
 export function RaidPostFormRequirementsOptions(
   props: RaidPostFormRequirementsOptionsProps
 ) {
-  const { requirementsId, itemsId, onChange, values } = props;
+  const { requirementsId, itemsId } = props;
 
   const requirements = getKnownItems();
 
@@ -41,8 +39,6 @@ export function RaidPostFormRequirementsOptions(
             {...requirement}
             key={requirement.name}
             id={`${requirementsId}.${itemsId}.${requirement.name}`}
-            onChange={onChange}
-            value={values[requirement.name] ?? 0}
           />
         ))}
       </Box>
