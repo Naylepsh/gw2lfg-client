@@ -4,10 +4,12 @@ import { RaidPostFormDescription } from "../General/RaidPostFormDescription";
 import rolesInfo from "../../../Role/roles.json";
 import SelectInput from "../../../common/inputs/SelectInput";
 import ClearIcon from "@material-ui/icons/Clear";
+import { RoleDTO } from "../../../../services/gw2lfg-server/entities/RoleDTO";
 
 interface RaidPostFormRoleProps {
   formId: string;
   handleRoleRemoval: (roleFormId: string) => any;
+  role: RoleDTO;
 }
 
 /**
@@ -72,4 +74,10 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
 }
 
 // Memoised RaidPostFormRole component, improves the performance
-export default React.memo(RaidPostFormRole);
+export default React.memo(RaidPostFormRole, (prevProps, nextProps) => {
+  return (
+    prevProps.role.class === nextProps.role.class &&
+    prevProps.role.name === nextProps.role.name &&
+    prevProps.role.description === nextProps.role.description
+  );
+});
