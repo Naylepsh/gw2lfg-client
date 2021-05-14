@@ -13,9 +13,18 @@ export function RaidPostFormDescription({
   name,
 }: RaidPostFormDescriptionProps) {
   return (
-    <Field component={DescriptionTextField} label="Description" name={name} />
+    <Field
+      component={MemoisedDescriptionTextField}
+      label="Description"
+      name={name}
+    />
   );
 }
+
+const MemoisedDescriptionTextField = React.memo(
+  DescriptionTextField,
+  (prevProps, nextProps) => prevProps.field.value === nextProps.field.value
+);
 
 function DescriptionTextField(props: TextFieldProps) {
   return <TextField {...props} multiline rows={4} fullWidth />;
