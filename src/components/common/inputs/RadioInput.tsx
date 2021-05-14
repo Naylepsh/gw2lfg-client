@@ -9,17 +9,17 @@ import { Field } from "formik";
 import { RadioGroup } from "formik-material-ui";
 
 export interface RadioOptionsProps<T> {
-  options: { value: T; label: string }[];
+  items: { value: T; label: string }[];
   name: string;
   title?: string;
 }
 
-export function RadioOptions<T>(props: RadioOptionsProps<T>) {
+export function RadioInput<T>(props: RadioOptionsProps<T>) {
   return (
     <FormControl component="fieldset">
       {props.title || <FormLabel component="legend">{props.title}</FormLabel>}
       <Field component={RadioGroup} name={props.name}>
-        {props.options.map(({ value, label }, i) => (
+        {props.items.map(({ value, label }, i) => (
           <FormControlLabel
             key={i}
             value={value}

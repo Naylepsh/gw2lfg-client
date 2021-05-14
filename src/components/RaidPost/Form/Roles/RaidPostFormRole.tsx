@@ -2,7 +2,7 @@ import { Box, Button, Grid } from "@material-ui/core";
 import React from "react";
 import RaidPostFormDescription from "../General/RaidPostFormDescription";
 import rolesInfo from "../../../Role/roles.json";
-import FormikSelect from "../../../common/inputs/FormikSelect";
+import SelectInput from "../../../common/inputs/SelectInput";
 import ClearIcon from "@material-ui/icons/Clear";
 
 interface RaidPostFormRoleProps {
@@ -35,7 +35,7 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
     <Grid container>
       <Grid item xs={12} sm={6} md={2}>
         <Box mr={3} p={3}>
-          <FormikSelect
+          <SelectInput
             name={`${formId}.name`}
             items={availableRoles.map((role) => ({
               label: role.name,
@@ -47,7 +47,7 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
       </Grid>
       <Grid item xs={12} sm={6} md={2}>
         <Box mr={3} p={3}>
-          <FormikSelect
+          <SelectInput
             name={`${formId}.class`}
             items={availableClasses.map((cl) => ({
               label: cl.name,

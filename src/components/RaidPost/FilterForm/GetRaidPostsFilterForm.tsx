@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { Form, Formik } from "formik";
-import FormikSelect from "../../common/inputs/FormikSelect";
+import SelectInput from "../../common/inputs/SelectInput";
 import { GetPostsQueryParams } from "../../../services/gw2lfg-server/raid-posts/dtos/GetRaidPostsDTO";
 import MuiDateTimePicker from "../../common/inputs/MuiDateTimePicker";
 import rolesInfo from "../../Role/roles.json";
@@ -85,7 +85,7 @@ export function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
                 <Form>
                   <Grid container justify="space-around">
                     <Grid {...gridItemProps}>
-                      <FormikSelect
+                      <SelectInput
                         name="server"
                         items={servers}
                         label="Server"
@@ -109,14 +109,14 @@ export function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
                       />
                     </Grid>
                     <Grid {...gridItemProps}>
-                      <FormikSelect
+                      <SelectInput
                         name="roleName"
                         items={selectableRoleNames}
                         label="Role's Name"
                       />
                     </Grid>
                     <Grid {...gridItemProps}>
-                      <FormikSelect
+                      <SelectInput
                         name="roleClass"
                         items={selectableRoleClasses}
                         label="Role's Class"

@@ -1,7 +1,7 @@
 import { Typography, Box, Grid } from "@material-ui/core";
 import React from "react";
 import MuiDateTimePicker from "../../../common/inputs/MuiDateTimePicker";
-import FormikSelect from "../../../common/inputs/FormikSelect";
+import SelectInput from "../../../common/inputs/SelectInput";
 import RaidPostFormDescription from "./RaidPostFormDescription";
 
 interface RaidPostFormGeneralProps {
@@ -41,7 +41,7 @@ export default function RaidPostFormGeneral(props: RaidPostFormGeneralProps) {
       <Typography variant="h6">General</Typography>
       <Grid container justify="space-between">
         <Grid item xs={12} sm={2}>
-          <FormikSelect
+          <SelectInput
             name={serverId}
             items={servers}
             label="Server"
