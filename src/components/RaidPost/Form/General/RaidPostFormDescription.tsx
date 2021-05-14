@@ -9,12 +9,14 @@ interface RaidPostFormDescriptionProps {
 /**
  * Renders a textarea with its value attached to an associated raid post form
  */
-export default function RaidPostFormDescription({
+export function RaidPostFormDescription({
   name,
 }: RaidPostFormDescriptionProps) {
-  return <Field component={MyTextField} label="Description" name={name} />;
+  return (
+    <Field component={DescriptionTextField} label="Description" name={name} />
+  );
 }
 
-function MyTextField(props: TextFieldProps) {
+function DescriptionTextField(props: TextFieldProps) {
   return <TextField {...props} multiline rows={4} fullWidth />;
 }

@@ -2,7 +2,7 @@ import { Typography, Box, Grid } from "@material-ui/core";
 import React from "react";
 import MuiDateTimePicker from "../../../common/inputs/MuiDateTimePicker";
 import SelectInput from "../../../common/inputs/SelectInput";
-import RaidPostFormDescription from "./RaidPostFormDescription";
+import { RaidPostFormDescription } from "./RaidPostFormDescription";
 
 interface RaidPostFormGeneralProps {
   serverId: string;
