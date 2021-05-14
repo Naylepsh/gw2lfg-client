@@ -1,6 +1,6 @@
 import { Box, Button, Grid } from "@material-ui/core";
 import React from "react";
-import RaidPostFormDescription from "../General/RaidPostFormDescription";
+import { RaidPostFormDescription } from "../General/RaidPostFormDescription";
 import rolesInfo from "../../../Role/roles.json";
 import SelectInput from "../../../common/inputs/SelectInput";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -18,7 +18,7 @@ interface RaidPostFormRoleProps {
  * thus descriptionValue property is needed
  */
 export function RaidPostFormRole(props: RaidPostFormRoleProps) {
-  const { onChange, handleRoleRemoval, formId, descriptionValue } = props;
+  const { handleRoleRemoval, formId } = props;
 
   /**
    * 'any' technically doesn't belong to neither roles nor classes,
@@ -59,11 +59,7 @@ export function RaidPostFormRole(props: RaidPostFormRoleProps) {
       </Grid>
       <Grid item xs={12} md={7}>
         <Box p={3}>
-          <RaidPostFormDescription
-            name={`${formId}.description`}
-            onChange={onChange}
-            value={descriptionValue}
-          />
+          <RaidPostFormDescription name={`${formId}.description`} />
         </Box>
       </Grid>
       <Grid item xs={12} md={1}>
