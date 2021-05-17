@@ -1,5 +1,7 @@
 import React from "react";
-import { TextField, TextFieldProps } from "@material-ui/core";
+import { TextFieldProps } from "@material-ui/core";
+import { TextField } from "formik-material-ui";
+import { Field } from "formik";
 
 export type UserFormTextFieldProps = TextFieldProps;
 
@@ -8,22 +10,15 @@ export type UserFormTextFieldProps = TextFieldProps;
  */
 export function UserFormTextField(props: UserFormTextFieldProps) {
   return (
-    <FormTextField
+    <Field
+      component={TextField}
+      label={props.label}
+      name={props.name}
       variant="outlined"
       margin="normal"
       fullWidth
       autoFocus
       {...props}
     />
-  );
-}
-
-export type FormTextFieldProps = TextFieldProps;
-
-function FormTextField(props: FormTextFieldProps) {
-  const { error, helperText } = props;
-
-  return (
-    <TextField {...props} error={error} helperText={error && helperText} />
   );
 }

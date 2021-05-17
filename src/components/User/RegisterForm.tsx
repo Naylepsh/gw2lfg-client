@@ -6,7 +6,6 @@ import { UserFormTextField } from "./UserFormTextField";
 interface RegisterFormProps {
   onSubmit: any;
   initialValues: RegisterFormValues;
-  errors: Record<string, string>;
 }
 
 interface RegisterFormValues {
@@ -19,14 +18,14 @@ interface RegisterFormValues {
  * Renders a register form.
  */
 export default function RegisterForm(props: RegisterFormProps) {
-  const { initialValues, onSubmit, errors } = props;
+  const { initialValues, onSubmit } = props;
 
   return (
     <Container maxWidth="xs" component={Paper}>
       <Box my={3} pb={1}>
         <Formik onSubmit={onSubmit} initialValues={initialValues}>
           {(formProps) => {
-            const { handleChange } = formProps;
+            const { errors } = formProps;
 
             const usernameError = errors["username"];
             const passwordError = errors["password"];
@@ -40,7 +39,6 @@ export default function RegisterForm(props: RegisterFormProps) {
                   label="Username"
                   name="username"
                   autoComplete="username"
-                  onChange={handleChange}
                   error={!!usernameError}
                   helperText={usernameError}
                 />
@@ -51,7 +49,6 @@ export default function RegisterForm(props: RegisterFormProps) {
                   label="Password"
                   name="password"
                   autoComplete="password"
-                  onChange={handleChange}
                   error={!!passwordError}
                   helperText={passwordError}
                 />
@@ -61,7 +58,6 @@ export default function RegisterForm(props: RegisterFormProps) {
                   label="API key"
                   name="apiKey"
                   autoComplete="apiKey"
-                  onChange={handleChange}
                   error={!!apiKeyError}
                   helperText={apiKeyError}
                 />

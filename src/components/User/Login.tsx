@@ -5,7 +5,6 @@ import { useLoginMutation } from "../../hooks/mutations/users/useLoginMutation";
 import { invalidateMeQuery } from "../../hooks/queries/users/useMeQuery";
 import { LoginUserDTO } from "../../services/gw2lfg-server/user/dtos/LoginUserDTO";
 import { saveAccessToken } from "../../utils/auth/saveAccessToken";
-import { useState } from "react";
 import { mapGw2lfgServer400ErrorsToErrorMap } from "../../utils/mapGw2lfgServer400ErrorsToErrorMap";
 
 /**
@@ -14,9 +13,8 @@ import { mapGw2lfgServer400ErrorsToErrorMap } from "../../utils/mapGw2lfgServer4
 export default function Login() {
   const router = useRouter();
   const [loginUser] = useLoginMutation();
-  const [errors, setErrors] = useState({} as Record<string, string>);
 
-  const loginAndGoToMainPage = async (values: LoginUserDTO, {}) => {
+  const loginAndGoToMainPage = async (values: LoginUserDTO, { setErrors }) => {
     const { data, error } = await loginUser(values);
     if (data) {
       saveAccessToken(data.token);
@@ -42,7 +40,6 @@ export default function Login() {
     <LoginForm
       initialValues={{ username: "", password: "" }}
       onSubmit={loginAndGoToMainPage}
-      errors={errors}
     />
   );
 }
