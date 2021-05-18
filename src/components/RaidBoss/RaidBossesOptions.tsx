@@ -38,17 +38,12 @@ export function RaidBossesOptions(props: RaidBossesOptionsProps) {
       <FormHelperText>{errorMessage}</FormHelperText>
       <FormGroup className={classes.formGroup}>
         {bosses.map((boss) => (
-          <FormControlLabel
+          <RaidBossOption
             key={boss.id}
-            control={
-              <RaidBossOption
-                boss={boss}
-                onChange={onChange}
-                name={name}
-                checked={selectedBosses.includes(boss.id.toString())}
-              />
-            }
-            label=""
+            boss={boss}
+            onChange={onChange}
+            name={name}
+            checked={selectedBosses.includes(boss.id.toString())}
           />
         ))}
       </FormGroup>
