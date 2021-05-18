@@ -49,8 +49,8 @@ export default function RaidPostForm(props: RaidPostFormProps) {
           {(formProps) => {
             const { handleChange, values, errors } = formProps;
 
-            const bossesError = errors['bossesIds']
-            const rolesError = errors['rolesProps']
+            const bossesError = errors["bossesIds"];
+            const rolesError = errors["rolesProps"];
             console.log({ errors });
 
             return (
@@ -67,6 +67,8 @@ export default function RaidPostForm(props: RaidPostFormProps) {
                   onChange={handleChange}
                   name="selectedBosses"
                   selectedBosses={values.selectedBosses}
+                  errorMessage={bossesError}
+                  required
                 />
                 <RaidPostFormRequirementsOptions
                   requirementsId="requirementsProps"

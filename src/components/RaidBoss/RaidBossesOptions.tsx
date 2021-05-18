@@ -5,6 +5,7 @@ import {
   FormControlLabel,
   makeStyles,
   createStyles,
+  FormHelperText,
 } from "@material-ui/core";
 import React from "react";
 import { RaidBossDTO } from "../../services/gw2lfg-server/entities/RaidBossDTO";
@@ -15,18 +16,26 @@ interface RaidBossesOptionsProps {
   onChange: any;
   name: string;
   selectedBosses: string[];
+  errorMessage?: string;
+  required?: boolean;
 }
 
 /**
  * Renders a singular toggleable raid boss avatar-checkbox of an associated form
  */
 export function RaidBossesOptions(props: RaidBossesOptionsProps) {
-  const { onChange, name, selectedBosses, bosses } = props;
+  const { onChange, name, selectedBosses, bosses, errorMessage } = props;
+  const required = props.required ?? false;
   const classes = useStyles();
 
   return (
-    <FormControl className={classes.formControl}>
+    <FormControl
+      required={required}
+      error={!!errorMessage}
+      className={classes.formControl}
+    >
       <FormLabel component="legend">Raid Bosses</FormLabel>
+      <FormHelperText>{errorMessage}</FormHelperText>
       <FormGroup className={classes.formGroup}>
         {bosses.map((boss) => (
           <FormControlLabel
