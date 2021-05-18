@@ -1,4 +1,12 @@
-import { Box, Button, Paper, Typography } from "@material-ui/core";
+import {
+  createStyles,
+  FormControl,
+  FormGroup,
+  FormHelperText,
+  FormLabel,
+  makeStyles,
+} from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import React from "react";
 import { RoleDTO } from "../../../../services/gw2lfg-server/entities/RoleDTO";
@@ -8,6 +16,8 @@ interface RaidPostFormRolesProps {
   roles: RoleDTO[];
   rolesId: string;
   onChange: any;
+  errorMessage?: string;
+  required?: boolean;
 }
 
 /**
@@ -17,8 +27,10 @@ interface RaidPostFormRolesProps {
  */
 export function RaidPostFormRoles(props: RaidPostFormRolesProps) {
   const maxNumberOfRoles = 10;
-  const { roles, rolesId, onChange } = props;
+  const { roles, rolesId, onChange, errorMessage, required } = props;
   const defaultRole: RoleDTO = { name: "any", class: "any" };
+
+  const classes = useStyles();
 
   // adds a default role to the list of roles in the associated form
   const addNewRole = () =>
@@ -33,15 +45,14 @@ export function RaidPostFormRoles(props: RaidPostFormRolesProps) {
   };
 
   return (
-    <Box
-      my={3}
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
+    <FormControl
+      required={required ?? false}
+      error={!!errorMessage}
+      className={classes.formControl}
     >
-      <Typography variant="h6">Roles</Typography>
-      <Box component={Paper} width={1}>
+      <FormLabel component="legend">Roles</FormLabel>
+      <FormHelperText>{errorMessage}</FormHelperText>
+      <FormGroup className={classes.formGroup}>
         {roles.map((role, key) => (
           <RaidPostFormRole
             key={key}
@@ -50,7 +61,7 @@ export function RaidPostFormRoles(props: RaidPostFormRolesProps) {
             role={role}
           />
         ))}
-      </Box>
+      </FormGroup>
       {roles.length < maxNumberOfRoles && (
         <Box mr="auto" mt={1} mb={3}>
           <Button onClick={addNewRole}>
@@ -59,9 +70,24 @@ export function RaidPostFormRoles(props: RaidPostFormRolesProps) {
           </Button>
         </Box>
       )}
-    </Box>
+    </FormControl>
   );
 }
 
 // Memoised RaidPostFormRoles component, improves the performance
 export default React.memo(RaidPostFormRoles);
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    formControl: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "30px",
+    },
+    formGroup: {
+      width: "100%",
+    },
+  })
+);

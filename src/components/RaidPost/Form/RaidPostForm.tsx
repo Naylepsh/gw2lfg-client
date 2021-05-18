@@ -51,7 +51,6 @@ export default function RaidPostForm(props: RaidPostFormProps) {
 
             const bossesError = errors["bossesIds"];
             const rolesError = errors["rolesProps"];
-            console.log({ errors });
 
             return (
               <Form>
@@ -78,6 +77,8 @@ export default function RaidPostForm(props: RaidPostFormProps) {
                   roles={values.rolesProps}
                   rolesId="rolesProps"
                   onChange={handleChange}
+                  errorMessage={rolesError as string}
+                  required
                 />
                 <Button
                   type="submit"
