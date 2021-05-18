@@ -10,6 +10,7 @@ import { mapRaidPostDtoToFormValues } from "../../utils/mapRaidPostDtoToFormValu
 import { useUpdateRaidPostMutation } from "../../hooks/mutations/raid-posts/useUpdateRaidPostMutation";
 import { mapRaidPostFormToDto } from "../../utils/mapRaidPostFormToDto";
 import { invalidateGetRaidPostsQueries } from "../../hooks/queries/raid-posts/useGetRaidPostsQuery";
+import { mapGw2lfgServer400ErrorsToErrorMap } from "../../utils/mapGw2lfgServer400ErrorsToErrorMap";
 
 /**
  * Renders raid post form that allows editing of existing posts.
@@ -33,14 +34,21 @@ export default function EditRaidPost() {
   } = useGetRaidBossesQuery();
   const [updatePost] = useUpdateRaidPostMutation();
 
-  const handleFormSubmit = async (values: RaidPostFormValues, {}) => {
-    try {
-      const raidPost = mapRaidPostFormToDto(values);
-      await updatePost({ id: id as string, ...raidPost });
+  const handleFormSubmit = async (
+    values: RaidPostFormValues,
+    { setErrors }
+  ) => {
+    const raidPost = mapRaidPostFormToDto(values);
+    const { error } = await updatePost({ id: id as string, ...raidPost });
+    if (!error) {
       invalidateGetRaidPostsQueries();
       router.push("/raid-posts");
-    } catch (err) {
-      console.error(err);
+    } else {
+      if (error.status === 400 && error.data.errors) {
+        setErrors(mapGw2lfgServer400ErrorsToErrorMap(error.data.errors));
+      } else {
+        console.log(error);
+      }
     }
   };
 
