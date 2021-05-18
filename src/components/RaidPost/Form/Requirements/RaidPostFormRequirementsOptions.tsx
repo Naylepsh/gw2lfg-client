@@ -1,4 +1,10 @@
-import { Box, Typography } from "@material-ui/core";
+import {
+  createStyles,
+  FormControl,
+  FormLabel,
+  FormGroup,
+  makeStyles,
+} from "@material-ui/core";
 import React from "react";
 import gw2itemsInfo from "../../../Gw2Item/gw2items.json";
 import RaidPostFormRequirementOption from "./RaidPostFormRequirementOption";
@@ -16,24 +22,14 @@ export function RaidPostFormRequirementsOptions(
 ) {
   const { requirementsId, itemsId } = props;
 
+  const classes = useStyles();
+
   const requirements = getKnownItems();
 
   return (
-    <Box
-      my={3}
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Typography variant="h6">Requirements</Typography>
-      <Box
-        display="flex"
-        flexDirection="row"
-        width="100%"
-        flexWrap="wrap"
-        justifyContent="space-around"
-      >
+    <FormControl className={classes.formControl}>
+      <FormLabel component="legend">Requirements</FormLabel>
+      <FormGroup className={classes.formGroup}>
         {requirements.map((requirement) => (
           <RaidPostFormRequirementOption
             {...requirement}
@@ -41,10 +37,13 @@ export function RaidPostFormRequirementsOptions(
             id={`${requirementsId}.${itemsId}.${requirement.name}`}
           />
         ))}
-      </Box>
-    </Box>
+      </FormGroup>
+    </FormControl>
   );
 }
+
+// Memoised component, improves the performance
+export default React.memo(RaidPostFormRequirementsOptions);
 
 /**
  * Gets list of item names from stored gw2items.json file
@@ -54,5 +53,21 @@ export function getKnownItems() {
   return itemNames.map((name) => ({ name }));
 }
 
-// Memoised component, improves the performance
-export default React.memo(RaidPostFormRequirementsOptions);
+const useStyles = makeStyles(() =>
+  createStyles({
+    formControl: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "30px",
+    },
+    formGroup: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "100%",
+    },
+  })
+);
