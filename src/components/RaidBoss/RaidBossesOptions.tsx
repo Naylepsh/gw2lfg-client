@@ -2,7 +2,6 @@ import {
   FormControl,
   FormLabel,
   FormGroup,
-  FormControlLabel,
   makeStyles,
   createStyles,
   FormHelperText,
