@@ -1,4 +1,11 @@
-import { Typography, Box } from "@material-ui/core";
+import {
+  FormControl,
+  FormLabel,
+  FormGroup,
+  FormControlLabel,
+  makeStyles,
+  createStyles,
+} from "@material-ui/core";
 import React from "react";
 import { RaidBossDTO } from "../../services/gw2lfg-server/entities/RaidBossDTO";
 import RaidBossOption from "./RaidBossOption";
@@ -15,30 +22,48 @@ interface RaidBossesOptionsProps {
  */
 export function RaidBossesOptions(props: RaidBossesOptionsProps) {
   const { onChange, name, selectedBosses, bosses } = props;
+  const classes = useStyles();
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      my={3}
-    >
-      <Typography variant="h6">Raid Bosses</Typography>
-      <Box display="flex" flexDirection="row" flexWrap="wrap">
+    <FormControl className={classes.formControl}>
+      <FormLabel component="legend">Raid Bosses</FormLabel>
+      <FormGroup className={classes.formGroup}>
         {bosses.map((boss) => (
-          <RaidBossOption
-            boss={boss}
-            onChange={onChange}
+          <FormControlLabel
             key={boss.id}
-            name={name}
-            checked={selectedBosses.includes(boss.id.toString())}
+            control={
+              <RaidBossOption
+                boss={boss}
+                onChange={onChange}
+                name={name}
+                checked={selectedBosses.includes(boss.id.toString())}
+              />
+            }
+            label=""
           />
         ))}
-      </Box>
-    </Box>
+      </FormGroup>
+    </FormControl>
   );
 }
 
 // Memoised component, improves the performance
 export default React.memo(RaidBossesOptions);
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    formControl: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "30px",
+    },
+    formGroup: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  })
+);

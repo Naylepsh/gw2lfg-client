@@ -47,7 +47,11 @@ export default function RaidPostForm(props: RaidPostFormProps) {
         <Typography variant="h4">{title}</Typography>
         <Formik onSubmit={onSubmit} initialValues={initialValues}>
           {(formProps) => {
-            const { handleChange, values } = formProps;
+            const { handleChange, values, errors } = formProps;
+
+            const bossesError = errors['bossesIds']
+            const rolesError = errors['rolesProps']
+            console.log({ errors });
 
             return (
               <Form>

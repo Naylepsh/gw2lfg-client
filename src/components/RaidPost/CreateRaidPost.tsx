@@ -12,12 +12,13 @@ import { invalidateGetRaidPostsQueries } from "../../hooks/queries/raid-posts/us
 import { useIsAuthenticated } from "../../hooks/useIsAuthenticated";
 import { RoleDTO } from "../../services/gw2lfg-server/entities/RoleDTO";
 import { mapRaidPostFormToDto } from "../../utils/mapRaidPostFormToDto";
+import { mapGw2lfgServer400ErrorsToErrorMap } from "../../utils/mapGw2lfgServer400ErrorsToErrorMap";
 
 /**
  * Renders raid post form that allows creation of new posts.
  * Sets initial form values and submit handler.
  * User has to be authenticated to use.
-*/
+ */
 export default function CreateRaidPost() {
   const { isAuthenticating } = useIsAuthenticated();
 
@@ -25,14 +26,21 @@ export default function CreateRaidPost() {
 
   const [createPost] = useCreateRaidPostMutation();
   const router = useRouter();
-  const handleFormSubmit = async (values: RaidPostFormValues, {}) => {
-    try {
-      const raidPost = mapRaidPostFormToDto(values);
-      await createPost(raidPost);
+  const handleFormSubmit = async (
+    values: RaidPostFormValues,
+    { setErrors }
+  ) => {
+    const raidPost = mapRaidPostFormToDto(values);
+    const { error } = await createPost(raidPost);
+    if (!error) {
       invalidateGetRaidPostsQueries();
       router.push("/raid-posts");
-    } catch (err) {
-      console.error(err);
+    } else {
+      if (error.status === 400 && error.data.errors) {
+        setErrors(mapGw2lfgServer400ErrorsToErrorMap(error.data.errors));
+      } else {
+        console.log(error);
+      }
     }
   };
 
