@@ -32,6 +32,7 @@ export default function GetRaidPosts() {
     roleClass: ANY,
     bossesIds: [],
     showOption: "all",
+    authorName: "",
   });
   const [prevRaidPosts, setPrevRaidPosts] = useState([] as RaidPostDTO[]);
 
@@ -144,8 +145,9 @@ function formParamsToQueryParams(
     const queryValue = queryParams[param];
     const isAnyValue = queryValue === ANY;
     const isEmptyArray = Array.isArray(queryValue) && queryValue.length === 0;
+    const isEmpty = !queryValue || isEmptyArray;
 
-    if (isAnyValue || isEmptyArray) {
+    if (isAnyValue || isEmpty) {
       delete queryParams[param];
     }
   }
