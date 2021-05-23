@@ -44,7 +44,7 @@ export default function UserRaidClear() {
         </Box>
         <List>
           {clearedBosses.map((bossName) => (
-            <React.Fragment>
+            <React.Fragment key={bossName}>
               <ListItem>
                 <ListItemText primary={bossName} />
               </ListItem>
