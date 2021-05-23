@@ -45,15 +45,17 @@ export default function RaidPostDetails(props: RaidPostDetailsProps) {
   return (
     <>
       <Grid container direction="column">
-        {/* Link to author */}
-        <Box>
-          {/* Forcing a white space before link */}
-          author:{" "}
-          <Link href={`/users/${raidPost.author.id}`} color="inherit">
-            {raidPost.author.username}
-          </Link>
+        <Box display="flex" alignItems="center" flexDirection="column">
+          {/* Link to author */}
+          <Box>
+            {/* Forcing a white space before link */}
+            author:{" "}
+            <Link href={`/users/${raidPost.author.id}`} color="inherit">
+              {raidPost.author.username}
+            </Link>
+          </Box>
+          <Box my={2}>{raidPost.description}</Box>
         </Box>
-        <Box mb={3}>{raidPost.description}</Box>
         <RaidPostRequirementsDetails requirements={raidPost.requirements} />
         <RaidPostRolesDetails
           postId={raidPost.id}
