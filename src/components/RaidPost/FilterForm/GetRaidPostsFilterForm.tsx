@@ -69,7 +69,11 @@ export function GetRaidPostsFilterForm(props: GetRaidPostsFilterFormProps) {
         </Box>
       </AccordionSummary>
       <AccordionDetails>
-        <Formik onSubmit={onSubmit} initialValues={initialValues}>
+        <Formik
+          onSubmit={onSubmit}
+          initialValues={initialValues}
+          enableReinitialize={true}
+        >
           {(formProps) => {
             const { handleChange, values } = formProps;
             const gridItemProps = {

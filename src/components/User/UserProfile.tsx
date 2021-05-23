@@ -75,7 +75,9 @@ export default function UserProfile() {
             <ListItemText
               className={classes.itemText}
               primary={`Browse ${data.user.username}'s raid posts`}
-              onClick={() => router.push(`/users/${id}/raid-posts`)}
+              onClick={() =>
+                router.push(`/raid-posts?authorName=${data.user.username}`)
+              }
             />
           </ListItem>
           <Divider />

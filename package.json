@@ -19,6 +19,7 @@
     "formik-material-ui": "^3.0.1",
     "gray-matter": "^4.0.2",
     "next": "^10.2.0",
+    "query-string": "^7.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-query": "^2.26.4",

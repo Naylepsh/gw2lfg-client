@@ -1,6 +1,7 @@
 import { Box, Button, Container, Paper, Typography } from "@material-ui/core";
+import { parse } from "query-string";
 import AddIcon from "@material-ui/icons/Add";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 import React, { useState } from "react";
 import Loading from "../common/Loading/Loading";
 import { RaidPost } from "./RaidPost";
@@ -32,8 +33,9 @@ export default function GetRaidPosts() {
     roleClass: ANY,
     bossesIds: [],
     showOption: "all",
-    authorName: "",
+    authorName: (getQueryParam(router, "authorName") as string) || "",
   });
+
   const [prevRaidPosts, setPrevRaidPosts] = useState([] as RaidPostDTO[]);
 
   const { user } = useUser();
@@ -122,10 +124,16 @@ export default function GetRaidPosts() {
   );
 }
 
-function formParamsToQueryParams(
+const getQueryParam = (router: NextRouter, paramName: string) => {
+  const query = parse(router.asPath.split(/\?/)[1]);
+
+  return query[paramName];
+};
+
+const formParamsToQueryParams = (
   filterParams: QueryFormParams,
   userId?: number
-) {
+) => {
   const queryParams = { ...filterParams };
 
   if (userId) {
@@ -153,4 +161,4 @@ function formParamsToQueryParams(
   }
 
   return queryParams;
-}
+};
