@@ -50,7 +50,7 @@ export default function CreateRaidPost() {
     description: "",
     selectedBosses: [] as string[],
     requirementsProps: { itemsProps: {} } as RequirementsProps,
-    rolesProps: [] as RoleDTO[],
+    rolesProps: [{ name: "any", class: "any", description: "" }] as RoleDTO[],
   };
 
   if (isAuthenticating) return <Loading size="large" />;
