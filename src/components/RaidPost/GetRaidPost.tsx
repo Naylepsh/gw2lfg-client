@@ -2,8 +2,6 @@ import { Box, Container, Paper, Typography } from "@material-ui/core";
 import { useRouter } from "next/router";
 import Loading from "../common/Loading/Loading";
 import { RaidPost } from "./RaidPost";
-import { GetPostsQueryParams } from "../../services/gw2lfg-server/raid-posts/dtos/GetRaidPostsDTO";
-import { ShowOption } from "./FilterForm/GetRaidPostsFilterForm";
 import { useGetRaidPostQuery } from "../../hooks/queries/raid-posts/useGetRaidPostQuery";
 
 /**
@@ -24,11 +22,13 @@ export default function GetRaidPost() {
   }
 
   if (isError) {
-    if (error["status"] === 404) {
+    if (error["response"]["status"] === 404) {
       return (
         <Container component={Paper}>
           <Box p={3} display="flex" justifyContent="center" alignItems="center">
-            <Typography variant="h5">No posts of were found ╥﹏╥</Typography>
+            <Typography variant="h5">
+              This post could not be found ╥﹏╥
+            </Typography>
           </Box>
         </Container>
       );
