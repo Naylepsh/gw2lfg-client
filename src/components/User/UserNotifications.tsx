@@ -1,9 +1,11 @@
 import { ListItem, ListItemText, makeStyles } from "@material-ui/core";
 import { Box, Container, List, Paper, Divider } from "@material-ui/core";
+import NotInterestedIcon from "@material-ui/icons/NotInterested";
 import React from "react";
 import { useGetNotificationsQuery } from "../../hooks/queries/notifications/useGetNotificationsQuery";
 import { useIsAuthenticated } from "../../hooks/useIsAuthenticated";
 import { useUser } from "../../hooks/useUser";
+import { NotificationDTO } from "../../services/gw2lfg-server/entities/NotificationDTO";
 import Loading from "../common/Loading/Loading";
 
 export default function UserNotifications() {
@@ -26,6 +28,10 @@ export default function UserNotifications() {
 
   const { notifications } = data;
 
+  const markAsSeen = (notification: NotificationDTO, index: number) => {
+    console.log("??");
+  };
+
   return (
     <Container maxWidth="sm" component={Paper} className={classes.container}>
       <Box my={3}>
@@ -34,9 +40,19 @@ export default function UserNotifications() {
             const text = parseText(notification.text);
             const date = new Date(notification.createdAt).toLocaleString();
 
+            const className = notification.seen ? classes.seenNotification : "";
+
             return (
               <React.Fragment key={notification.id}>
-                <ListItem className={classes.seenNotification}>
+                <ListItem className={className}>
+                  <Box mr={2}>
+                    {notification.seen || (
+                      <NotInterestedIcon
+                        className={classes.markIcon}
+                        onClick={() => markAsSeen(notification, i)}
+                      />
+                    )}
+                  </Box>
                   <ListItemText primary={text} secondary={date} />
                 </ListItem>
                 {i < notifications.length - 1 && <Divider />}
@@ -53,15 +69,23 @@ function parseText(text: string) {
   return <span>{text.split(" ").map(parseChunk)}</span>;
 }
 
-function parseChunk(chunk: string) {
+function parseChunk(chunk: string, index: number) {
   if (chunk.toLowerCase().startsWith("user#")) {
     const id = chunk.slice(5);
-    return <a href={`/users/${id}`}>User#{id}</a>;
+    return (
+      <a key={index} href={`/users/${id}`}>
+        User#{id}
+      </a>
+    );
   }
 
   if (chunk.toLowerCase().startsWith("post#")) {
     const id = chunk.slice(5);
-    return <a href={`/raid-posts/${id}`}>Raid Post#{id}</a>;
+    return (
+      <a key={index} href={`/raid-posts/${id}`}>
+        Raid Post#{id}
+      </a>
+    );
   }
 
   return chunk + " ";
@@ -73,5 +97,8 @@ const useStyles = makeStyles(() => ({
   },
   container: {
     padding: "0",
+  },
+  markIcon: {
+    cursor: "pointer",
   },
 }));
