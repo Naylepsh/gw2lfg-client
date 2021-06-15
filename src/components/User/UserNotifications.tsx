@@ -32,11 +32,12 @@ export default function UserNotifications() {
         <List>
           {notifications.map((notification, i) => {
             const text = parseText(notification.text);
+            const date = new Date(notification.createdAt).toLocaleString();
 
             return (
               <React.Fragment key={notification.id}>
                 <ListItem className={classes.seenNotification}>
-                  <ListItemText primary={text} />
+                  <ListItemText primary={text} secondary={date} />
                 </ListItem>
                 {i < notifications.length - 1 && <Divider />}
               </React.Fragment>
