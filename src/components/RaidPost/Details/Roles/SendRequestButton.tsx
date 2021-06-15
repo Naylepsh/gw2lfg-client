@@ -27,7 +27,11 @@ export function SendRequestButton(props: SendRequestButtonProps) {
         });
         if (error) {
           setCanClickOnJoin(false);
-          setJoinButtonText("REQUIREMENTS UNSATISFIED");
+          if (error.status === 409) {
+            setJoinButtonText("CAN TAKE ONLY ONE ROLE");
+          } else {
+            setJoinButtonText("REQUIREMENTS UNSATISFIED");
+          }
         } else {
           invalidateGetJoinRequestsQueries({ postId });
         }

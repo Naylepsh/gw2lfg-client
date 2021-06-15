@@ -3,35 +3,27 @@ import { Box, Container, List, Paper, Divider } from "@material-ui/core";
 import { useRouter } from "next/router";
 import React from "react";
 import { useGetNotificationsQuery } from "../../hooks/queries/notifications/useGetNotificationsQuery";
-import { useGetUserProfileQuery } from "../../hooks/queries/users/useGetUserProfileQuery";
 import { useIsAuthenticated } from "../../hooks/useIsAuthenticated";
+import { useUser } from "../../hooks/useUser";
 import Loading from "../common/Loading/Loading";
 
 export default function UserNotifications() {
-  const router = useRouter();
-  const { id } = router.query;
-
   useIsAuthenticated();
 
+  const { user, isLoading: isUserLoading, isError: isErrorOnUser } = useUser();
   const {
     isLoading: areNotificationsLoading,
     isError: isErrorOnNotifications,
     data,
-  } = useGetNotificationsQuery({ recipent: "username1" }, 1);
+  } = useGetNotificationsQuery({ recipent: user.username }, 1);
 
-  const {
-    isLoading: isProfileLoading,
-    isError: isErrorOnProfile,
-    data: profile,
-  } = useGetUserProfileQuery(id as string);
-  const isLoading = isProfileLoading || areNotificationsLoading;
-  const isError = isErrorOnProfile || isErrorOnNotifications;
+  const isLoading = isUserLoading || areNotificationsLoading;
+  const isError = isErrorOnUser || isErrorOnNotifications;
 
   if (isLoading) return <Loading size="large" />;
   if (isError) return <div>Encountered error</div>;
 
   const { notifications } = data;
-  console.log(notifications);
 
   return (
     <Container maxWidth="sm" component={Paper}>
