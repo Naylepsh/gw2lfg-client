@@ -2,7 +2,7 @@ import { useQuery, queryCache } from "react-query";
 import { GetNotificationsQueryParams } from "../../../services/gw2lfg-server/notifications/dtos/GetNotificationsDTO";
 import getNotifications from "../../../services/gw2lfg-server/notifications/getNotificationsService";
 
-export function useGetRaidPostsQuery(
+export function useGetNotificationsQuery(
   params: GetNotificationsQueryParams,
   page: number
 ) {

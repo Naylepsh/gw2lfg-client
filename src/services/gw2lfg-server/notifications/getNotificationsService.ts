@@ -1,5 +1,7 @@
+import { getAccessToken } from "../../../utils/auth/getAccessToken";
 import { axiosHttpGetAdapter } from "../../http/get/axiosHttpGetAdapter";
 import { HttpGet } from "../../http/get/httpGetType";
+import { createGw2lfgHeaders } from "../createGw2lfgHeaders";
 import { createPaginationQuery } from "../createPaginationQuery";
 import { NotificationDTO } from "../entities/NotificationDTO";
 import { notificationsUrl } from "./constants";
@@ -13,13 +15,16 @@ import {
  */
 export function getNotifications(httpGet: HttpGet) {
   return async function (dto: GetNotificationsDTO) {
+    const token = getAccessToken();
+    const headers = createGw2lfgHeaders(token);
+
     const query = createQuery(dto);
     const url = `${getNotificationsUrl}?${query}`;
 
     const { data: notifications, hasMore } = await httpGet<{
       data: NotificationDTO[];
       hasMore: boolean;
-    }>(url);
+    }>(url, { headers });
 
     return { notifications, hasMore };
   };
