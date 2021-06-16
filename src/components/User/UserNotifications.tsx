@@ -8,22 +8,22 @@ import {
 import { Box, Container, List, Paper, Divider } from "@material-ui/core";
 import NotInterestedIcon from "@material-ui/icons/NotInterested";
 import React, { useState } from "react";
-import { useGetNotificationsQuery } from "../../hooks/queries/notifications/useGetNotificationsQuery";
 import { useIsAuthenticated } from "../../hooks/useIsAuthenticated";
 import { useUser } from "../../hooks/useUser";
 import { NotificationDTO } from "../../services/gw2lfg-server/entities/NotificationDTO";
 import Loading from "../common/Loading/Loading";
+import { useInfiniteGetNotificationsQuery } from "../../hooks/queries/notifications/useInfiniteGetNotificationsQuery";
 
 export default function UserNotifications() {
   useIsAuthenticated();
   const { user, isLoading: isUserLoading, isError: isErrorOnUser } = useUser();
 
-  const [page, setPage] = useState(1);
   const {
     isLoading: areNotificationsLoading,
     isError: isErrorOnNotifications,
+    fetchMore,
     data,
-  } = useGetNotificationsQuery({ recipent: user.username }, page);
+  } = useInfiniteGetNotificationsQuery({ params: { recipent: user.username } });
 
   const [seen, setSeen] = useState<Record<number, boolean>>({});
 
@@ -35,55 +35,51 @@ export default function UserNotifications() {
   if (isLoading) return <Loading size="large" />;
   if (isError) return <div>Encountered error</div>;
 
-  const { notifications } = data;
-
   const markAsSeen = (notification: NotificationDTO) => {
     const updatedSeen = { ...seen };
     updatedSeen[notification.id] = true;
     setSeen(updatedSeen);
   };
 
-  const loadMore = () => {
-    setPage(page + 1);
-  };
-
   return (
     <Container maxWidth="sm" component={Paper} className={classes.container}>
       <Box my={3}>
         <List>
-          {notifications.map((notification, i) => {
-            const text = parseText(notification.text);
-            const date = new Date(notification.createdAt).toLocaleString();
+          {data.map(({ notifications }) =>
+            notifications.map((notification, i) => {
+              const text = parseText(notification.text);
+              const date = new Date(notification.createdAt).toLocaleString();
 
-            const isSeen = seen[notification.id] || notification.seen;
-            const className = isSeen ? classes.seenNotification : "";
+              const isSeen = seen[notification.id] || notification.seen;
+              const className = isSeen ? classes.seenNotification : "";
 
-            return (
-              <React.Fragment key={notification.id}>
-                <ListItem className={className}>
-                  <Box mr={2}>
-                    {isSeen ? (
-                      <></>
-                    ) : (
-                      <NotInterestedIcon
-                        className={classes.markIcon}
-                        onClick={() => markAsSeen(notification)}
-                      />
-                    )}
-                  </Box>
-                  <ListItemText primary={text} secondary={date} />
-                </ListItem>
-                {i < notifications.length - 1 && <Divider />}
-              </React.Fragment>
-            );
-          })}
+              return (
+                <React.Fragment key={notification.id}>
+                  <ListItem className={className}>
+                    <Box mr={2}>
+                      {isSeen ? (
+                        <></>
+                      ) : (
+                        <NotInterestedIcon
+                          className={classes.markIcon}
+                          onClick={() => markAsSeen(notification)}
+                        />
+                      )}
+                    </Box>
+                    <ListItemText primary={text} secondary={date} />
+                  </ListItem>
+                  {i < notifications.length - 1 && <Divider />}
+                </React.Fragment>
+              );
+            })
+          )}
         </List>
-        {data?.hasMore && (
+        {data[data.length - 1].hasMore && (
           <Button
             variant="contained"
             color="primary"
             fullWidth
-            onClick={loadMore}
+            onClick={fetchMore}
           >
             Load more
           </Button>
