@@ -1,4 +1,9 @@
-import { ListItem, ListItemText, makeStyles } from "@material-ui/core";
+import {
+  ListItem,
+  ListItemText,
+  makeStyles,
+  createStyles,
+} from "@material-ui/core";
 import { Box, Container, List, Paper, Divider } from "@material-ui/core";
 import NotInterestedIcon from "@material-ui/icons/NotInterested";
 import React, { useState } from "react";
@@ -18,7 +23,7 @@ export default function UserNotifications() {
     data,
   } = useGetNotificationsQuery({ recipent: user.username }, 1);
 
-  const [seen, setSeen] = useState<number[]>([]);
+  const [seen, setSeen] = useState<Record<number, boolean>>({});
 
   const classes = useStyles();
 
@@ -30,41 +35,33 @@ export default function UserNotifications() {
 
   const { notifications } = data;
 
-  const markAsSeen = (notification: NotificationDTO, index: number) => {
-    const updatedSeen = [...seen];
-    updatedSeen.push(notification.id);
+  const markAsSeen = (notification: NotificationDTO) => {
+    const updatedSeen = { ...seen };
+    updatedSeen[notification.id] = true;
     setSeen(updatedSeen);
   };
 
   return (
-    <Container
-      maxWidth="sm"
-      component={Paper}
-      className={classes.container}
-      key={seen.length}
-    >
+    <Container maxWidth="sm" component={Paper} className={classes.container}>
       <Box my={3}>
         <List>
           {notifications.map((notification, i) => {
             const text = parseText(notification.text);
             const date = new Date(notification.createdAt).toLocaleString();
 
-            let className = "";
-            const isSeen = seen.includes(notification.id) || notification.seen;
-            if (isSeen) {
-              className = classes.seenNotification;
-            }
-
-            const key = `${notification.id}-${isSeen}`;
+            const isSeen = seen[notification.id] || notification.seen;
+            const className = isSeen ? classes.seenNotification : "";
 
             return (
-              <React.Fragment key={key}>
-                <ListItem className={className} key={key}>
+              <React.Fragment key={notification.id}>
+                <ListItem className={className}>
                   <Box mr={2}>
-                    {isSeen || (
+                    {isSeen ? (
+                      <></>
+                    ) : (
                       <NotInterestedIcon
                         className={classes.markIcon}
-                        onClick={() => markAsSeen(notification, i)}
+                        onClick={() => markAsSeen(notification)}
                       />
                     )}
                   </Box>
@@ -106,14 +103,16 @@ function parseChunk(chunk: string, index: number) {
   return chunk + " ";
 }
 
-const useStyles = makeStyles(() => ({
-  seenNotification: {
-    background: "#e8ebed",
-  },
-  container: {
-    padding: "0",
-  },
-  markIcon: {
-    cursor: "pointer",
-  },
-}));
+const useStyles = makeStyles(() =>
+  createStyles({
+    seenNotification: {
+      background: "#e8ebed",
+    },
+    container: {
+      padding: "0",
+    },
+    markIcon: {
+      cursor: "pointer",
+    },
+  })
+);
