@@ -51,9 +51,9 @@ export default function UserNotifications() {
   return (
     <Container maxWidth="sm" component={Paper} className={classes.container}>
       <Box my={3}>
-        <List>
+        <List className={classes.list}>
           {data.map(({ notifications }) =>
-            notifications.map((notification, i) => {
+            notifications.map((notification, i: number) => {
               const text = parseText(notification.text);
               const date = new Date(notification.createdAt).toLocaleString();
 
@@ -132,6 +132,9 @@ const useStyles = makeStyles(() =>
     },
     markIcon: {
       cursor: "pointer",
+    },
+    list: {
+      padding: "0",
     },
   })
 );

@@ -26,7 +26,7 @@ export function getNotifications(httpGet: HttpGet) {
       hasMore: boolean;
     }>(url, { headers });
 
-    return { notifications, hasMore };
+    return { notifications, hasMore, nextPage: dto.page + 1 };
   };
 }
 
