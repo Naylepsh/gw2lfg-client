@@ -13,6 +13,7 @@ import { useUser } from "../../hooks/useUser";
 import { NotificationDTO } from "../../services/gw2lfg-server/entities/NotificationDTO";
 import Loading from "../common/Loading/Loading";
 import { useInfiniteGetNotificationsQuery } from "../../hooks/queries/notifications/useInfiniteGetNotificationsQuery";
+import updateNotification from "../../services/gw2lfg-server/notifications/updateNotificationService";
 
 export default function UserNotifications() {
   useIsAuthenticated();
@@ -35,10 +36,16 @@ export default function UserNotifications() {
   if (isLoading) return <Loading size="large" />;
   if (isError) return <div>Encountered error</div>;
 
-  const markAsSeen = (notification: NotificationDTO) => {
+  const markAsSeen = async (notification: NotificationDTO) => {
     const updatedSeen = { ...seen };
     updatedSeen[notification.id] = true;
     setSeen(updatedSeen);
+    try {
+      const res = await updateNotification({ id: notification.id, seen: true });
+      console.log(res);
+    } catch (error) {
+      setSeen({ ...updatedSeen, [notification.id]: false });
+    }
   };
 
   return (
@@ -79,7 +86,7 @@ export default function UserNotifications() {
             variant="contained"
             color="primary"
             fullWidth
-            onClick={fetchMore}
+            onClick={() => fetchMore()}
           >
             Load more
           </Button>

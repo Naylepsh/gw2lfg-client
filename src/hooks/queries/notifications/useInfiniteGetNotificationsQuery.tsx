@@ -14,13 +14,12 @@ export const useInfiniteGetNotificationsQuery = (
   props: InfiniteNotificationsQueryProps
 ) => {
   const [page, setPage] = useState(1);
-  const cacheTime = props.cacheTime ?? 0;
   const key = props.key ?? "notifications";
   const config = {
-    cacheTime,
-    getFetchMore: () => {
+    cacheTime: props.cacheTime,
+    getFetchMore: ({ hasMore }) => {
       setPage(page + 1);
-      return page;
+      return hasMore;
     },
   };
 
