@@ -3,6 +3,7 @@ import {
   ListItemText,
   makeStyles,
   createStyles,
+  Button,
 } from "@material-ui/core";
 import { Box, Container, List, Paper, Divider } from "@material-ui/core";
 import NotInterestedIcon from "@material-ui/icons/NotInterested";
@@ -15,13 +16,14 @@ import Loading from "../common/Loading/Loading";
 
 export default function UserNotifications() {
   useIsAuthenticated();
-
   const { user, isLoading: isUserLoading, isError: isErrorOnUser } = useUser();
+
+  const [page, setPage] = useState(1);
   const {
     isLoading: areNotificationsLoading,
     isError: isErrorOnNotifications,
     data,
-  } = useGetNotificationsQuery({ recipent: user.username }, 1);
+  } = useGetNotificationsQuery({ recipent: user.username }, page);
 
   const [seen, setSeen] = useState<Record<number, boolean>>({});
 
@@ -39,6 +41,10 @@ export default function UserNotifications() {
     const updatedSeen = { ...seen };
     updatedSeen[notification.id] = true;
     setSeen(updatedSeen);
+  };
+
+  const loadMore = () => {
+    setPage(page + 1);
   };
 
   return (
@@ -72,6 +78,16 @@ export default function UserNotifications() {
             );
           })}
         </List>
+        {data?.hasMore && (
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={loadMore}
+          >
+            Load more
+          </Button>
+        )}
       </Box>
     </Container>
   );
