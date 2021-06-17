@@ -53,7 +53,7 @@ export default function UserNotifications() {
       <Box my={3}>
         <List className={classes.list}>
           {data.map(({ notifications }) =>
-            notifications.map((notification, i: number) => {
+            notifications.map((notification, i) => {
               const text = parseText(notification.text);
               const date = new Date(notification.createdAt).toLocaleString();
 
@@ -105,7 +105,7 @@ function parseChunk(chunk: string, index: number) {
     const id = chunk.slice(5);
     return (
       <a key={index} href={`/users/${id}`}>
-        User#{id}
+        User#{id}{" "}
       </a>
     );
   }
@@ -114,7 +114,7 @@ function parseChunk(chunk: string, index: number) {
     const id = chunk.slice(5);
     return (
       <a key={index} href={`/raid-posts/${id}`}>
-        Raid Post#{id}
+        Raid Post#{id}{" "}
       </a>
     );
   }
