@@ -7,7 +7,7 @@ import { notificationsUrl } from "./constants";
 import { UpdateNotificationDTO } from "./dtos/UpdateNotificationDTO";
 
 /**
- * Sends PUT /join-requests/:id request to gw2lfg-server with status set to 'ACCEPTED'
+ * Sends PATCH /notifications/:id request to gw2lfg-server
  */
 export function updateNotification(httpPatch: HttpPatch) {
   return async function (dto: UpdateNotificationDTO) {
@@ -27,6 +27,6 @@ export function updateNotification(httpPatch: HttpPatch) {
 }
 
 /**
- * Function with axios adapter injected.
+ * Injected axios adapter
  */
 export default updateNotification(axiosHttpPatchAdapter);
