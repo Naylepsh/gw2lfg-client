@@ -29,7 +29,7 @@ export default function NavBar() {
           {isUserLoggedIn ? (
             <>
               <NotificationsBadge
-                href={`/users/${user.id}/notifications`}
+                href={`/notifications`}
                 recipent={user.username}
               />
               <LoggedInMenu userId={user.id} />
