@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 
 const UserNotificationsWithoutSSR = dynamic(
-  () => import("../../../src/components/User/UserNotifications"),
+  () => import("../../src/components/User/UserNotifications"),
   { ssr: false }
 );
 
