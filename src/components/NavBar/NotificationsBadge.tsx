@@ -52,7 +52,7 @@ export function NotificationsBadge(props: NotificationsBadgeProps) {
   };
 
   const freshNotifications = (data?.notifications ?? []).filter(
-    (n) => new Date(n.createdAt) > date
+    (n) => new Date(n.createdAt) >= date
   );
   const badgeContent =
     (data?.notifications.length ?? 0) + (data?.hasMore ? "+" : "");
@@ -61,7 +61,7 @@ export function NotificationsBadge(props: NotificationsBadgeProps) {
     snackbarContent += lastNotification.text;
   }
   if (freshNotifications.length > 1) {
-    snackbarContent += `, and ${freshNotifications.length} more...`;
+    snackbarContent += `, and ${freshNotifications.length - 1} more...`;
   }
 
   return (
