@@ -12,6 +12,7 @@ interface NotificationListProps {
 export function NotificationList(props: NotificationListProps) {
   const { notifications } = props;
   const [seen, setSeen] = useState<Record<number, boolean>>({});
+  const [deleted, setDeleted] = useState<Record<number, boolean>>({});
   const classes = useStyles();
 
   const markAsSeen = async (notification: NotificationDTO) => {
@@ -25,20 +26,29 @@ export function NotificationList(props: NotificationListProps) {
     }
   };
 
+  const markAsDeleted = async (notification: NotificationDTO) => {
+    const updatedDeleted = { ...deleted };
+    updatedDeleted[notification.id] = true;
+    setDeleted(updatedDeleted);
+  };
+
   return (
     <List className={classes.list}>
       {notifications.map((notification, i) => {
         const isSeen = seen[notification.id] || notification.seen;
 
         return (
-          <React.Fragment key={notification.id}>
-            <Notification
-              notification={notification}
-              isSeen={isSeen}
-              markAsSeen={markAsSeen}
-            />
-            {i < notifications.length - 1 && <Divider />}
-          </React.Fragment>
+          !deleted[notification.id] && (
+            <React.Fragment key={notification.id}>
+              <Notification
+                notification={notification}
+                isSeen={isSeen}
+                markAsSeen={markAsSeen}
+                markAsDeleted={markAsDeleted}
+              />
+              {i < notifications.length - 1 && <Divider />}
+            </React.Fragment>
+          )
         );
       })}
     </List>

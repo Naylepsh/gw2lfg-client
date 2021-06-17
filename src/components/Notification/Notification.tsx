@@ -6,6 +6,7 @@ import {
 } from "@material-ui/core";
 import { Box } from "@material-ui/core";
 import NotInterestedIcon from "@material-ui/icons/NotInterested";
+import DeleteIcon from "@material-ui/icons/Delete";
 import React from "react";
 import { NotificationDTO } from "../../services/gw2lfg-server/entities/NotificationDTO";
 
@@ -13,6 +14,7 @@ interface NotificationProps {
   notification: NotificationDTO;
   isSeen: boolean;
   markAsSeen: (notification: NotificationDTO) => any;
+  markAsDeleted: (notification: NotificationDTO) => any;
 }
 
 /**
@@ -22,6 +24,7 @@ export function Notification({
   notification,
   isSeen,
   markAsSeen,
+  markAsDeleted,
 }: NotificationProps) {
   const classes = useStyles();
 
@@ -30,15 +33,19 @@ export function Notification({
 
   return (
     <ListItem className={isSeen ? classes.seenNotification : ""}>
-      <Box mr={2}>
+      <Box mr={2} minWidth={55}>
         {isSeen ? (
           <></>
         ) : (
           <NotInterestedIcon
-            className={classes.markIcon}
+            className={classes.actionIcon}
             onClick={() => markAsSeen(notification)}
           />
         )}
+        <DeleteIcon
+          className={classes.actionIcon}
+          onClick={() => markAsDeleted(notification)}
+        />
       </Box>
       <ListItemText primary={text} secondary={date} />
     </ListItem>
@@ -76,7 +83,7 @@ const useStyles = makeStyles(() =>
     seenNotification: {
       background: "#e8ebed",
     },
-    markIcon: {
+    actionIcon: {
       cursor: "pointer",
     },
   })
