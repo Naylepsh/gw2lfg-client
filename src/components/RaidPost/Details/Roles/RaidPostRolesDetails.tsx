@@ -26,7 +26,11 @@ interface RaidPostRolesDetailsProps {
 export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
   const { roles, postId, displayJoinRequests } = props;
 
-  const { isLoading, isError, data: joinRequests } = useGetJoinRequestsQuery({
+  const {
+    isLoading,
+    isError,
+    data: joinRequests,
+  } = useGetJoinRequestsQuery({
     postId,
   });
   const { isError: isMeError, data: me } = useMeQuery();

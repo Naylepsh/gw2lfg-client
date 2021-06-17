@@ -7,6 +7,7 @@ import { Link } from "@material-ui/core";
 import { NotLoggedInMenu } from "./Menu/NotLoggedInMenu";
 import { LoggedInMenu } from "./Menu/LoggedInMenu";
 import { useUser } from "../../hooks/useUser";
+import { NotificationsBadge } from "./NotificationsBadge";
 
 /**
  * Renders a fixed-to-top navigation bar
@@ -26,7 +27,13 @@ export default function NavBar() {
             </Link>
           </Typography>
           {isUserLoggedIn ? (
-            <LoggedInMenu userId={user.id} />
+            <>
+              <NotificationsBadge
+                href={`/users/${user.id}/notifications`}
+                recipent={user.username}
+              />
+              <LoggedInMenu userId={user.id} />
+            </>
           ) : (
             <NotLoggedInMenu />
           )}

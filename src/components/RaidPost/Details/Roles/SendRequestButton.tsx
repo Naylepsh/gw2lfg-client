@@ -11,7 +11,7 @@ interface SendRequestButtonProps {
 
 export function SendRequestButton(props: SendRequestButtonProps) {
   const { canUserClickOnJoin, postId, roleId } = props;
-  const [canClickOnJoin, setCanClickOnJoin] = useState(canUserClickOnJoin);
+  const [requestError, setRequestError] = useState(false);
   const [joinButtonText, setJoinButtonText] = useState("JOIN");
   const [createJoinRequest] = useCreateJoinRequestMutation();
 
@@ -19,15 +19,19 @@ export function SendRequestButton(props: SendRequestButtonProps) {
     <LoadingButton
       color="primary"
       variant="contained"
-      disabled={!canClickOnJoin}
+      disabled={!canUserClickOnJoin || requestError}
       onClick={async () => {
         const { error } = await createJoinRequest({
           postId,
           roleId,
         });
         if (error) {
-          setCanClickOnJoin(false);
-          setJoinButtonText("REQUIREMENTS UNSATISFIED");
+          setRequestError(true);
+          if (error.status === 409) {
+            setJoinButtonText("CAN TAKE ONLY ONE ROLE");
+          } else {
+            setJoinButtonText("REQUIREMENTS UNSATISFIED");
+          }
         } else {
           invalidateGetJoinRequestsQueries({ postId });
         }
