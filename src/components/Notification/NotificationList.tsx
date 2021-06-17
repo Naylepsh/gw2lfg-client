@@ -2,6 +2,7 @@ import { makeStyles, createStyles } from "@material-ui/core";
 import { List, Divider } from "@material-ui/core";
 import React, { useState } from "react";
 import { NotificationDTO } from "../../services/gw2lfg-server/entities/NotificationDTO";
+import deleteNotification from "../../services/gw2lfg-server/notifications/deleteNotificationService";
 import updateNotification from "../../services/gw2lfg-server/notifications/updateNotificationService";
 import { Notification } from "./Notification";
 
@@ -30,6 +31,11 @@ export function NotificationList(props: NotificationListProps) {
     const updatedDeleted = { ...deleted };
     updatedDeleted[notification.id] = true;
     setDeleted(updatedDeleted);
+    try {
+      await deleteNotification({ id: notification.id });
+    } catch (error) {
+      setDeleted({ ...updatedDeleted, [notification.id]: false });
+    }
   };
 
   return (
