@@ -3,6 +3,7 @@ import {
   ListItemText,
   makeStyles,
   createStyles,
+  Tooltip,
 } from "@material-ui/core";
 import { Box } from "@material-ui/core";
 import NotInterestedIcon from "@material-ui/icons/NotInterested";
@@ -37,15 +38,19 @@ export function Notification({
         {isSeen ? (
           <></>
         ) : (
-          <NotInterestedIcon
-            className={classes.actionIcon}
-            onClick={() => markAsSeen(notification)}
-          />
+          <Tooltip title="Mark as seen" aria-label="mark as seen">
+            <NotInterestedIcon
+              className={classes.actionIcon}
+              onClick={() => markAsSeen(notification)}
+            />
+          </Tooltip>
         )}
-        <DeleteIcon
-          className={classes.actionIcon}
-          onClick={() => markAsDeleted(notification)}
-        />
+        <Tooltip title="Delete" aria-label="delete">
+          <DeleteIcon
+            className={classes.actionIcon}
+            onClick={() => markAsDeleted(notification)}
+          />
+        </Tooltip>
       </Box>
       <ListItemText primary={text} secondary={date} />
     </ListItem>
