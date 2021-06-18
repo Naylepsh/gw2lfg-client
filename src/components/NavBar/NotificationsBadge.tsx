@@ -54,8 +54,6 @@ export function NotificationsBadge(props: NotificationsBadgeProps) {
   const freshNotifications = (data?.notifications ?? []).filter(
     (n) => new Date(n.createdAt) >= date
   );
-  const badgeContent =
-    (data?.notifications.length ?? 0) + (data?.hasMore ? "+" : "");
   let snackbarContent = "";
   if (lastNotification) {
     snackbarContent += lastNotification.text;
@@ -67,7 +65,7 @@ export function NotificationsBadge(props: NotificationsBadgeProps) {
   return (
     <>
       <IconButton aria-label="cart" href={href} color="inherit">
-        <Badge badgeContent={badgeContent} color="secondary">
+        <Badge badgeContent={inferBadgeContent(data)} color="secondary">
           <NotificationsIcon />
         </Badge>
       </IconButton>
@@ -93,3 +91,15 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
+
+function inferBadgeContent(data: {
+  notifications: NotificationDTO[];
+  hasMore: boolean;
+  nextPage: number;
+}) {
+  let badgeContent;
+  if (data && data.notifications.length > 0) {
+    badgeContent = data.notifications.length + (data?.hasMore ? "+" : "");
+  }
+  return badgeContent;
+}
