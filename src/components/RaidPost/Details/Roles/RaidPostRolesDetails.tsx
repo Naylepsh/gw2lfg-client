@@ -26,32 +26,26 @@ interface RaidPostRolesDetailsProps {
 export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
   const { roles, postId, displayJoinRequests } = props;
 
-  const {
-    isLoading,
-    isError,
-    data: joinRequests,
-  } = useGetJoinRequestsQuery({
+  const { data: joinRequests } = useGetJoinRequestsQuery({
     postId,
   });
   const { isError: isMeError, data: me } = useMeQuery();
   const gotMe = !isMeError && me;
 
   const roleJoinRequests: Record<number, JoinRequestDTO[]> = {};
-  if (!isLoading && !isError) {
-    for (const joinRequest of joinRequests) {
-      const roleId = joinRequest.role.id;
-      if (!roleJoinRequests[roleId]) {
-        roleJoinRequests[roleId] = [joinRequest];
-      } else {
-        roleJoinRequests[roleId].push(joinRequest);
-      }
-    }
-  }
-
   const usersAcceptedSomeRole: Record<number, boolean> = {};
-  for (const request of joinRequests) {
-    if (request.status === "ACCEPTED") {
-      usersAcceptedSomeRole[request.user.id] = true;
+  if (joinRequests) {
+    for (const request of joinRequests) {
+      const roleId = request.role.id;
+      if (!roleJoinRequests[roleId]) {
+        roleJoinRequests[roleId] = [request];
+      } else {
+        roleJoinRequests[roleId].push(request);
+      }
+
+      if (request.status === "ACCEPTED") {
+        usersAcceptedSomeRole[request.user.id] = true;
+      }
     }
   }
 
@@ -83,7 +77,7 @@ export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
                   <RaidPostRoleJoinRequests
                     postId={postId}
                     joinRequests={roleJoinRequests[role.id] ?? []}
-                    usersAcceptedSomeRole={usersAcceptedSomeRole}
+                    usersAcceptedSomeRole={{}}
                   />
                 ) : (
                   <span>

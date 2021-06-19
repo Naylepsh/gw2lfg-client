@@ -27,7 +27,7 @@ interface RaidPostRoleJoinRequestsProps {
  * Handles accepting and rejecting of requests.
  */
 export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
-  const { joinRequests, postId, usersAcceptedSomeRole: acceptedUsers } = props;
+  const { joinRequests, postId, usersAcceptedSomeRole } = props;
 
   const [acceptJoinRequest] = useAcceptJoinRequestMutation();
   const [deleteJoinRequest] = useDeleteJoinRequestMutation();
@@ -86,24 +86,25 @@ export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
                 </Grid>
                 <Grid item xs={12} md={3} className={classes.requestsGridItem}>
                   <Grid container justify="space-between">
-                    {!acceptedUsers[request.user.id] && !hasSomeoneAccepted && (
-                      <Grid
-                        item
-                        xs={12}
-                        sm={6}
-                        className={classes.requestsGridItem}
-                      >
-                        <Box my={1}>
-                          <LoadingButton
-                            color="primary"
-                            variant="contained"
-                            onClick={() => handleAccept(request.id)}
-                          >
-                            ACCEPT
-                          </LoadingButton>
-                        </Box>
-                      </Grid>
-                    )}
+                    {!usersAcceptedSomeRole[request.user.id] &&
+                      !hasSomeoneAccepted && (
+                        <Grid
+                          item
+                          xs={12}
+                          sm={6}
+                          className={classes.requestsGridItem}
+                        >
+                          <Box my={1}>
+                            <LoadingButton
+                              color="primary"
+                              variant="contained"
+                              onClick={() => handleAccept(request.id)}
+                            >
+                              ACCEPT
+                            </LoadingButton>
+                          </Box>
+                        </Grid>
+                      )}
                     <Grid
                       item
                       xs={12}
