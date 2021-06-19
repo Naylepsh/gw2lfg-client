@@ -48,6 +48,13 @@ export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
     }
   }
 
+  const usersAcceptedSomeRole: Record<number, boolean> = {};
+  for (const request of joinRequests) {
+    if (request.status === "ACCEPTED") {
+      usersAcceptedSomeRole[request.user.id] = true;
+    }
+  }
+
   return (
     <Box>
       <Box my={3} display="flex" flexDirection="row" justifyContent="center">
@@ -76,6 +83,7 @@ export function RaidPostRolesDetails(props: RaidPostRolesDetailsProps) {
                   <RaidPostRoleJoinRequests
                     postId={postId}
                     joinRequests={roleJoinRequests[role.id] ?? []}
+                    usersAcceptedSomeRole={usersAcceptedSomeRole}
                   />
                 ) : (
                   <span>

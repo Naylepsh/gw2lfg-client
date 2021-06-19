@@ -19,6 +19,7 @@ import LoadingButton from "../../../common/buttons/LoadingButton";
 interface RaidPostRoleJoinRequestsProps {
   postId: number;
   joinRequests: JoinRequestDTO[];
+  usersAcceptedSomeRole: Record<number, boolean>;
 }
 
 /**
@@ -26,7 +27,7 @@ interface RaidPostRoleJoinRequestsProps {
  * Handles accepting and rejecting of requests.
  */
 export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
-  const { joinRequests, postId } = props;
+  const { joinRequests, postId, usersAcceptedSomeRole: acceptedUsers } = props;
 
   const [acceptJoinRequest] = useAcceptJoinRequestMutation();
   const [deleteJoinRequest] = useDeleteJoinRequestMutation();
@@ -34,10 +35,9 @@ export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
   // sort join requests by status
   joinRequests.sort((request, _) => (request.status === "ACCEPTED" ? 1 : 0));
 
-  const acceptedRequest = joinRequests.find(
+  const hasSomeoneAccepted = joinRequests.find(
     (request) => request.status === "ACCEPTED"
   );
-  const hasAcceptedRequest = !!acceptedRequest;
 
   // logic for clicking on ACCEPT button
   const handleAccept = async (requestId: number) => {
@@ -86,7 +86,7 @@ export function RaidPostRoleJoinRequests(props: RaidPostRoleJoinRequestsProps) {
                 </Grid>
                 <Grid item xs={12} md={3} className={classes.requestsGridItem}>
                   <Grid container justify="space-between">
-                    {!hasAcceptedRequest && (
+                    {!acceptedUsers[request.user.id] && !hasSomeoneAccepted && (
                       <Grid
                         item
                         xs={12}
